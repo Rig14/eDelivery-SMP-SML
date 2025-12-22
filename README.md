@@ -1,2 +1,25 @@
 # eDelivery-SMP-SML
-This is my BSc research project in TalTech. Example usage of eDelivery dynamic discovery with SML/SMP components in the context of eFTI. 
+This is my B.Sc. research project in TalTech. Example usage of eDelivery dynamic discovery with SML/SMP components in the context of eFTI.
+
+## Quick Start
+
+1. Start the services using docker:
+```bash
+docker compose up
+```
+
+## Links
+
+SMP server admin: http://localhost:8080/secure
+SMP server public info: http://localhost:8080
+
+Default admin credentials:
+Username: `admin@helger.com`
+Password: `password`
+
+## Additional Resources
+
+- [phoss SMP Wiki](https://github.com/phax/phoss-smp/wiki)
+- [Docker Hub Images](https://hub.docker.com/r/phelger/phoss-smp-xml)
+- [Configuration Reference](https://github.com/phax/phoss-smp/wiki/Configuration)
+- [SMP Configuration Guide PDF DE4A](https://wiki.de4a.eu/images/2/2c/Setting_up_a_Service_Metadata_Publisher_for_DE4A.pdf)

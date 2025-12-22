@@ -1,0 +1,54 @@
+services:
+  harmony-ap:
+    image: niis/harmony-ap:2.6.0
+    ports:
+      - "8443:8443"
+    environment:
+      - DB_HOST=harmony-db
+      - DB_PASSWORD=secret
+      - ADMIN_PASSWORD=secret
+      - USE_DYNAMIC_DISCOVERY=true
+    restart: unless-stopped
+    volumes:
+      - ap-data:/var/opt/harmony-ap
+    depends_on:
+      - harmony-db
+
+  harmony-db:
+    image: mysql:8
+    command:
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_bin"
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_DATABASE=harmony_ap
+      - MYSQL_USER=harmony_ap
+      - MYSQL_PASSWORD=secret
+    restart: on-failure
+    volumes:
+      - ap-db-data:/var/lib/mysql
+
+  phoss-smp:
+    image: phelger/phoss-smp-xml:latest
+    container_name: phoss-smp
+    ports:
+      - "8080:8080"
+    environment:
+      - CONFIG_FILE=/config/application.properties
+    volumes:
+      - ./smp:/config:ro
+      - smp-data:/home/git/conf
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:8080/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  ap-data:
+  ap-db-data:
+  smp-data:
