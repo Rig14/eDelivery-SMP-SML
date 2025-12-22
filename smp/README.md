@@ -15,19 +15,10 @@ Default credentials:
 Username: `admin@helger.com`
 Password: `password`
 
-## Configuration
-
-The configuration file is located at `config/application.properties`. You can modify this file to customize the SMP server settings.
-
-### Important Configuration Notes
-
-- **Backend**: Currently set to `xml` backend (no database required)
-- **Data Storage**: All SMP data is persisted in the `./data` directory. 
-- **Port**: The server runs on port 8080 by default
-
 ## Additional Resources
 
 - [phoss SMP Wiki](https://github.com/phax/phoss-smp/wiki)
 - [Docker Hub Images](https://hub.docker.com/r/phelger/phoss-smp-xml)
 - [Configuration Reference](https://github.com/phax/phoss-smp/wiki/Configuration)
+- [SMP Configuration Guide PDF DE4A](https://wiki.de4a.eu/images/2/2c/Setting_up_a_Service_Metadata_Publisher_for_DE4A.pdf)
 
