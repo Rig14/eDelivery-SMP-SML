@@ -8,6 +8,11 @@ services:
       - DB_PASSWORD=secret
       - ADMIN_PASSWORD=secret
       - USE_DYNAMIC_DISCOVERY=true
+      - PARTY_NAME=ap1
+      - SECURITY_KEYSTORE_PASSWORD=changeit
+      - SECURITY_TRUSTSTORE_PASSWORD=changeit
+      - TLS_KEYSTORE_PASSWORD=changeit
+      - TLS_TRUSTSTORE_PASSWORD=changeit
     restart: unless-stopped
     volumes:
       - ap-data:/var/opt/harmony-ap
