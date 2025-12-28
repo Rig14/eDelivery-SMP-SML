@@ -1,6 +1,12 @@
 # eDelivery-SMP-SML
 This is my B.Sc. research project in TalTech. Example usage of eDelivery dynamic discovery with SML/SMP components in the context of eFTI.
 
+## Subprojects
+### plugin-user
+Simple client to send messages to access point.
+Set your message and configure receiver details.
+To run it, execute the main method.
+
 ## Quick Start
 
 1. Start the services using docker:
