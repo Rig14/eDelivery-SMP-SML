@@ -1,0 +1,45 @@
+<S:Envelope xmlns:S="http://www.w3.org/2003/05/soap-envelope" xmlns:env="http://www.w3.org/2003/05/soap-envelope">
+    <S:Header>
+        <ns5:Messaging xmlns:ns3="http://eu.domibus.wsplugin/" xmlns:ns5="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+            <ns5:UserMessage>
+                <ns5:MessageInfo>
+                    <ns5:MessageId>b840a46c-e3e7-11f0-9888-5a2df3995194@domibus.eu</ns5:MessageId>
+                </ns5:MessageInfo>
+                <ns5:PartyInfo>
+                    <ns5:From>
+                        <ns5:PartyId type="urn:oasis:names:tc:ebcore:partyid-type:unregistered">estonia</ns5:PartyId>
+                        <ns5:Role>http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/initiator</ns5:Role>
+                    </ns5:From>
+                    <ns5:To>
+                        <ns5:PartyId type="urn:oasis:names:tc:ebcore:partyid-type:unregistered">borduria</ns5:PartyId>
+                        <ns5:Role>http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/responder</ns5:Role>
+                    </ns5:To>
+                </ns5:PartyInfo>
+                <ns5:CollaborationInfo>
+                    <ns5:Service type="tc1">bdx:noprocess</ns5:Service>
+                    <ns5:Action>eftiGateAction</ns5:Action>
+                    <ns5:ConversationId>63ac78ba-60f8-4f04-9f57-e3cd8ab2ca9c</ns5:ConversationId>
+                </ns5:CollaborationInfo>
+                <ns5:MessageProperties>
+                    <ns5:Property name="originalSender">urn:oasis:names:tc:ebcore:partyid-type:unregistered:C1</ns5:Property>
+                    <ns5:Property name="finalRecipient">urn:oasis:names:tc:ebcore:partyid-type:unregistered:C4</ns5:Property>
+                </ns5:MessageProperties>
+                <ns5:PayloadInfo>
+                    <ns5:PartInfo href="cid:message">
+                        <ns5:PartProperties>
+                            <ns5:Property name="MimeType">text/xml</ns5:Property>
+                        </ns5:PartProperties>
+                    </ns5:PartInfo>
+                </ns5:PayloadInfo>
+                <ns5:ProcessingType>PUSH</ns5:ProcessingType>
+            </ns5:UserMessage>
+        </ns5:Messaging>
+    </S:Header>
+    <S:Body>
+        <ns3:submitRequest xmlns:ns3="http://eu.domibus.wsplugin/" xmlns:ns5="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+            <payload contentType="text/xml" payloadId="cid:message">
+                <value>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/Pjx1aWxRdWVyeSByZXF1ZXN0SWQ9IjYzYWM3OGJhLTYwZjgtNGYwNC05ZjU3LWUzY2Q4YWIyY2E5YyIgeG1sbnM9Imh0dHA6Ly9lZnRpLmV1L3YxL2VkZWxpdmVyeSIgeG1sbnM6bnMyPSJodHRwOi8vZWZ0aS5ldS92MS9jb25zaWdubWVudC9pZGVudGlmaWVyIj48dWlsPjxnYXRlSWQ+Ym9yZHVyaWE8L2dhdGVJZD48cGxhdGZvcm1JZD5wbGF0MTwvcGxhdGZvcm1JZD48ZGF0YXNldElkPjUyODZhZWU4LWE1ZTUtNDQ5OS1hMWEwLTQwOWY3MzQzZGZlYzwvZGF0YXNldElkPjwvdWlsPjxzdWJzZXRJZD5FVTAxPC9zdWJzZXRJZD48L3VpbFF1ZXJ5Pg==</value>
+            </payload>
+        </ns3:submitRequest>
+    </S:Body>
+</S:Envelope>
