@@ -1,1 +1,3 @@
 /smp/data/
+*/build/
+*/.gradle/
