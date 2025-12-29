@@ -9,11 +9,11 @@ import java.net.http.HttpResponse.BodyHandlers.ofString
 import java.util.UUID
 import kotlin.io.encoding.Base64
 
-val WS_ENDPOINT = URI("http://localhost:8443/services/wsplugin")
+val WS_ENDPOINT = URI("http://localhost:8080/services/wsplugin")
 val WS_USER = "service_account"
 val WS_PASSWORD = "Azerty59*1234567"
-val FROM = "estonia"
-val TO = "borduria"
+val FROM = "sender"
+val TO = "receiver"
 
 fun main() {
     @Language("XML")
@@ -34,11 +34,7 @@ fun main() {
         .build()
 
     val response = HttpClient.newHttpClient().send(request, ofString())
-    if (response.statusCode() in (200..299)) {
-        println("Message sent")
-    } else {
-        error("Got error code ${response.statusCode()} when sending message to Access point ${response.body()}")
-    }
+    println("Resolved with code ${response.statusCode()}. Body: ${response.body()}")
 }
 
 @Language("XML")
