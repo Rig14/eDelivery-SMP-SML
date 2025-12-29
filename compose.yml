@@ -87,6 +87,18 @@ services:
       retries: 3
       start_period: 60s
 
+  coredns:
+    image: coredns/coredns:latest
+    container_name: coredns
+    command: -conf /etc/coredns/Corefile -dns.port 53
+    ports:
+      - "5353:53"
+      - "5353:53/udp"
+      - "8070:8080"
+    volumes:
+      - ./coredns/Corefile:/etc/coredns/Corefile
+      - ./coredns/zone/db.sml.test:/etc/coredns/db.sml.test
+
 volumes:
   ap-data-sender:
   ap-db-data-sender:
