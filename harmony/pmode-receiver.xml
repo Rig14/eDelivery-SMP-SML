@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<domibus:configuration xmlns:domibus="http://domibus.eu/configuration" party="ap1">
+<domibus:configuration xmlns:domibus="http://domibus.eu/configuration" party="receiver">
     <businessProcesses>
         <roles>
             <role name="defaultInitiatorRole"
@@ -12,8 +12,8 @@
                 <partyIdType name="partyTypeUrn" value="urn:oasis:names:tc:ebcore:partyid-type:unregistered"/>
                 <partyIdType name="urn:oasis:names:tc:ebcore:partyid-type:EU-LU3" value=""/>
             </partyIdTypes>
-            <party name="ap1" endpoint="https://localhost:8443/services/msh">
-                <identifier partyId="ap1" partyIdType="partyTypeUrn"/>
+            <party name="receiver" endpoint="http://harmony-ap-receiver-1:8080/services/msh">
+                <identifier partyId="receiver" partyIdType="partyTypeUrn"/>
             </party>
         </parties>
         <meps>
@@ -91,7 +91,7 @@
                  mep="oneway"
                  binding="push">
             <responderParties>
-                <responderParty name="ap1"/>
+                <responderParty name="receiver"/>
             </responderParties>
             <legs>
                 <leg name="eftiGateLeg"/>

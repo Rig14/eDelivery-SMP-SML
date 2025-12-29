@@ -1,31 +1,30 @@
 services:
-  harmony-ap:
+  harmony-ap-sender:
     image: niis/harmony-ap:2.6.0
     ports:
-      - "8443:8443"
+      - "8080:8080"
     environment:
-      - DB_HOST=harmony-db
+      - DB_HOST=harmony-db-sender
       - DB_PASSWORD=secret
       - ADMIN_PASSWORD=secret
       - USE_DYNAMIC_DISCOVERY=true
-      - PARTY_NAME=ap1
+      - PARTY_NAME=sender
+      - LB_TLS_TERMINATION=true
       - SECURITY_KEYSTORE_PASSWORD=changeit
       - SECURITY_TRUSTSTORE_PASSWORD=changeit
       - TLS_KEYSTORE_PASSWORD=changeit
       - TLS_TRUSTSTORE_PASSWORD=changeit
     restart: unless-stopped
     volumes:
-      - ap-data:/var/opt/harmony-ap
+      - ap-data-sender:/var/opt/harmony-ap
     depends_on:
-      - harmony-db
+      - harmony-db-sender
 
-  harmony-db:
+  harmony-db-sender:
     image: mysql:8
     command:
       - "--character-set-server=utf8mb4"
       - "--collation-server=utf8mb4_bin"
-    ports:
-      - "3306:3306"
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=true
       - MYSQL_DATABASE=harmony_ap
@@ -33,13 +32,48 @@ services:
       - MYSQL_PASSWORD=secret
     restart: on-failure
     volumes:
-      - ap-db-data:/var/lib/mysql
+      - ap-db-data-sender:/var/lib/mysql
+
+  harmony-ap-receiver:
+    image: niis/harmony-ap:2.6.0
+    ports:
+      - "8081:8080"
+    environment:
+      - DB_HOST=harmony-db-receiver
+      - DB_PASSWORD=secret
+      - ADMIN_PASSWORD=secret
+      - USE_DYNAMIC_DISCOVERY=true
+      - PARTY_NAME=receiver
+      - LB_TLS_TERMINATION=true
+      - SECURITY_KEYSTORE_PASSWORD=changeit
+      - SECURITY_TRUSTSTORE_PASSWORD=changeit
+      - TLS_KEYSTORE_PASSWORD=changeit
+      - TLS_TRUSTSTORE_PASSWORD=changeit
+    restart: unless-stopped
+    volumes:
+      - ap-data-receiver:/var/opt/harmony-ap
+    depends_on:
+      - harmony-db-receiver
+
+  harmony-db-receiver:
+    image: mysql:8
+    command:
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_bin"
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_DATABASE=harmony_ap
+      - MYSQL_USER=harmony_ap
+      - MYSQL_PASSWORD=secret
+    restart: on-failure
+    volumes:
+      - ap-db-data-receiver:/var/lib/mysql
 
   phoss-smp:
     image: phelger/phoss-smp-xml:latest
     container_name: phoss-smp
     ports:
-      - "8080:8080"
+      - "8090:8080"
     environment:
       - CONFIG_FILE=/config/application.properties
     volumes:
@@ -54,6 +88,8 @@ services:
       start_period: 60s
 
 volumes:
-  ap-data:
-  ap-db-data:
+  ap-data-sender:
+  ap-db-data-sender:
+  ap-data-receiver:
+  ap-db-data-receiver:
   smp-data:
