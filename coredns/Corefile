@@ -1,0 +1,23 @@
+{$SML_ZONE}:53 {
+    log
+    template IN CNAME {$SML_ZONE} {
+        match ^.*\.{$SML_ZONE}\.$
+        answer "{{ .Name }} 60 IN CNAME phoss-smp."
+        fallthrough
+    }
+    template IN A {$SML_ZONE} {
+        match ^.*\.{$SML_ZONE}\.$
+        answer "{{ .Name }} 60 IN A 172.20.0.10"
+        fallthrough
+    }
+    hosts {
+        172.20.0.10 {$SML_ZONE}
+        fallthrough
+    }
+}
+
+.:53 {
+    log
+    errors
+    forward . 8.8.8.8 8.8.4.4
+}

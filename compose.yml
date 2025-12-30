@@ -1,8 +1,20 @@
 services:
+  coredns:
+    image: coredns/coredns:latest
+    command: -conf /etc/coredns/Corefile
+    environment:
+      - SML_ZONE=testsml
+    volumes:
+      - ./coredns:/etc/coredns
+    restart: unless-stopped
+    networks:
+      harmony-network:
+        ipv4_address: 172.20.0.2
+
   harmony-ap-sender:
     image: niis/harmony-ap:2.6.0
     ports:
-      - "8080:8080"
+      - "8090:8080"
     environment:
       - DB_HOST=harmony-db-sender
       - DB_PASSWORD=secret
@@ -19,6 +31,11 @@ services:
       - ap-data-sender:/var/opt/harmony-ap
     depends_on:
       - harmony-db-sender
+      - coredns
+    dns:
+      - 172.20.0.2
+    networks:
+      - harmony-network
 
   harmony-db-sender:
     image: mysql:8
@@ -33,11 +50,13 @@ services:
     restart: on-failure
     volumes:
       - ap-db-data-sender:/var/lib/mysql
+    networks:
+      - harmony-network
 
   harmony-ap-receiver:
     image: niis/harmony-ap:2.6.0
     ports:
-      - "8081:8080"
+      - "8091:8080"
     environment:
       - DB_HOST=harmony-db-receiver
       - DB_PASSWORD=secret
@@ -73,7 +92,7 @@ services:
     image: phelger/phoss-smp-xml:latest
     container_name: phoss-smp
     ports:
-      - "8090:8080"
+      - "8080:8080"
     environment:
       - CONFIG_FILE=/config/application.properties
     volumes:
@@ -86,7 +105,9 @@ services:
       timeout: 10s
       retries: 3
       start_period: 60s
-
+    networks:
+      harmony-network:
+        ipv4_address: 172.20.0.10
 
 volumes:
   ap-data-sender:
@@ -94,3 +115,10 @@ volumes:
   ap-data-receiver:
   ap-db-data-receiver:
   smp-data:
+
+networks:
+  harmony-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

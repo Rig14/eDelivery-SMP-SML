@@ -9,7 +9,7 @@ import java.net.http.HttpResponse.BodyHandlers.ofString
 import java.util.UUID
 import kotlin.io.encoding.Base64
 
-val WS_ENDPOINT = URI("http://localhost:8080/services/wsplugin")
+val WS_ENDPOINT = URI("http://localhost:8090/services/wsplugin")
 val WS_USER = "service_account"
 val WS_PASSWORD = "Azerty59*1234567"
 val FROM = "sender"
