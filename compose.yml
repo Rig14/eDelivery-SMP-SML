@@ -9,7 +9,7 @@ services:
     restart: unless-stopped
     networks:
       harmony-network:
-        ipv4_address: 172.20.0.2
+        ipv4_address: 172.20.0.200
 
   harmony-ap-sender:
     image: niis/harmony-ap:2.6.0
@@ -33,7 +33,7 @@ services:
       - harmony-db-sender
       - coredns
     dns:
-      - 172.20.0.2
+      - 172.20.0.200
     networks:
       - harmony-network
 
@@ -111,7 +111,7 @@ services:
              catalina.sh run"
     networks:
       harmony-network:
-        ipv4_address: 172.20.0.10
+        ipv4_address: 172.20.0.250
 
 volumes:
   ap-data-sender:
