@@ -105,6 +105,10 @@ services:
       timeout: 10s
       retries: 3
       start_period: 60s
+    command: >
+      sh -c "apt-get update && apt-get install -y socat &&
+             socat TCP-LISTEN:80,fork TCP:127.0.0.1:8080 &
+             catalina.sh run"
     networks:
       harmony-network:
         ipv4_address: 172.20.0.10
