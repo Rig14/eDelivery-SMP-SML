@@ -1,4 +1,0 @@
-$ORIGIN sml.test.
-@         IN  SOA dns.sml.test. rihard.rivis.proton.me. 2025122901 7200 3600 1209600 3600
-
-B-8bb529042b90c77892efd34f7395f504       IN  CNAME   localhost.
