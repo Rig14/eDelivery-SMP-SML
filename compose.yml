@@ -88,6 +88,11 @@ services:
     volumes:
       - ap-db-data-receiver:/var/lib/mysql
 
+  harmony-smp:
+    image: rig14/harmony-smp-mysql:2.2.1
+    ports:
+      - "8080:8080"
+
   phoss-smp:
     image: phelger/phoss-smp-xml:latest
     container_name: phoss-smp
