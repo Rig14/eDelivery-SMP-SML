@@ -1,0 +1,7 @@
+<ServiceGroup xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" xmlns="http://docs.oasis-open.org/bdxr/ns/SMP/2016/05">
+    <ParticipantIdentifier scheme="urn:oasis:names:tc:ebcore:partyid-type:unregistered">receiver</ParticipantIdentifier>
+    <ServiceMetadataReferenceCollection>
+        <ServiceMetadataReference
+                href="http://localhost:8080/smp/urn%3Aoasis%3Anames%3Atc%3Aebcore%3Apartyid-type%3Aunregistered%3Areceiver/services/%3A%3Aeftigateservice"/>
+    </ServiceMetadataReferenceCollection>
+</ServiceGroup>
