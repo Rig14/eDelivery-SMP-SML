@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bdxr:ServiceGroup xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+                   xmlns:bdxr="http://docs.oasis-open.org/bdxr/ns/SMP/2016/05">
+    <bdxr:ParticipantIdentifier>urn:oasis:names:tc:ebcore:partyid-type:unregistered:C1</bdxr:ParticipantIdentifier>
+    <bdxr:ServiceMetadataReferenceCollection>
+        <bdxr:ServiceMetadataReference
+                href="http://localhost:8080/%3A%3Aurn%3Aoasis%3Anames%3Atc%3Aebcore%3Apartyid-type%3Aunregistered%3AC1/services/busdox-docid-qns%3A%3AeftiGateAction"/>
+    </bdxr:ServiceMetadataReferenceCollection>
+</bdxr:ServiceGroup>

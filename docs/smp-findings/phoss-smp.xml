@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bdxr:SignedServiceMetadata xmlns:bdxr="http://docs.oasis-open.org/bdxr/ns/SMP/2016/05"
+                            xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+    <bdxr:ServiceMetadata>
+        <bdxr:ServiceInformation>
+            <bdxr:ParticipantIdentifier>urn:oasis:names:tc:ebcore:partyid-type:unregistered:C1
+            </bdxr:ParticipantIdentifier>
+            <bdxr:DocumentIdentifier scheme="busdox-docid-qns">eftiGateAction</bdxr:DocumentIdentifier>
+            <bdxr:ProcessList>
+                <bdxr:Process>
+                    <bdxr:ProcessIdentifier scheme="cenbii-procid-ubl">
+                        http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/test
+                    </bdxr:ProcessIdentifier>
+                    <bdxr:ServiceEndpointList>
+                        <bdxr:Endpoint transportProfile="bdxr-transport-ebms3-as4-v1p0">
+                            <bdxr:EndpointURI>https://localhost:8443/services/msh</bdxr:EndpointURI>
+                            <bdxr:RequireBusinessLevelSignature>false</bdxr:RequireBusinessLevelSignature>
+                            <bdxr:MinimumAuthenticationLevel/>
+                            <bdxr:Certificate>
+                                MIIC/TCCAeWgAwIBAgIUCB2/kCn1BjL7HPrd0vF/6KrLUMowDQYJKoZIhvcNAQELBQAwDjEMMAoGA1UEAwwDcG9jMB4XDTI1MTAxNDExNTUyMVoXDTI2MTAxNDExNTUyMVowDjEMMAoGA1UEAwwDcG9jMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlEXWkfWLILKZYpiiQErsD0o33PzdZN1y7jG1EFbHZ00oZuILD/fF7M8cblPgWr8N9mUKoHrcK21z1rwtwyCxDSZ/E1t5gGA79Ln8qcbJf5U0pTtGlnTqxc/2nswQa9WW6Fv6E+GZ5KCoEB/UHSb665cOcNFGCTfAyIMAbhUNS7ntPYvFECDuzXeqCZexPMG0qSfJBeRDRa7lWoWkA/eTCgCtgdiQSFDp6CmAHOUNHqbpIbji6am4n9qSGJS1d/rR4EDEQ5OPVbKh0rEK4ttsBNBmD2ldjHZbxcTDDPztqhOTJiosSofVRxDUs42pvhJbueOGRotMNmn6gXGBD4HsUwIDAQABo1MwUTAdBgNVHQ4EFgQUt8GqaKD/lNytZIjtDIqdPapkJgQwHwYDVR0jBBgwFoAUt8GqaKD/lNytZIjtDIqdPapkJgQwDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAGk+5Nr49hZR7/Whxr34vhmwQf1EtwmOxUWLRGEx4cKtd+2VtcMjRs5TjVEHZmsOXevFJpqnLs012cuvqnxesNs6/lliEbw1aKitOLnSN7poBH5tuqMi+UZoSo8jgs1CPy0rY6KJj0sSQcSxkWZLKM/SnOQMYmmrbJKWekhC2Vb6wx2LKkEmqDnFliAyQoCPbwCS2Jass/5I3LQjWVYjaALI79L6es8CBpbTU2goRC4TWyhzeVCiA3Fjhz6UfmIjIyi5p9MhVvbloT6tsujvomwm9l4/yEnQQ65RzxMVrahQN6nlAs7knZRzRzQ5K9KBiOqV8fO3vP5/d4imkun8tyA==
+                            </bdxr:Certificate>
+                            <bdxr:ServiceDescription>register eFTI dataset identifiers in the eFTI gate making it
+                                avaliable to competent authorities
+                            </bdxr:ServiceDescription>
+                            <bdxr:TechnicalContactUrl>example@gmail.com</bdxr:TechnicalContactUrl>
+                            <bdxr:TechnicalInformationUrl/>
+                        </bdxr:Endpoint>
+                    </bdxr:ServiceEndpointList>
+                </bdxr:Process>
+            </bdxr:ProcessList>
+        </bdxr:ServiceInformation>
+    </bdxr:ServiceMetadata>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <SignedInfo>
+            <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+            <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+            <Reference URI="">
+                <Transforms>
+                    <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                </Transforms>
+                <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                <DigestValue>0oveoOM3SRBLaMzo3KRe274BUVx3EvI18TXC1/fk/64=</DigestValue>
+            </Reference>
+        </SignedInfo>
+        <SignatureValue>pP4Lpg1glE+HtBR85nIzZhVsx4hx8jHf+7lwYPqpUL0krtmP1obnFpwbUbGTtZIPg0TS3TeXl+jg&#13;
+            ZbArrzEN/iXyeGz3rvxc5TbRoN0bQ7drxLWhijFyee+T7zzfx6p+SEsemRNTq6E9P3qQc/gq6Aq1&#13;
+            FzBKJSRio/rM+vcXRQdNnVsQ5Y3MUxtE5oNGpaQ7MpPf+McNKRso95p4MboK5g6D0yrjkwBXhBvj&#13;
+            ASCoBfVly1RHxOxQTf2yvYQxA1HIfqFmw4G7IcXiICJsIxLGMK1GIl57e0OprWKl6AZM8Quo4pFs&#13;
+            VV+yqEM4ow3jg12sOhVAjk2De7j5LyWSynID3g==
+        </SignatureValue>
+        <KeyInfo>
+            <X509Data>
+                <X509SubjectName>CN=POC</X509SubjectName>
+                <X509Certificate>MIIC/TCCAeWgAwIBAgIUXGadBH+j36YdK3MSHku8AynqBl4wDQYJKoZIhvcNAQELBQAwDjEMMAoG&#13;
+                    A1UEAwwDUE9DMB4XDTI1MTIyMjE2MTYyN1oXDTI2MTIyMjE2MTYyN1owDjEMMAoGA1UEAwwDUE9D&#13;
+                    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqUlP8CgEcZSejlpq2tho0Ib49AQxZX+l&#13;
+                    Ptz8VWb4H0b65AulG+g+zCgOg3pCEBjTLan5j6Y9Pgm1BpTvC7fZJ/sOgl+PHVtDK5rZ2e62HcUZ&#13;
+                    ELIOoulUelqIztTrfw4OKw/CRDxw+KodSUC0Lb0Dfl871O+tlsAxDj5xXsMiIf1ipnoKyAmEb2aB&#13;
+                    zLYs3B3mFW6c+n5ON7seAVBusZ/Tcm95+cQx4Eu+kR8c6atBGFRt31TBVNpgt0O7Orhhbtv/NLcK&#13;
+                    Dpfa2VynPbVfymAADuygaml1TLRtwgEc4oKTz01Cc2MRK3oAediHAep0Yz2TZ+/mRQhQXeLoOHaH&#13;
+                    a2Mv7QIDAQABo1MwUTAdBgNVHQ4EFgQUE+9At8YYyscCmuz6S6CfqxagszYwHwYDVR0jBBgwFoAU&#13;
+                    E+9At8YYyscCmuz6S6CfqxagszYwDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEA&#13;
+                    D9DLSzt2A8QFT1hPWJhC7gA3luH4dQxSe4o+QCY4RPLx8GyKutRChn5zs2ltyUkvneHujusZSZRJ&#13;
+                    QlbmeC7iSrVMqXO74lO55lBvF0P9PNe6oIRQhHK8Qna1cEXelDK1/PznQSCYnX3UunTXYqlk9b2I&#13;
+                    Y0qfexXq763YgPwKCZG6gh6Q4ZLZPgUaceLQNQdpIXWFp+1J/qIb8kbnaQF6eBBcC1TtRHsBulxd&#13;
+                    uYC8D1fBM07Uzn1R3JfeJjw7DgSpwNbqGXiuE1XoDeGILR7guMZbkWIgaXbMre656mAS6MUnnXku&#13;
+                    oQ56gBZx2F4H3ig+80Kk3Cd7Yh9mdNVD6G2d5A==
+                </X509Certificate>
+            </X509Data>
+        </KeyInfo>
+    </Signature>
+</bdxr:SignedServiceMetadata>

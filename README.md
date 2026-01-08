@@ -26,6 +26,7 @@ Password: `password`
 ## Additional Resources
 
 - [phoss SMP Wiki](https://github.com/phax/phoss-smp/wiki)
+- [domismp-tomcat-docker](https://github.com/nordic-institute/harmony-smp/tree/harmony-main/domismp-tests/domismp-docker/images/domismp-tomcat-mysql)
 - [Docker Hub Images](https://hub.docker.com/r/phelger/phoss-smp-xml)
 - [Configuration Reference](https://github.com/phax/phoss-smp/wiki/Configuration)
 - [SMP Configuration Guide PDF DE4A](https://wiki.de4a.eu/images/2/2c/Setting_up_a_Service_Metadata_Publisher_for_DE4A.pdf)
