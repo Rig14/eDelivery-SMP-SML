@@ -103,7 +103,7 @@ services:
     environment:
       - CONFIG_FILE=/config/application.properties
     volumes:
-      - ./smp:/config:ro
+      - ./phoss-smp:/config:ro
       - smp-data:/home/git/conf
     restart: unless-stopped
     healthcheck:
