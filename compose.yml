@@ -90,6 +90,8 @@ services:
 
   harmony-smp:
     image: rig14/harmony-smp-mysql:2.2.1
+    volumes:
+      - harmony-smp-data:/data
     ports:
       - "8080:8080"
 
@@ -124,6 +126,7 @@ volumes:
   ap-data-receiver:
   ap-db-data-receiver:
   smp-data:
+  harmony-smp-data:
 
 networks:
   harmony-network:
