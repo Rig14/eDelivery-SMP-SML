@@ -2,7 +2,7 @@
     log
     template IN CNAME {$SML_ZONE} {
         match ^.*\.{$SML_ZONE}\.$
-        answer "{{ .Name }} 60 IN CNAME phoss-smp."
+        answer "{{ .Name }} 60 IN CNAME smp."
         fallthrough
     }
     template IN A {$SML_ZONE} {

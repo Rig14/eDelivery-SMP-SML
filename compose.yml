@@ -8,7 +8,7 @@ services:
       - ./coredns:/etc/coredns
     restart: unless-stopped
     networks:
-      harmony-network:
+      smp-network:
         ipv4_address: 172.20.0.200
 
   harmony-ap-sender:
@@ -35,7 +35,7 @@ services:
     dns:
       - 172.20.0.200
     networks:
-      - harmony-network
+      - smp-network
 
   harmony-db-sender:
     image: mysql:8
@@ -51,7 +51,7 @@ services:
     volumes:
       - ap-db-data-sender:/var/lib/mysql
     networks:
-      - harmony-network
+      - smp-network
 
   harmony-ap-receiver:
     image: niis/harmony-ap:2.6.0
@@ -88,48 +88,14 @@ services:
     volumes:
       - ap-db-data-receiver:/var/lib/mysql
 
-  harmony-smp:
-    image: rig14/harmony-smp-mysql:2.2.1
-    volumes:
-      - harmony-smp-data:/data
-    ports:
-      - "8080:8080"
-
-  phoss-smp:
-    image: phelger/phoss-smp-xml:latest
-    container_name: phoss-smp
-    ports:
-      - "8080:8080"
-    environment:
-      - CONFIG_FILE=/config/application.properties
-    volumes:
-      - ./phoss-smp:/config:ro
-      - smp-data:/home/git/conf
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:8080/ || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 60s
-    command: >
-      sh -c "apt-get update && apt-get install -y socat &&
-             socat TCP-LISTEN:80,fork TCP:127.0.0.1:8080 &
-             catalina.sh run"
-    networks:
-      harmony-network:
-        ipv4_address: 172.20.0.250
-
 volumes:
   ap-data-sender:
   ap-db-data-sender:
   ap-data-receiver:
   ap-db-data-receiver:
-  smp-data:
-  harmony-smp-data:
 
 networks:
-  harmony-network:
+  smp-network:
     driver: bridge
     ipam:
       config:
