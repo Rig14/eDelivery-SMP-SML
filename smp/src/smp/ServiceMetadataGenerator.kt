@@ -27,8 +27,7 @@ class ServiceMetadataGenerator {
     val signature = signWithRsaSha256(privateKey, signedInfo.toByteArray())
 
     @Language("xml")
-    val result = """
-      <?xml version="1.0" encoding="UTF-8"?>
+    val result = """<?xml version="1.0" encoding="UTF-8"?>
       <SignedServiceMetadata xmlns="http://docs.oasis-open.org/bdxr/ns/SMP/2016/05">
         $metadata
         <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
@@ -70,7 +69,7 @@ class ServiceMetadataGenerator {
         <DocumentIdentifier>eftiGateAction</DocumentIdentifier>
         <ProcessList>
           <Process>
-            <ProcessIdentifier>eftiGateService</ProcessIdentifier>
+            <ProcessIdentifier>bdx:noprocess</ProcessIdentifier>
             <ServiceEndpointList>
               <Endpoint transportProfile="bdxr-transport-ebms3-as4-v1p0">
                 <EndpointURI>$receiverUri</EndpointURI>
@@ -132,5 +131,5 @@ class ServiceMetadataGenerator {
     return subjectDN
   }
 
-  private fun String.renderCert() = trim().removeSurrounding("-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----").trim().replace("\n", "&#xD;")
+  private fun String.renderCert() = trim().removeSurrounding("-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----").trim().replace("\n", "")
 }

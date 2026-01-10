@@ -7,9 +7,13 @@ RUN --mount=type=cache,target=/root/.gradle ./gradlew testClasses jar --info
 # The final image
 FROM eclipse-temurin:21-jre-alpine AS final
 RUN adduser -S user
-RUN rm -fr /usr/sbin /bin/ch*
 
 WORKDIR /app
+
+COPY certs ./certs
+RUN chmod +r certs/*
+RUN rm -fr /usr/sbin /bin/ch*
+
 COPY --from=build-server /app/build/libs ./
 
 USER user
