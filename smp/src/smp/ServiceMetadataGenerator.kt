@@ -8,7 +8,7 @@ import java.net.URI
 class ServiceMetadataGenerator {
   private val receiverUri = URI("http://ap-receiver:8080/services/msh")
 
-  fun receiverCertificate(path: String) = File(path).readText().renderCert()
+  internal fun receiverCertificate(path: String) = File(path).readText().renderCert()
 
   fun generateMetadata(party: String, service: String): String {
     @Language("xml")
@@ -78,5 +78,5 @@ class ServiceMetadataGenerator {
     return result
   }
 
-  fun String.renderCert() = trim().removeSurrounding("-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----").trim().replace("\n", "&#xD;")
+  private fun String.renderCert() = trim().removeSurrounding("-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----").trim().replace("\n", "&#xD;")
 }
