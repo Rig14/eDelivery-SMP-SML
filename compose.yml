@@ -88,6 +88,16 @@ services:
     volumes:
       - ap-db-data-receiver:/var/lib/mysql
 
+  smp:
+    container_name: smp
+    ports:
+      - "8080:80"
+    build: smp
+    networks:
+      smp-network:
+        ipv4_address: 172.20.0.250
+
+
 volumes:
   ap-data-sender:
   ap-db-data-sender:

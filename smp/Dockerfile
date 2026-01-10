@@ -12,14 +12,11 @@ RUN rm -fr /usr/sbin /bin/ch*
 WORKDIR /app
 COPY --from=build-server /app/build/libs ./
 
-ARG VERSION=dev
-ENV VERSION=$VERSION
-
 USER user
 
 ENV TZ=Europe/London
 ENV JAVA_TOOL_OPTIONS="-Xss256K -Xmx330M -XX:+ExitOnOutOfMemoryError"
-CMD java -jar *.jar
+CMD PORT=80 java -jar *.jar
 
-ENV PORT=8080
+ENV PORT=80
 EXPOSE $PORT
