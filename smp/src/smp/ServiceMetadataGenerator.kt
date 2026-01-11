@@ -1,5 +1,6 @@
 package smp
 
+import klite.base64Encode
 import org.intellij.lang.annotations.Language
 import java.io.File
 import java.net.URI
@@ -41,25 +42,25 @@ class ServiceMetadataGenerator {
           </KeyInfo>
         </Signature>
       </SignedServiceMetadata>
-    """.trimIndent()
+    """.canonicalXml()
 
     return result
   }
 
   @Language("xml")
   private fun signedInfo(serviceMetadata: String) = """
-    <SignedInfo>
-      <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
-      <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" />
+    <SignedInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+      <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></CanonicalizationMethod>
+      <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
       <Reference URI="">
         <Transforms>
-          <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+          <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></Transform>
         </Transforms>
-        <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
+        <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
         <DigestValue>${digest(serviceMetadata)}</DigestValue>
       </Reference>
     </SignedInfo>
-  """.trimIndent()
+  """.canonicalXml()
 
   @Language("xml")
   private fun serviceMetadata(party: String, receiverCert: String) = """
@@ -82,7 +83,7 @@ class ServiceMetadataGenerator {
         </ProcessList>
       </ServiceInformation>
     </ServiceMetadata>
-  """.trimIndent()
+  """.canonicalXml()
 
   private fun digest(serviceMetadata: String): String {
     @Language("xml")
@@ -90,7 +91,7 @@ class ServiceMetadataGenerator {
       <SignedServiceMetadata xmlns="http://docs.oasis-open.org/bdxr/ns/SMP/2016/05">
           $serviceMetadata
       </SignedServiceMetadata>
-    """.trimIndent()
+    """.canonicalXml()
 
     val xmlBytes = toSign.toByteArray(Charsets.UTF_8)
 
@@ -112,8 +113,7 @@ class ServiceMetadataGenerator {
     val signer = Signature.getInstance("SHA256withRSA")
     signer.initSign(privateKey)
     signer.update(data)
-    val signatureBytes = signer.sign()
-    return Base64.getEncoder().encodeToString(signatureBytes)
+    return signer.sign().base64Encode()
   }
 
   internal fun subjectDn(cert: String): String {
@@ -132,4 +132,14 @@ class ServiceMetadataGenerator {
   }
 
   private fun String.renderCert() = trim().removeSurrounding("-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----").trim().replace("\n", "")
+  private fun String.canonicalXml(): String {
+    val s = trim()
+    return Regex("\\s+").replace(s) { m ->
+      val start = m.range.first
+      val end = m.range.last
+      val before = if (start - 1 >= 0) s[start - 1] else null
+      val after = if (end + 1 < s.length) s[end + 1] else null
+      if (before == '>' || after == '<') "" else " "
+    }
+  }
 }
