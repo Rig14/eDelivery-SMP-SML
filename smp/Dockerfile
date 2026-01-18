@@ -1,11 +1,11 @@
-FROM eclipse-temurin:24-alpine AS build-server
+FROM eclipse-temurin:25-alpine AS build-server
 WORKDIR /app
 
 COPY . ./
 RUN --mount=type=cache,target=/root/.gradle ./gradlew testClasses jar --info
 
 # The final image
-FROM eclipse-temurin:24-jre-alpine AS final
+FROM eclipse-temurin:25-jre-alpine AS final
 RUN adduser -S user
 
 WORKDIR /app

@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="mv plugin user logic to smp">
+    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="update to java 24">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smp/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/smp/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smp/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/smp/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/smp/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$/smp" gradleHome="$USER_HOME$/.gradle/wrapper/dists/gradle-9.0.0-bin/d6wjpkvcgsg3oed0qlfss3wgl/gradle-9.0.0" javaHome="$USER_HOME$/.jdks/temurin-25.0.1" gradleVersion="9.0.0" />
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$/smp" gradleHome="$USER_HOME$/.gradle/wrapper/dists/gradle-9.3.0-bin/79n14ral3mx1ozqr3csh2u872/gradle-9.3.0" javaHome="$USER_HOME$/.jdks/temurin-25.0.1" gradleVersion="9.3.0" />
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
@@ -60,6 +61,7 @@
     "Gradle.smp [:LauncherKt.main()].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -70,6 +72,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -137,7 +140,7 @@
       <option name="presentableId" value="Default" />
       <updated>1768747527914</updated>
       <workItem from="1768747529144" duration="36000" />
-      <workItem from="1768747594892" duration="1564000" />
+      <workItem from="1768747594892" duration="2153000" />
     </task>
     <task id="LOCAL-00001" summary="cleanup unneeded files and plugin user project">
       <option name="closed" value="true" />
@@ -155,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768748415176</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update to java 24">
+      <option name="closed" value="true" />
+      <created>1768749274074</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1768749274074</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,6 +175,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="cleanup unneeded files and plugin user project" />
     <MESSAGE value="mv plugin user logic to smp" />
-    <option name="LAST_COMMIT_MESSAGE" value="mv plugin user logic to smp" />
+    <MESSAGE value="update to java 24" />
+    <option name="LAST_COMMIT_MESSAGE" value="update to java 24" />
   </component>
 </project>
