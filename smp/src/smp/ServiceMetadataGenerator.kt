@@ -20,11 +20,11 @@ class ServiceMetadataGenerator {
   internal fun loadFile(path: String) = File(path).readText()
 
   fun generateMetadata(party: String, service: String): String {
-    val cert = loadFile("certs/own.crt")
+    val cert = loadFile("certs/keystore.crt")
     val metadata = serviceMetadata(party, cert)
     val signedInfo = signedInfo(metadata)
 
-    val privateKey = loadPrivateKey(loadFile("certs/own.key"))
+    val privateKey = loadPrivateKey(loadFile("certs/keystore.key"))
     val signature = signWithRsaSha256(privateKey, signedInfo.toByteArray())
 
     @Language("xml")
