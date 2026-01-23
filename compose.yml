@@ -29,7 +29,7 @@ services:
     restart: unless-stopped
     volumes:
       - ap-data-sender:/var/opt/harmony-ap
-      - ./conf/harmony-ap/entrypoint.sh:/usr/bin/harmony-entrypoint
+      - ./conf/harmony-ap:/etc/harmony-ap-conf
     depends_on:
       - harmony-db-sender
       - coredns
@@ -37,6 +37,7 @@ services:
       - 172.20.0.200
     networks:
       - smp-network
+    entrypoint: /etc/harmony-ap-conf/entrypoint.sh
 
   harmony-db-sender:
     image: mysql:8
@@ -73,9 +74,10 @@ services:
     restart: unless-stopped
     volumes:
       - ap-data-receiver:/var/opt/harmony-ap
-      - ./conf/harmony-ap/entrypoint.sh:/usr/bin/harmony-entrypoint
+      - ./conf/harmony-ap:/etc/harmony-ap-conf
     depends_on:
       - harmony-db-receiver
+    entrypoint: /etc/harmony-ap-conf/entrypoint.sh
 
   harmony-db-receiver:
     image: mysql:8

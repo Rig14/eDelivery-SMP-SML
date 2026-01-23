@@ -27,4 +27,15 @@ if [ "${1:-}" = "init" ]; then
   shift
 fi
 
+# auto config side process
+(
+  until [ "$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080)" = "200" ]; do
+    sleep 1
+    echo "Service is starting, please wait"
+  done
+
+  echo "Service ready, starting auto configuration"
+
+) &
+
 exec /init "$@"
