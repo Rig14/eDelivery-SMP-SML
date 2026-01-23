@@ -1,3 +1,5 @@
+#!/bin/bash
+
 authenticate() {
   local RESPONSE
   RESPONSE=$(curl -s -i -X POST http://localhost:8080/rest/security/authentication \
@@ -34,6 +36,24 @@ upload_pmode() {
     echo "PMODE uploaded for $PARTY"
   else
     echo "PMODE upload failed with status $UPLOAD_RESPONSE"
+    return 1
+  fi
+}
+
+set_sml_zone() {
+  local ZONE_NAME="$1"
+
+  read -r JSESSIONID XSRF_TOKEN < <(authenticate) || return 1
+  UPLOAD_RESPONSE=$(curl -s -w "%{http_code}" -o /dev/null -X PUT http://localhost:8080/rest/configuration/properties/domibus.smlzone?isDomain=true \
+    -H "Cookie: JSESSIONID=$JSESSIONID; XSRF-TOKEN=$XSRF_TOKEN" \
+    -H "X-XSRF-TOKEN: $XSRF_TOKEN" \
+    -H "Content-Type: application/json" \
+    --data-raw "\"$ZONE_NAME\"") || { echo "Upload request failed"; return 1; }
+
+  if [ "$UPLOAD_RESPONSE" -ge 200 ] && [ "$UPLOAD_RESPONSE" -lt 300 ]; then
+    echo "SML zone updated successfully"
+  else
+    echo "Updating SML zone failed with code $UPLOAD_RESPONSE"
     return 1
   fi
 }

@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="use config dir">
-      <change afterPath="$PROJECT_DIR$/conf/harmony-ap/upload.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
+    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="mv authenticate to separate function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conf/harmony-ap/entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/conf/harmony-ap/entrypoint.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/harmony-ap/upload.sh" beforeDir="false" afterPath="$PROJECT_DIR$/conf/harmony-ap/configure.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +145,7 @@
       <workItem from="1768747529144" duration="36000" />
       <workItem from="1768747594892" duration="2486000" />
       <workItem from="1768896279910" duration="100000" />
-      <workItem from="1769164676481" duration="6093000" />
+      <workItem from="1769164676481" duration="8116000" />
     </task>
     <task id="LOCAL-00001" summary="cleanup unneeded files and plugin user project">
       <option name="closed" value="true" />
@@ -203,7 +203,23 @@
       <option name="project" value="LOCAL" />
       <updated>1769167437222</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="auto upload pmode">
+      <option name="closed" value="true" />
+      <created>1769170846014</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1769170846014</updated>
+    </task>
+    <task id="LOCAL-00009" summary="mv authenticate to separate function">
+      <option name="closed" value="true" />
+      <created>1769171369012</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1769171369012</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,6 +233,8 @@
     <MESSAGE value="mv conf" />
     <MESSAGE value="take out entrypoint for harmony" />
     <MESSAGE value="use config dir" />
-    <option name="LAST_COMMIT_MESSAGE" value="use config dir" />
+    <MESSAGE value="auto upload pmode" />
+    <MESSAGE value="mv authenticate to separate function" />
+    <option name="LAST_COMMIT_MESSAGE" value="mv authenticate to separate function" />
   </component>
 </project>

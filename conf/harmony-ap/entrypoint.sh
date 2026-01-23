@@ -37,8 +37,9 @@ fi
   echo "Service ready, starting auto configuration"
 
   DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-  source "$DIR/upload.sh"
+  source "$DIR/configure.sh"
   upload_pmode "$PARTY_NAME"
+  [ -n "$SML_ZONE" ] && set_sml_zone "$SML_ZONE"
 
   echo "Upload finished"
 ) &
