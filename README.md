@@ -32,3 +32,4 @@ Password: `password`
 - [SMP Configuration Guide PDF DE4A](https://wiki.de4a.eu/images/2/2c/Setting_up_a_Service_Metadata_Publisher_for_DE4A.pdf)
 - [Fintraffic eFTI interoperability repository](https://github.com/fintraffic-efti/efti-gate-io/tree/master)
 - [PMode to SMP mapping](https://ec.europa.eu/digital-building-blocks/sites/spaces/DIGITAL/pages/467117988/eDelivery+SMP+-+1.10)
+- [SML specific](https://ec.europa.eu/digital-building-blocks/sites/spaces/DIGITAL/pages/843612547/eDelivery+BDXL+-+2.0)
