@@ -36,6 +36,11 @@ fi
 
   echo "Service ready, starting auto configuration"
 
+  DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  source "$DIR/upload.sh"
+  upload_pmode "$PARTY_NAME"
+
+  echo "Upload finished"
 ) &
 
 exec /init "$@"

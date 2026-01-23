@@ -1,0 +1,39 @@
+upload_pmode() {
+  local PARTY="$1"
+  echo "Uploading PMODE for $PARTY"
+  DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  local PMODE_FILE="$DIR/pmode-$PARTY.xml"
+
+  if [ ! -f "$PMODE_FILE" ]; then
+    echo "File $PMODE_FILE does not exist"
+    return 1
+  fi
+
+  local RESPONSE
+  RESPONSE=$(curl -s -i -X POST http://localhost:8080/rest/security/authentication \
+    -H "Content-Type: application/json" \
+    -d '{"username":"harmony","password":"secret"}') || { echo "Auth request failed"; return 1; }
+
+  local JSESSIONID XSRF_TOKEN
+  JSESSIONID=$(echo "$RESPONSE" | grep -i '^Set-Cookie:' | grep -o 'JSESSIONID=[^;]*')
+  XSRF_TOKEN=$(echo "$RESPONSE" | grep -i '^Set-Cookie:' | grep -o 'XSRF-TOKEN=[^;]*')
+
+  if [ -z "$JSESSIONID" ] || [ -z "$XSRF_TOKEN" ]; then
+    echo "Failed to get cookies from auth response"
+    return 1
+  fi
+
+  local UPLOAD_RESPONSE
+  UPLOAD_RESPONSE=$(curl -s -w "%{http_code}" -o /dev/null -X POST http://localhost:8080/rest/pmode \
+    -H "Cookie: ${JSESSIONID}; ${XSRF_TOKEN}" \
+    -H "X-XSRF-TOKEN: ${XSRF_TOKEN#XSRF-TOKEN=}" \
+    -F "file=@${PMODE_FILE};type=text/xml" \
+    -F "description=PMODE configuration for $PARTY") || { echo "Upload request failed"; return 1; }
+
+  if [ "$UPLOAD_RESPONSE" -ge 200 ] && [ "$UPLOAD_RESPONSE" -lt 300 ]; then
+    echo "PMODE uploaded for $PARTY"
+  else
+    echo "PMODE upload failed with status $UPLOAD_RESPONSE"
+    return 1
+  fi
+}
