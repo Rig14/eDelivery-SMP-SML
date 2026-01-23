@@ -1,5 +1,5 @@
 services:
-  coredns:
+  coredns: # Acts as SML
     image: coredns/coredns:latest
     command: -conf /etc/coredns/Corefile
     environment:
@@ -8,7 +8,7 @@ services:
       - ./conf/coredns:/etc/coredns
     restart: unless-stopped
     networks:
-      smp-network:
+      sml-network:
         ipv4_address: 172.20.0.200
 
   harmony-ap-sender:
@@ -39,7 +39,7 @@ services:
     dns:
       - 172.20.0.200
     networks:
-      - smp-network
+      - sml-network
     entrypoint: /etc/harmony-ap-conf/entrypoint.sh
 
   harmony-db-sender:
@@ -56,7 +56,7 @@ services:
     volumes:
       - ap-db-data-sender:/var/lib/mysql
     networks:
-      - smp-network
+      - sml-network
 
   harmony-ap-receiver:
     image: niis/harmony-ap:2.6.0
@@ -81,6 +81,8 @@ services:
     depends_on:
       - harmony-db-receiver
     entrypoint: /etc/harmony-ap-conf/entrypoint.sh
+    networks:
+      - sml-network
 
   harmony-db-receiver:
     image: mysql:8
@@ -95,6 +97,8 @@ services:
     restart: on-failure
     volumes:
       - ap-db-data-receiver:/var/lib/mysql
+    networks:
+      - sml-network
 
   smp:
     container_name: smp
@@ -102,7 +106,7 @@ services:
       - "8080:80"
     build: smp
     networks:
-      smp-network:
+      sml-network:
         ipv4_address: 172.20.0.250
 
 
@@ -113,7 +117,7 @@ volumes:
   ap-db-data-receiver:
 
 networks:
-  smp-network:
+  sml-network:
     driver: bridge
     ipam:
       config:
