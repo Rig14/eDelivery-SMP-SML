@@ -70,7 +70,7 @@ class ServiceMetadataGenerator {
         <DocumentIdentifier>eftiGateAction</DocumentIdentifier>
         <ProcessList>
           <Process>
-            <ProcessIdentifier>bdx:noprocess</ProcessIdentifier>
+            <ProcessIdentifier scheme="tc1">bdx:noprocess</ProcessIdentifier>
             <ServiceEndpointList>
               <Endpoint transportProfile="bdxr-transport-ebms3-as4-v1p0">
                 <EndpointURI>$receiverUri</EndpointURI>
