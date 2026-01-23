@@ -40,6 +40,30 @@ upload_pmode() {
   fi
 }
 
+setup_plugin_user() {
+  local NAME="$1"
+  local PASSWORD="$2"
+
+  read -r JSESSIONID XSRF_TOKEN < <(authenticate) || return 1
+  UPLOAD_RESPONSE=$(curl -s -w "%{http_code}" -o /dev/null -X PUT http://localhost:8080/rest/plugin/users \
+    -H "Cookie: JSESSIONID=$JSESSIONID; XSRF-TOKEN=$XSRF_TOKEN" \
+    -H "X-XSRF-TOKEN: $XSRF_TOKEN" \
+    -H "Content-Type: application/json" \
+    --data-raw "[{\"status\":\"NEW\",\"userName\":\"$NAME\",\"active\":true,\"suspended\":false,\"authenticationType\":\"BASIC\",\"originalUser\":\"$NAME\",\"authRoles\":\"ROLE_ADMIN\",\"password\":\"$PASSWORD\"}]" \
+    || { echo "Upload request failed"; return 1; })
+
+  if [ "$UPLOAD_RESPONSE" -ge 200 ] && [ "$UPLOAD_RESPONSE" -lt 300 ]; then
+    echo "Setup of plugin user succeeded"
+  elif [ "$UPLOAD_RESPONSE" -eq 409 ]; then
+    echo "Plugin user is already configured"
+  else
+    echo "Setting up plugin user failed with code $UPLOAD_RESPONSE"
+    return 1
+  fi
+}
+
+setup_plugin_user "user" "lclsalc124LALX.-"
+
 set_sml_zone() {
   local ZONE_NAME="$1"
 

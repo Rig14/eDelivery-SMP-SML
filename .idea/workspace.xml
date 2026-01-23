@@ -7,8 +7,8 @@
     <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="mv authenticate to separate function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/harmony-ap/configure.sh" beforeDir="false" afterPath="$PROJECT_DIR$/conf/harmony-ap/configure.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conf/harmony-ap/entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/conf/harmony-ap/entrypoint.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/harmony-ap/upload.sh" beforeDir="false" afterPath="$PROJECT_DIR$/conf/harmony-ap/configure.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,9 +23,49 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/smp">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/plugin-user">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="plugin-user" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="plugin-user" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="plugin-user" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="smp" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="smp" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="smp" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="smp" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -57,6 +97,7 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Gradle.Tests in 'smp.test'.executor": "Run",
     "Gradle.smp [:LauncherKt.main()].executor": "Run",
+    "Gradle.smp [:plugin.SenderKt.main()].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -80,7 +121,7 @@
       <recent name="$PROJECT_DIR$/conf" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.LauncherKt">
+  <component name="RunManager" selected="Kotlin.SenderKt">
     <configuration name="Tests in 'smp.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -106,6 +147,13 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
+    <configuration name="SenderKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="plugin.SenderKt" />
+      <module name="smp.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="eDelivery-SMP-SML" />
       <method v="2">
@@ -120,9 +168,11 @@
     <list>
       <item itemvalue="Gradle.Tests in 'smp.test'" />
       <item itemvalue="Kotlin.LauncherKt" />
+      <item itemvalue="Kotlin.SenderKt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.SenderKt" />
         <item itemvalue="Gradle.Tests in 'smp.test'" />
       </list>
     </recent_temporary>

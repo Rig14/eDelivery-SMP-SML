@@ -22,6 +22,8 @@ services:
       - ADMIN_PASSWORD=secret
       - USE_DYNAMIC_DISCOVERY=true
       - PARTY_NAME=sender
+      - PLUGIN_USER_NAME=service_account
+      - PLUGIN_USER_PASSWORD=Azerty59*1234567
       - LB_TLS_TERMINATION=true
       - SECURITY_KEYSTORE_PASSWORD=changeit
       - SECURITY_TRUSTSTORE_PASSWORD=changeit
