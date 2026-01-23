@@ -29,6 +29,7 @@ services:
     restart: unless-stopped
     volumes:
       - ap-data-sender:/var/opt/harmony-ap
+      - ./conf/harmony-ap/entrypoint.sh:/usr/bin/harmony-entrypoint
     depends_on:
       - harmony-db-sender
       - coredns
@@ -72,6 +73,7 @@ services:
     restart: unless-stopped
     volumes:
       - ap-data-receiver:/var/opt/harmony-ap
+      - ./conf/harmony-ap/entrypoint.sh:/usr/bin/harmony-entrypoint
     depends_on:
       - harmony-db-receiver
 
