@@ -1,32 +1,32 @@
-upload_pmode() {
-  local PARTY="$1"
-  echo "Uploading PMODE for $PARTY"
-  DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-  local PMODE_FILE="$DIR/pmode-$PARTY.xml"
-
-  if [ ! -f "$PMODE_FILE" ]; then
-    echo "File $PMODE_FILE does not exist"
-    return 1
-  fi
-
+authenticate() {
   local RESPONSE
   RESPONSE=$(curl -s -i -X POST http://localhost:8080/rest/security/authentication \
     -H "Content-Type: application/json" \
     -d '{"username":"harmony","password":"secret"}') || { echo "Auth request failed"; return 1; }
 
   local JSESSIONID XSRF_TOKEN
-  JSESSIONID=$(echo "$RESPONSE" | grep -i '^Set-Cookie:' | grep -o 'JSESSIONID=[^;]*')
-  XSRF_TOKEN=$(echo "$RESPONSE" | grep -i '^Set-Cookie:' | grep -o 'XSRF-TOKEN=[^;]*')
+  JSESSIONID=$(echo "$RESPONSE" | grep -i '^Set-Cookie:' | grep -o 'JSESSIONID=[^;]*' | cut -d= -f2)
+  XSRF_TOKEN=$(echo "$RESPONSE" | grep -i '^Set-Cookie:' | grep -o 'XSRF-TOKEN=[^;]*' | cut -d= -f2)
 
-  if [ -z "$JSESSIONID" ] || [ -z "$XSRF_TOKEN" ]; then
-    echo "Failed to get cookies from auth response"
-    return 1
-  fi
+  [ -z "$JSESSIONID" ] || [ -z "$XSRF_TOKEN" ] && { echo "Failed to get cookies"; return 1; }
+
+  echo "$JSESSIONID" "$XSRF_TOKEN"
+}
+
+upload_pmode() {
+  local PARTY="$1"
+  echo "Uploading PMODE for $PARTY"
+
+  DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  local PMODE_FILE="$DIR/pmode-$PARTY.xml"
+  [ -f "$PMODE_FILE" ] || { echo "File $PMODE_FILE does not exist"; return 1; }
+
+  read -r JSESSIONID XSRF_TOKEN < <(authenticate) || return 1
 
   local UPLOAD_RESPONSE
   UPLOAD_RESPONSE=$(curl -s -w "%{http_code}" -o /dev/null -X POST http://localhost:8080/rest/pmode \
-    -H "Cookie: ${JSESSIONID}; ${XSRF_TOKEN}" \
-    -H "X-XSRF-TOKEN: ${XSRF_TOKEN#XSRF-TOKEN=}" \
+    -H "Cookie: JSESSIONID=$JSESSIONID; XSRF-TOKEN=$XSRF_TOKEN" \
+    -H "X-XSRF-TOKEN: $XSRF_TOKEN" \
     -F "file=@${PMODE_FILE};type=text/xml" \
     -F "description=PMODE configuration for $PARTY") || { echo "Upload request failed"; return 1; }
 
