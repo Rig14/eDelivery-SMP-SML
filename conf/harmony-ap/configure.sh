@@ -62,8 +62,6 @@ setup_plugin_user() {
   fi
 }
 
-setup_plugin_user "user" "lclsalc124LALX.-"
-
 set_sml_zone() {
   local ZONE_NAME="$1"
 
@@ -78,6 +76,30 @@ set_sml_zone() {
     echo "SML zone updated successfully"
   else
     echo "Updating SML zone failed with code $UPLOAD_RESPONSE"
+    return 1
+  fi
+}
+
+set_keystore() {
+  local PARTY="$1"
+  echo "Setting up keystore for $PARTY"
+
+  DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  local KEYSTORE_FILE="$DIR/$PARTY/keystore.p12"
+  [ -f "$KEYSTORE_FILE" ] || { echo "File $KEYSTORE_FILE does not exist"; return 1; }
+
+  read -r JSESSIONID XSRF_TOKEN < <(authenticate) || return 1
+
+  UPLOAD_RESPONSE=$(curl -s -w "%{http_code}" -o /dev/null -X POST http://localhost:8080/rest/keystore/save \
+    -H "Cookie: JSESSIONID=$JSESSIONID; XSRF-TOKEN=$XSRF_TOKEN" \
+    -H "X-XSRF-TOKEN: $XSRF_TOKEN" \
+    -F "file=@${KEYSTORE_FILE};type=application/pkcs12" \
+    -F "password=changeit") || { echo "Upload request failed"; return 1; }
+
+  if [ "$UPLOAD_RESPONSE" -ge 200 ] && [ "$UPLOAD_RESPONSE" -lt 300 ]; then
+    echo "Keystore uploaded for $PARTY"
+  else
+    echo "Keystore upload failed with status $UPLOAD_RESPONSE"
     return 1
   fi
 }

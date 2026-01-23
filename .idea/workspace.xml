@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="network issue for receiver&#10;&#10;the wrong receiver party id &quot;smp&quot; still remains. receiver cannot process message with recipient smp, it needs &quot;receiver&quot;,">
+    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="rename">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smp/certs/generate.sh" beforeDir="false" afterPath="$PROJECT_DIR$/generate.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smp/certs/own.crt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smp/certs/own.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smp/certs/own.p12" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smp/src/smp/ServiceMetadataGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/smp/src/smp/ServiceMetadataGenerator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/harmony-ap/configure.sh" beforeDir="false" afterPath="$PROJECT_DIR$/conf/harmony-ap/configure.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/harmony-ap/entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/conf/harmony-ap/entrypoint.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -296,7 +293,23 @@
       <option name="project" value="LOCAL" />
       <updated>1769175921356</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="certificates for all parties">
+      <option name="closed" value="true" />
+      <created>1769176711125</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1769176711125</updated>
+    </task>
+    <task id="LOCAL-00014" summary="rename">
+      <option name="closed" value="true" />
+      <created>1769176734851</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1769176734851</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,6 +328,8 @@
     <MESSAGE value="plugin user" />
     <MESSAGE value="message is sent out!!! but to wrong receiver" />
     <MESSAGE value="network issue for receiver&#10;&#10;the wrong receiver party id &quot;smp&quot; still remains. receiver cannot process message with recipient smp, it needs &quot;receiver&quot;," />
-    <option name="LAST_COMMIT_MESSAGE" value="network issue for receiver&#10;&#10;the wrong receiver party id &quot;smp&quot; still remains. receiver cannot process message with recipient smp, it needs &quot;receiver&quot;," />
+    <MESSAGE value="certificates for all parties" />
+    <MESSAGE value="rename" />
+    <option name="LAST_COMMIT_MESSAGE" value="rename" />
   </component>
 </project>
