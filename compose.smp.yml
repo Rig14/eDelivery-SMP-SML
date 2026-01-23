@@ -17,7 +17,7 @@ services:
     environment:
       - CONFIG_FILE=/config/application.properties
     volumes:
-      - ./phoss-smp:/config:ro
+      - ./conf/phoss-smp:/config:ro
       - smp-data:/home/git/conf
     healthcheck:
       test: [ "CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:8080/ || exit 1" ]

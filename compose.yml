@@ -5,7 +5,7 @@ services:
     environment:
       - SML_ZONE=testsml
     volumes:
-      - ./coredns:/etc/coredns
+      - ./conf/coredns:/etc/coredns
     restart: unless-stopped
     networks:
       smp-network:
