@@ -33,3 +33,4 @@ Password: `password`
 - [Fintraffic eFTI interoperability repository](https://github.com/fintraffic-efti/efti-gate-io/tree/master)
 - [PMode to SMP mapping](https://ec.europa.eu/digital-building-blocks/sites/spaces/DIGITAL/pages/467117988/eDelivery+SMP+-+1.10)
 - [SML specific](https://ec.europa.eu/digital-building-blocks/sites/spaces/DIGITAL/pages/843612547/eDelivery+BDXL+-+2.0)
+- [harmony AP dynamic discovery guide](https://github.com/nordic-institute/harmony-common/blob/main/doc/dynamic_discovery_configuration_guide.md)

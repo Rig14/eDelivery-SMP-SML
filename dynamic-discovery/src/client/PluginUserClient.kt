@@ -56,8 +56,6 @@ fun generateMessage(message: String): String {
                 <ns5:Role>http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/initiator</ns5:Role>
               </ns5:From>
               <ns5:To>
-                <ns5:PartyId type="urn:oasis:names:tc:ebcore:partyid-type:unregistered">$TO</ns5:PartyId>
-                <ns5:Role>http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/responder</ns5:Role>
               </ns5:To>
             </ns5:PartyInfo>
             <ns5:CollaborationInfo>
