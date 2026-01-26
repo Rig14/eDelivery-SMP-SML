@@ -20,7 +20,9 @@ USER user
 
 ENV TZ=Europe/London
 ENV JAVA_TOOL_OPTIONS="-Xss256K -Xmx330M -XX:+ExitOnOutOfMemoryError"
-CMD PORT=80 java -jar *.jar
+CMD PORT=80 SML_PORT=53 java -jar *.jar
 
 ENV PORT=80
+ENV SML_PORT=53/udp
 EXPOSE $PORT
+EXPOSE 53

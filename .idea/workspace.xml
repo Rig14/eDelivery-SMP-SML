@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="sending message to correct party name&#10;&#10;smp certificate must be in truststore of harmony. self-signed certificates will give an error">
-      <change afterPath="$PROJECT_DIR$/schema/smp/bdx-smp-201605.xsd" afterDir="false" />
+    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="smp xsd and sml info">
+      <change afterPath="$PROJECT_DIR$/smp/src/plugin/CoreDns.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/smp/src/sml/SML.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/smp/test/sml/SMLTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/smp/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/smp/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/smp/compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/src/Launcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/smp/src/Launcher.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,9 +101,19 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Gradle.Build smp.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.SMLTest.executor": "Run",
+    "Gradle.SMLTest.queryCname.executor": "Debug",
+    "Gradle.SMLTest.queryGoogle.executor": "Run",
+    "Gradle.SMLTest.queryNotSupportedRecordTypeError.executor": "Run",
+    "Gradle.SMLTest.queryWorks.executor": "Debug",
+    "Gradle.SMLTest.queryWrongRootDomainReturnsError.executor": "Run",
     "Gradle.Tests in 'smp.test'.executor": "Run",
     "Gradle.smp [:LauncherKt.main()].executor": "Run",
+    "Gradle.smp [:plugin.CoreDnsKt.main()].executor": "Run",
     "Gradle.smp [:plugin.SenderKt.main()].executor": "Run",
+    "Gradle.smp [:sml.SMLKt.main()].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -124,9 +141,12 @@
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/conf" />
     </key>
+    <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="sml" />
+    </key>
   </component>
-  <component name="RunManager" selected="Kotlin.SenderKt">
-    <configuration name="Tests in 'smp.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.SMLTest">
+    <configuration name="SMLTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/smp" />
@@ -138,6 +158,8 @@
         <option name="taskNames">
           <list>
             <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;sml.SMLTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -150,6 +172,67 @@
       <GradleProfilingDisabled>false</GradleProfilingDisabled>
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
+    </configuration>
+    <configuration name="SMLTest.queryNotSupportedRecordTypeError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/smp" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;sml.SMLTest.queryNotSupportedRecordTypeError&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="SMLTest.queryWrongRootDomainReturnsError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/smp" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;sml.SMLTest.queryWrongRootDomainReturnsError&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="CoreDnsKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="plugin.CoreDnsKt" />
+      <module name="smp.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="SenderKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="plugin.SenderKt" />
@@ -170,14 +253,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Gradle.Tests in 'smp.test'" />
+      <item itemvalue="Gradle.SMLTest" />
+      <item itemvalue="Gradle.SMLTest.queryNotSupportedRecordTypeError" />
+      <item itemvalue="Gradle.SMLTest.queryWrongRootDomainReturnsError" />
       <item itemvalue="Kotlin.LauncherKt" />
+      <item itemvalue="Kotlin.CoreDnsKt" />
       <item itemvalue="Kotlin.SenderKt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.SMLTest" />
+        <item itemvalue="Kotlin.CoreDnsKt" />
         <item itemvalue="Kotlin.SenderKt" />
-        <item itemvalue="Gradle.Tests in 'smp.test'" />
+        <item itemvalue="Gradle.SMLTest.queryNotSupportedRecordTypeError" />
+        <item itemvalue="Gradle.SMLTest.queryWrongRootDomainReturnsError" />
       </list>
     </recent_temporary>
   </component>
@@ -200,6 +289,7 @@
       <workItem from="1768747594892" duration="2486000" />
       <workItem from="1768896279910" duration="100000" />
       <workItem from="1769164676481" duration="8116000" />
+      <workItem from="1769354704657" duration="12364000" />
     </task>
     <task id="LOCAL-00001" summary="cleanup unneeded files and plugin user project">
       <option name="closed" value="true" />
@@ -321,7 +411,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769180040381</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="smp xsd and sml info">
+      <option name="closed" value="true" />
+      <created>1769182165303</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1769182165303</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,6 +441,18 @@
     <MESSAGE value="certificates for all parties" />
     <MESSAGE value="rename" />
     <MESSAGE value="sending message to correct party name&#10;&#10;smp certificate must be in truststore of harmony. self-signed certificates will give an error" />
-    <option name="LAST_COMMIT_MESSAGE" value="sending message to correct party name&#10;&#10;smp certificate must be in truststore of harmony. self-signed certificates will give an error" />
+    <MESSAGE value="smp xsd and sml info" />
+    <option name="LAST_COMMIT_MESSAGE" value="smp xsd and sml info" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/smp/src/plugin/CoreDns.kt</url>
+          <line>19</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

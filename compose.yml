@@ -1,16 +1,4 @@
 services:
-  coredns: # Acts as SML
-    image: coredns/coredns:latest
-    command: -conf /etc/coredns/Corefile
-    environment:
-      - SML_ZONE=testsml
-    volumes:
-      - ./conf/coredns:/etc/coredns
-    restart: unless-stopped
-    networks:
-      sml-network:
-        ipv4_address: 172.20.0.200
-
   harmony-ap-sender:
     image: niis/harmony-ap:2.6.0
     ports:
@@ -35,9 +23,9 @@ services:
       - ./conf/harmony-ap:/etc/harmony-ap-conf
     depends_on:
       - harmony-db-sender
-      - coredns
+      - smp
     dns:
-      - 172.20.0.200
+      - 172.20.0.250
     networks:
       - sml-network
     entrypoint: /etc/harmony-ap-conf/entrypoint.sh
@@ -104,9 +92,12 @@ services:
     container_name: smp
     ports:
       - "8080:80"
+      - "8053:53"
     build: smp
     networks:
       sml-network:
+        aliases:
+          - testsml # the sml zone
         ipv4_address: 172.20.0.250
 
 

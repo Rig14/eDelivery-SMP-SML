@@ -8,9 +8,11 @@ repositories {
 }
 
 dependencies {
-    fun klite(module: String) = "com.github.keksworks.klite:klite-$module:1.7.2"
+    fun klite(module: String) = "com.github.keksworks.klite:klite-$module:1.8.0"
     implementation(klite("server"))
     implementation(klite("slf4j"))
+
+    implementation("dnsjava:dnsjava:3.6.4")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.13.4")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.13.4")
