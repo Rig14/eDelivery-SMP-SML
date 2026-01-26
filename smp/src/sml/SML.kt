@@ -48,7 +48,7 @@ class SMLServer(
   )
 
   fun start() {
-    log.info("Starting SML server on $listen")
+    log.info("Starting SML server on $listen with zone $rootDomain")
     val socket = DatagramSocket(listen)
     val buffer = ByteArray(512)
 

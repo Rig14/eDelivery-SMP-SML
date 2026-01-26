@@ -90,9 +90,11 @@ services:
 
   smp:
     container_name: smp
+    environment:
+      - SML_ZONE=testsml.
     ports:
       - "8080:80"
-      - "8053:53"
+      - "8053:53/udp"
     build: smp
     networks:
       sml-network:

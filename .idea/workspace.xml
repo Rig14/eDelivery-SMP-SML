@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="smp xsd and sml info">
-      <change afterPath="$PROJECT_DIR$/smp/src/plugin/CoreDns.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smp/src/sml/SML.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smp/test/sml/SMLTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
+    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="remove unneeded coredns config">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smp/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/smp/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smp/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/smp/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smp/compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/smp/compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smp/src/Launcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/smp/src/Launcher.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/src/sml/SML.kt" beforeDir="false" afterPath="$PROJECT_DIR$/smp/src/sml/SML.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +140,7 @@
       <recent name="sml" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.SMLTest">
+  <component name="RunManager" selected="Kotlin.PluginUserClientKt">
     <configuration name="SMLTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -227,15 +222,15 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="CoreDnsKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="plugin.CoreDnsKt" />
+    <configuration name="DNSClientKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.DNSClientKt" />
       <module name="smp.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SenderKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="plugin.SenderKt" />
+    <configuration name="PluginUserClientKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.PluginUserClientKt" />
       <module name="smp.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -257,14 +252,14 @@
       <item itemvalue="Gradle.SMLTest.queryNotSupportedRecordTypeError" />
       <item itemvalue="Gradle.SMLTest.queryWrongRootDomainReturnsError" />
       <item itemvalue="Kotlin.LauncherKt" />
-      <item itemvalue="Kotlin.CoreDnsKt" />
-      <item itemvalue="Kotlin.SenderKt" />
+      <item itemvalue="Kotlin.DNSClientKt" />
+      <item itemvalue="Kotlin.PluginUserClientKt" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.SMLTest" />
-        <item itemvalue="Kotlin.CoreDnsKt" />
-        <item itemvalue="Kotlin.SenderKt" />
+        <item itemvalue="Kotlin.DNSClientKt" />
+        <item itemvalue="Kotlin.PluginUserClientKt" />
         <item itemvalue="Gradle.SMLTest.queryNotSupportedRecordTypeError" />
         <item itemvalue="Gradle.SMLTest.queryWrongRootDomainReturnsError" />
       </list>
@@ -289,7 +284,7 @@
       <workItem from="1768747594892" duration="2486000" />
       <workItem from="1768896279910" duration="100000" />
       <workItem from="1769164676481" duration="8116000" />
-      <workItem from="1769354704657" duration="12364000" />
+      <workItem from="1769354704657" duration="13191000" />
     </task>
     <task id="LOCAL-00001" summary="cleanup unneeded files and plugin user project">
       <option name="closed" value="true" />
@@ -419,7 +414,23 @@
       <option name="project" value="LOCAL" />
       <updated>1769182165303</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="replace coreDNS with self made solution&#10;&#10;discovered that the functionality of coredns can be achieved with about 100 lines of code bringing down the overall complexity of the system. Also discovered that the A record will most likely not be needed to be served from the SML solution and can be forwarded. &#10;&#10; This also allows to create the NAPTR logic that is also used by smps">
+      <option name="closed" value="true" />
+      <created>1769415904380</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1769415904380</updated>
+    </task>
+    <task id="LOCAL-00018" summary="remove unneeded coredns config">
+      <option name="closed" value="true" />
+      <created>1769415958630</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1769415958630</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -442,7 +453,9 @@
     <MESSAGE value="rename" />
     <MESSAGE value="sending message to correct party name&#10;&#10;smp certificate must be in truststore of harmony. self-signed certificates will give an error" />
     <MESSAGE value="smp xsd and sml info" />
-    <option name="LAST_COMMIT_MESSAGE" value="smp xsd and sml info" />
+    <MESSAGE value="replace coreDNS with self made solution&#10;&#10;discovered that the functionality of coredns can be achieved with about 100 lines of code bringing down the overall complexity of the system. Also discovered that the A record will most likely not be needed to be served from the SML solution and can be forwarded. &#10;&#10; This also allows to create the NAPTR logic that is also used by smps" />
+    <MESSAGE value="remove unneeded coredns config" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove unneeded coredns config" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

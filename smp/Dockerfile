@@ -11,7 +11,6 @@ RUN adduser -S user
 WORKDIR /app
 
 COPY certs ./certs
-RUN chmod +r certs/*
 RUN rm -fr /usr/sbin /bin/ch*
 
 COPY --from=build-server /app/build/libs ./
@@ -20,9 +19,10 @@ USER user
 
 ENV TZ=Europe/London
 ENV JAVA_TOOL_OPTIONS="-Xss256K -Xmx330M -XX:+ExitOnOutOfMemoryError"
-CMD PORT=80 SML_PORT=53 java -jar *.jar
-
 ENV PORT=80
-ENV SML_PORT=53/udp
+ENV SML_PORT=53
+
+CMD java -jar *.jar
+
 EXPOSE $PORT
-EXPOSE 53
+EXPOSE $SML_PORT/udp

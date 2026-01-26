@@ -1,3 +1,4 @@
+import klite.Config
 import klite.Server
 import klite.annotations.annotated
 import org.xbill.DNS.Name
@@ -12,7 +13,7 @@ fun main() {
     }
 
     thread {
-      SMLServer(Name.fromString("testsml.")).start()
+      SMLServer(Name.fromString(Config.optional("SML_ZONE", "testsml."))).start()
     }
 
     start()
