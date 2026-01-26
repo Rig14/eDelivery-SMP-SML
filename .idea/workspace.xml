@@ -4,10 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="message arrives at the receiver&#10;&#10;receiver needs the senders certificate in its truststore to be able to precess the message. does the receiver also need to get the cert from smp?&#10;&#10;currently it works when manually adding the sender  cert in receiver truststore">
+    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="fix sml tests. refactor code for better error handling">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/LauncherKt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/LauncherKt.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smp/src/sml/SML.kt" beforeDir="false" afterPath="$PROJECT_DIR$/smp/src/sml/SML.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smp/test/sml/SMLTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/smp/test/sml/SMLTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generate-certs.sh" beforeDir="false" afterPath="$PROJECT_DIR$/generate-certs.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/certs/keystore.crt" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/certs/keystore.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/certs/keystore.key" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/certs/keystore.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/certs/keystore.p12" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/certs/keystore.p12" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/src/Launcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/src/Launcher.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/src/client/DNSClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/src/client/DNSClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/src/client/PluginUserClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/src/client/PluginUserClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/src/sml/SML.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/src/sml/SML.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/src/smp/SMPRoutes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/src/smp/SMPRoutes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/src/smp/ServiceMetadataGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/src/smp/ServiceMetadataGenerator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/test/sml/SMLTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/test/sml/SMLTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/test/smp/ServiceMetadataGeneratorTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/test/smp/ServiceMetadataGeneratorTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +38,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/dynamic-discovery">
+      <ProjectState />
+    </projectState>
     <projectState path="$PROJECT_DIR$/smp">
       <ProjectState />
     </projectState>
@@ -33,36 +59,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="plugin-user" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="plugin-user" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="plugin-user" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="smp" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="smp" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="smp" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="smp" type="f1a62948:ProjectNode" />
-                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+                <item name="dynamic-discovery" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -81,7 +78,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$/smp" gradleHome="$USER_HOME$/.gradle/wrapper/dists/gradle-9.3.0-bin/79n14ral3mx1ozqr3csh2u872/gradle-9.3.0" javaHome="$USER_HOME$/.jdks/temurin-25.0.1" gradleVersion="9.3.0" />
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$/dynamic-discovery" gradleHome="$USER_HOME$/.gradle/wrapper/dists/gradle-9.3.0-bin/79n14ral3mx1ozqr3csh2u872/gradle-9.3.0" javaHome="$USER_HOME$/.jdks/temurin-25.0.1" gradleVersion="9.3.0" />
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
@@ -104,12 +101,19 @@
     "Gradle.SMLTest.queryWrongRootDomainReturnsError.executor": "Run",
     "Gradle.SMLTest.refuseNonZone.executor": "Run",
     "Gradle.SMLTest.responseIncludesQuestion.executor": "Run",
+    "Gradle.Tests in 'dynamic-discovery.test'.executor": "Run",
     "Gradle.Tests in 'smp.test'.executor": "Run",
+    "Gradle.dynamic-discovery [:LauncherKt.main()].executor": "Run",
     "Gradle.smp [:LauncherKt.main()].executor": "Run",
     "Gradle.smp [:client.PluginUserClientKt.main()].executor": "Run",
     "Gradle.smp [:plugin.CoreDnsKt.main()].executor": "Run",
     "Gradle.smp [:plugin.SenderKt.main()].executor": "Run",
     "Gradle.smp [:sml.SMLKt.main()].executor": "Run",
+    "JUnit.All in smp.test.executor": "Run",
+    "JUnit.SMLTest.refuseNonZone.executor": "Run",
+    "JUnit.SMLTest.responseIncludesQuestion.executor": "Run",
+    "JUnit.ServiceMetadataGeneratorTest.subjectDn.executor": "Run",
+    "Kotlin.LauncherKt.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -119,9 +123,9 @@
     "SHELLCHECK.PATH": "/home/rihard/.local/share/JetBrains/IntelliJIdea2025.3/Shell Script/shellcheck",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/rihard/IdeaProjects/eDelivery-SMP-SML/schema",
+    "last_opened_file_path": "/home/rihard/IdeaProjects/eDelivery-SMP-SML/dynamic-discovery/build.gradle.kts",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
@@ -141,65 +145,11 @@
       <recent name="sml" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.SMLTest.refuseNonZone">
-    <configuration name="SMLTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/smp" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;sml.SMLTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="SMLTest.refuseNonZone" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/smp" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;sml.SMLTest.refuseNonZone&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Kotlin.PluginUserClientKt">
     <configuration name="SMLTest.responseIncludesQuestion" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/smp" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/dynamic-discovery" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
@@ -223,16 +173,49 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="DNSClientKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="client.DNSClientKt" />
-      <module name="smp.main" />
+    <configuration name="Tests in 'dynamic-discovery.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/dynamic-discovery" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="All in smp.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="smp.test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LauncherKt (1)" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="LauncherKt" />
+      <module name="dynamic-discovery.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="PluginUserClientKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.PluginUserClientKt" />
-      <module name="smp.main" />
+      <module name="dynamic-discovery.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -249,20 +232,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Gradle.SMLTest" />
-      <item itemvalue="Gradle.SMLTest.refuseNonZone" />
       <item itemvalue="Gradle.SMLTest.responseIncludesQuestion" />
+      <item itemvalue="Gradle.Tests in 'dynamic-discovery.test'" />
+      <item itemvalue="JUnit.All in smp.test" />
       <item itemvalue="Kotlin.LauncherKt" />
-      <item itemvalue="Kotlin.DNSClientKt" />
+      <item itemvalue="Kotlin.LauncherKt (1)" />
       <item itemvalue="Kotlin.PluginUserClientKt" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.SMLTest.refuseNonZone" />
-        <item itemvalue="Gradle.SMLTest.responseIncludesQuestion" />
-        <item itemvalue="Gradle.SMLTest" />
-        <item itemvalue="Kotlin.DNSClientKt" />
         <item itemvalue="Kotlin.PluginUserClientKt" />
+        <item itemvalue="Kotlin.LauncherKt (1)" />
+        <item itemvalue="Gradle.SMLTest.responseIncludesQuestion" />
+        <item itemvalue="Gradle.Tests in 'dynamic-discovery.test'" />
+        <item itemvalue="JUnit.All in smp.test" />
       </list>
     </recent_temporary>
   </component>
@@ -285,7 +268,8 @@
       <workItem from="1768747594892" duration="2486000" />
       <workItem from="1768896279910" duration="100000" />
       <workItem from="1769164676481" duration="8116000" />
-      <workItem from="1769354704657" duration="17711000" />
+      <workItem from="1769354704657" duration="17854000" />
+      <workItem from="1769421254084" duration="776000" />
     </task>
     <task id="LOCAL-00001" summary="cleanup unneeded files and plugin user project">
       <option name="closed" value="true" />
@@ -455,7 +439,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769418478023</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fix sml tests. refactor code for better error handling">
+      <option name="closed" value="true" />
+      <created>1769421132818</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1769421132818</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -483,6 +475,7 @@
     <MESSAGE value="cleanup dockerfile&#10;&#10;remove redundancies in dockerfile" />
     <MESSAGE value="mv plugin -&gt; client&#10;&#10;The clients are useful to test message flow" />
     <MESSAGE value="message arrives at the receiver&#10;&#10;receiver needs the senders certificate in its truststore to be able to precess the message. does the receiver also need to get the cert from smp?&#10;&#10;currently it works when manually adding the sender  cert in receiver truststore" />
-    <option name="LAST_COMMIT_MESSAGE" value="message arrives at the receiver&#10;&#10;receiver needs the senders certificate in its truststore to be able to precess the message. does the receiver also need to get the cert from smp?&#10;&#10;currently it works when manually adding the sender  cert in receiver truststore" />
+    <MESSAGE value="fix sml tests. refactor code for better error handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix sml tests. refactor code for better error handling" />
   </component>
 </project>

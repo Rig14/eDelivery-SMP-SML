@@ -95,7 +95,7 @@ services:
     ports:
       - "8080:80"
       - "8053:53/udp"
-    build: smp
+    build: dynamic-discovery
     networks:
       sml-network:
         aliases:

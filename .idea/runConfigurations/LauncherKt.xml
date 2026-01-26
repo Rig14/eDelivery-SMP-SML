@@ -3,7 +3,7 @@
     <option name="MAIN_CLASS_NAME" value="LauncherKt" />
     <module name="smp.main" />
     <shortenClasspath name="NONE" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/smp" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dynamic-discovery" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

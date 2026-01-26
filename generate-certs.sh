@@ -1,7 +1,7 @@
 #!/bin/bash
 
 declare -A PARTIES=(
-    ["smp"]="smp/certs"
+    ["smp"]="dynamic-discovery/certs"
     ["sender"]="conf/harmony-ap/sender"
     ["receiver"]="conf/harmony-ap/receiver"
 )
