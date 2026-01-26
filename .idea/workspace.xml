@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="mv smp -&gt; dynamic-discovery&#10;&#10;smp folder no longer contains code only about smp. now it also has code about sml and clients.">
+    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="remove &quot;from&quot; in message&#10;&#10;from should be removed when using dynamic discovery. instead the finalRecipient property is used.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dynamic-discovery/src/client/PluginUserClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/src/client/PluginUserClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dynamic-discovery/src/sml/SML.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dynamic-discovery/src/sml/SML.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,51 +67,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Gradle.Build smp.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SMLTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SMLTest.queryCname.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.SMLTest.queryGoogle.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SMLTest.queryNotSupportedRecordTypeError.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SMLTest.queryWorks.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.SMLTest.queryWrongRootDomainReturnsError.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SMLTest.refuseNonZone.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SMLTest.responseIncludesQuestion.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Tests in 'dynamic-discovery.test'.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Tests in 'smp.test'.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.dynamic-discovery [:LauncherKt.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.dynamic-discovery [:client.PluginUserClientKt.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.smp [:LauncherKt.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.smp [:client.PluginUserClientKt.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.smp [:plugin.CoreDnsKt.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.smp [:plugin.SenderKt.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.smp [:sml.SMLKt.main()].executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in smp.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SMLTest.refuseNonZone.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SMLTest.responseIncludesQuestion.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ServiceMetadataGeneratorTest.subjectDn.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.LauncherKt.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;SHELLCHECK.PATH&quot;: &quot;/home/rihard/.local/share/JetBrains/IntelliJIdea2025.3/Shell Script/shellcheck&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/rihard/IdeaProjects/eDelivery-SMP-SML/dynamic-discovery/build.gradle.kts&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Gradle.Build smp.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.SMLTest.executor": "Run",
+    "Gradle.SMLTest.queryCname.executor": "Debug",
+    "Gradle.SMLTest.queryGoogle.executor": "Run",
+    "Gradle.SMLTest.queryNotSupportedRecordTypeError.executor": "Run",
+    "Gradle.SMLTest.queryWorks.executor": "Debug",
+    "Gradle.SMLTest.queryWrongRootDomainReturnsError.executor": "Run",
+    "Gradle.SMLTest.refuseNonZone.executor": "Run",
+    "Gradle.SMLTest.responseIncludesQuestion.executor": "Run",
+    "Gradle.Tests in 'dynamic-discovery.test'.executor": "Run",
+    "Gradle.Tests in 'smp.test'.executor": "Run",
+    "Gradle.dynamic-discovery [:LauncherKt.main()].executor": "Run",
+    "Gradle.dynamic-discovery [:client.PluginUserClientKt.main()].executor": "Run",
+    "Gradle.dynamic-discovery [:sml.SMLKt.main()].executor": "Run",
+    "Gradle.smp [:LauncherKt.main()].executor": "Run",
+    "Gradle.smp [:client.PluginUserClientKt.main()].executor": "Run",
+    "Gradle.smp [:plugin.CoreDnsKt.main()].executor": "Run",
+    "Gradle.smp [:plugin.SenderKt.main()].executor": "Run",
+    "Gradle.smp [:sml.SMLKt.main()].executor": "Run",
+    "JUnit.All in smp.test.executor": "Run",
+    "JUnit.SMLTest.refuseNonZone.executor": "Run",
+    "JUnit.SMLTest.responseIncludesQuestion.executor": "Run",
+    "JUnit.ServiceMetadataGeneratorTest.subjectDn.executor": "Run",
+    "Kotlin.LauncherKt.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SHELLCHECK.PATH": "/home/rihard/.local/share/JetBrains/IntelliJIdea2025.3/Shell Script/shellcheck",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/rihard/IdeaProjects/eDelivery-SMP-SML/dynamic-discovery/build.gradle.kts",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/schema" />
@@ -128,7 +128,7 @@
       <recent name="sml" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.PluginUserClientKt">
+  <component name="RunManager" selected="Kotlin.SMLKt">
     <configuration name="SMLTest.responseIncludesQuestion" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -181,14 +181,6 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="All in smp.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="smp.test" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="LauncherKt (1)" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="LauncherKt" />
       <module name="dynamic-discovery.main" />
@@ -198,6 +190,13 @@
     </configuration>
     <configuration name="PluginUserClientKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.PluginUserClientKt" />
+      <module name="dynamic-discovery.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SMLKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sml.SMLKt" />
       <module name="dynamic-discovery.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -217,18 +216,18 @@
     <list>
       <item itemvalue="Gradle.SMLTest.responseIncludesQuestion" />
       <item itemvalue="Gradle.Tests in 'dynamic-discovery.test'" />
-      <item itemvalue="JUnit.All in smp.test" />
       <item itemvalue="Kotlin.LauncherKt" />
+      <item itemvalue="Kotlin.SMLKt" />
       <item itemvalue="Kotlin.LauncherKt (1)" />
       <item itemvalue="Kotlin.PluginUserClientKt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.SMLKt" />
         <item itemvalue="Kotlin.PluginUserClientKt" />
         <item itemvalue="Kotlin.LauncherKt (1)" />
         <item itemvalue="Gradle.SMLTest.responseIncludesQuestion" />
         <item itemvalue="Gradle.Tests in 'dynamic-discovery.test'" />
-        <item itemvalue="JUnit.All in smp.test" />
       </list>
     </recent_temporary>
   </component>
@@ -438,7 +437,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769422210727</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="remove &quot;from&quot; in message&#10;&#10;from should be removed when using dynamic discovery. instead the finalRecipient property is used.">
+      <option name="closed" value="true" />
+      <created>1769424510541</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1769424510541</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -468,6 +475,7 @@
     <MESSAGE value="message arrives at the receiver&#10;&#10;receiver needs the senders certificate in its truststore to be able to precess the message. does the receiver also need to get the cert from smp?&#10;&#10;currently it works when manually adding the sender  cert in receiver truststore" />
     <MESSAGE value="fix sml tests. refactor code for better error handling" />
     <MESSAGE value="mv smp -&gt; dynamic-discovery&#10;&#10;smp folder no longer contains code only about smp. now it also has code about sml and clients." />
-    <option name="LAST_COMMIT_MESSAGE" value="mv smp -&gt; dynamic-discovery&#10;&#10;smp folder no longer contains code only about smp. now it also has code about sml and clients." />
+    <MESSAGE value="remove &quot;from&quot; in message&#10;&#10;from should be removed when using dynamic discovery. instead the finalRecipient property is used." />
+    <option name="LAST_COMMIT_MESSAGE" value="remove &quot;from&quot; in message&#10;&#10;from should be removed when using dynamic discovery. instead the finalRecipient property is used." />
   </component>
 </project>

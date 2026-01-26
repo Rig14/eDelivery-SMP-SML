@@ -22,6 +22,7 @@ import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetAddress
 import java.net.InetSocketAddress
+import java.security.MessageDigest
 
 class SMLServer(
   private val rootDomain: Name,
@@ -106,4 +107,13 @@ class SMLServer(
       response.addRecord(record, ANSWER)
     }
   }
+}
+
+fun main() {
+  // for cname
+  // <party id type>:<party id>
+  // as described in finalRecipient property
+  val name = "urn:oasis:names:tc:ebcore:partyid-type:unregistered:C4".lowercase()
+  val out = MessageDigest.getInstance("MD5").digest(name.toByteArray())
+  println(out.toHexString()) // 8bb529042b90c77892efd34f7395f504
 }
