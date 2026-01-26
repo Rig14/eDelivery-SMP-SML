@@ -1,4 +1,4 @@
-package plugin
+package client
 
 import org.xbill.DNS.DClass.IN
 import org.xbill.DNS.Message
@@ -17,4 +17,6 @@ fun main() {
     )
   )
   val response = resolver.send(query)
+
+  println(response)
 }

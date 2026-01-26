@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="remove unneeded coredns config">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smp/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/smp/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smp/src/Launcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/smp/src/Launcher.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smp/src/sml/SML.kt" beforeDir="false" afterPath="$PROJECT_DIR$/smp/src/sml/SML.kt" afterDir="false" />
+    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="cleanup dockerfile&#10;&#10;remove redundancies in dockerfile">
+      <change beforePath="$PROJECT_DIR$/smp/src/plugin/CoreDns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/smp/src/client/DNSClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/src/plugin/Sender.kt" beforeDir="false" afterPath="$PROJECT_DIR$/smp/src/client/PluginUserClient.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,6 +103,7 @@
     "Gradle.SMLTest.queryWrongRootDomainReturnsError.executor": "Run",
     "Gradle.Tests in 'smp.test'.executor": "Run",
     "Gradle.smp [:LauncherKt.main()].executor": "Run",
+    "Gradle.smp [:client.PluginUserClientKt.main()].executor": "Run",
     "Gradle.smp [:plugin.CoreDnsKt.main()].executor": "Run",
     "Gradle.smp [:plugin.SenderKt.main()].executor": "Run",
     "Gradle.smp [:sml.SMLKt.main()].executor": "Run",
@@ -284,7 +282,7 @@
       <workItem from="1768747594892" duration="2486000" />
       <workItem from="1768896279910" duration="100000" />
       <workItem from="1769164676481" duration="8116000" />
-      <workItem from="1769354704657" duration="13191000" />
+      <workItem from="1769354704657" duration="13507000" />
     </task>
     <task id="LOCAL-00001" summary="cleanup unneeded files and plugin user project">
       <option name="closed" value="true" />
@@ -430,7 +428,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769415958630</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="cleanup dockerfile&#10;&#10;remove redundancies in dockerfile">
+      <option name="closed" value="true" />
+      <created>1769416894921</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1769416894921</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -455,17 +461,7 @@
     <MESSAGE value="smp xsd and sml info" />
     <MESSAGE value="replace coreDNS with self made solution&#10;&#10;discovered that the functionality of coredns can be achieved with about 100 lines of code bringing down the overall complexity of the system. Also discovered that the A record will most likely not be needed to be served from the SML solution and can be forwarded. &#10;&#10; This also allows to create the NAPTR logic that is also used by smps" />
     <MESSAGE value="remove unneeded coredns config" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove unneeded coredns config" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/smp/src/plugin/CoreDns.kt</url>
-          <line>19</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="cleanup dockerfile&#10;&#10;remove redundancies in dockerfile" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleanup dockerfile&#10;&#10;remove redundancies in dockerfile" />
   </component>
 </project>

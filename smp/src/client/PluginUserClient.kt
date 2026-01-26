@@ -1,4 +1,4 @@
-package plugin
+package client
 
 import org.intellij.lang.annotations.Language
 import java.net.URI
