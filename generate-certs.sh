@@ -1,9 +1,9 @@
 #!/bin/bash
 
 declare -A PARTIES=(
-    ["smp"]="dynamic-discovery/certs"
-    ["sender"]="conf/harmony-ap/sender"
-    ["receiver"]="conf/harmony-ap/receiver"
+    ["smp"]="conf/certs/smp"
+    ["sender"]="conf/certs/sender"
+    ["receiver"]="conf/certs/receiver"
 )
 
 generate_cert() {
