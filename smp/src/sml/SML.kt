@@ -1,7 +1,6 @@
 package sml
 
 import klite.Config
-import klite.error
 import klite.info
 import klite.logger
 import org.xbill.DNS.ARecord
@@ -11,6 +10,7 @@ import org.xbill.DNS.Flags.QR
 import org.xbill.DNS.Message
 import org.xbill.DNS.Name
 import org.xbill.DNS.Rcode.NOTIMP
+import org.xbill.DNS.Rcode.NXDOMAIN
 import org.xbill.DNS.Rcode.REFUSED
 import org.xbill.DNS.Section.ANSWER
 import org.xbill.DNS.Section.QUESTION
@@ -53,18 +53,13 @@ class SMLServer(
     val buffer = ByteArray(512)
 
     while (true) {
-      try {
-        val packet = DatagramPacket(buffer, buffer.size)
-        socket.receive(packet)
+      val packet = DatagramPacket(buffer, buffer.size)
+      socket.receive(packet)
+      val query = Message(packet.data)
 
-        val query = Message(packet.data)
-        val response = handle(query)
-
-        val out = response.toWire()
-        socket.send(DatagramPacket(out, out.size, packet.address, packet.port))
-      } catch (e: Exception) {
-        log.error(e)
-      }
+      val response = handle(query)
+      val out = response.toWire()
+      socket.send(DatagramPacket(out, out.size, packet.address, packet.port))
     }
   }
 
@@ -103,8 +98,12 @@ class SMLServer(
 
   private fun handleCname(query: Message, response: Message) {
     val smpHash = query.question.name.getLabelString(0)
-    val records = cnameRecords[smpHash]
-    log.info("Found ${if (records == null) "no " else ""}record for $smpHash")
-    response.addRecord(records, ANSWER)
+    val record = cnameRecords[smpHash]
+    log.info("Found ${if (record == null) "no " else ""}record for $smpHash")
+    if (record == null) {
+      response.header.rcode = NXDOMAIN
+    } else {
+      response.addRecord(record, ANSWER)
+    }
   }
 }

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="mv plugin -&gt; client&#10;&#10;The clients are useful to test message flow">
-      <change afterPath="$PROJECT_DIR$/docs/wireshark/message1.http" afterDir="false" />
+    <list default="true" id="9ffec8fc-4b1e-4c0a-93a5-32207a6702d2" name="Changes" comment="message arrives at the receiver&#10;&#10;receiver needs the senders certificate in its truststore to be able to precess the message. does the receiver also need to get the cert from smp?&#10;&#10;currently it works when manually adding the sender  cert in receiver truststore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/src/sml/SML.kt" beforeDir="false" afterPath="$PROJECT_DIR$/smp/src/sml/SML.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smp/test/sml/SMLTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/smp/test/sml/SMLTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +102,8 @@
     "Gradle.SMLTest.queryNotSupportedRecordTypeError.executor": "Run",
     "Gradle.SMLTest.queryWorks.executor": "Debug",
     "Gradle.SMLTest.queryWrongRootDomainReturnsError.executor": "Run",
+    "Gradle.SMLTest.refuseNonZone.executor": "Run",
+    "Gradle.SMLTest.responseIncludesQuestion.executor": "Run",
     "Gradle.Tests in 'smp.test'.executor": "Run",
     "Gradle.smp [:LauncherKt.main()].executor": "Run",
     "Gradle.smp [:client.PluginUserClientKt.main()].executor": "Run",
@@ -138,7 +141,7 @@
       <recent name="sml" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.PluginUserClientKt">
+  <component name="RunManager" selected="Gradle.SMLTest.refuseNonZone">
     <configuration name="SMLTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -166,7 +169,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="SMLTest.queryNotSupportedRecordTypeError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SMLTest.refuseNonZone" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/smp" />
@@ -179,7 +182,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;sml.SMLTest.queryNotSupportedRecordTypeError&quot;" />
+            <option value="&quot;sml.SMLTest.refuseNonZone&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -193,7 +196,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="SMLTest.queryWrongRootDomainReturnsError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SMLTest.responseIncludesQuestion" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/smp" />
@@ -206,7 +209,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;sml.SMLTest.queryWrongRootDomainReturnsError&quot;" />
+            <option value="&quot;sml.SMLTest.responseIncludesQuestion&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -247,19 +250,19 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.SMLTest" />
-      <item itemvalue="Gradle.SMLTest.queryNotSupportedRecordTypeError" />
-      <item itemvalue="Gradle.SMLTest.queryWrongRootDomainReturnsError" />
+      <item itemvalue="Gradle.SMLTest.refuseNonZone" />
+      <item itemvalue="Gradle.SMLTest.responseIncludesQuestion" />
       <item itemvalue="Kotlin.LauncherKt" />
       <item itemvalue="Kotlin.DNSClientKt" />
       <item itemvalue="Kotlin.PluginUserClientKt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.SMLTest.refuseNonZone" />
+        <item itemvalue="Gradle.SMLTest.responseIncludesQuestion" />
         <item itemvalue="Gradle.SMLTest" />
         <item itemvalue="Kotlin.DNSClientKt" />
         <item itemvalue="Kotlin.PluginUserClientKt" />
-        <item itemvalue="Gradle.SMLTest.queryNotSupportedRecordTypeError" />
-        <item itemvalue="Gradle.SMLTest.queryWrongRootDomainReturnsError" />
       </list>
     </recent_temporary>
   </component>
@@ -282,7 +285,7 @@
       <workItem from="1768747594892" duration="2486000" />
       <workItem from="1768896279910" duration="100000" />
       <workItem from="1769164676481" duration="8116000" />
-      <workItem from="1769354704657" duration="14737000" />
+      <workItem from="1769354704657" duration="17711000" />
     </task>
     <task id="LOCAL-00001" summary="cleanup unneeded files and plugin user project">
       <option name="closed" value="true" />
@@ -444,7 +447,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769416920782</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="message arrives at the receiver&#10;&#10;receiver needs the senders certificate in its truststore to be able to precess the message. does the receiver also need to get the cert from smp?&#10;&#10;currently it works when manually adding the sender  cert in receiver truststore">
+      <option name="closed" value="true" />
+      <created>1769418478023</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1769418478023</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -471,6 +482,7 @@
     <MESSAGE value="remove unneeded coredns config" />
     <MESSAGE value="cleanup dockerfile&#10;&#10;remove redundancies in dockerfile" />
     <MESSAGE value="mv plugin -&gt; client&#10;&#10;The clients are useful to test message flow" />
-    <option name="LAST_COMMIT_MESSAGE" value="mv plugin -&gt; client&#10;&#10;The clients are useful to test message flow" />
+    <MESSAGE value="message arrives at the receiver&#10;&#10;receiver needs the senders certificate in its truststore to be able to precess the message. does the receiver also need to get the cert from smp?&#10;&#10;currently it works when manually adding the sender  cert in receiver truststore" />
+    <option name="LAST_COMMIT_MESSAGE" value="message arrives at the receiver&#10;&#10;receiver needs the senders certificate in its truststore to be able to precess the message. does the receiver also need to get the cert from smp?&#10;&#10;currently it works when manually adding the sender  cert in receiver truststore" />
   </component>
 </project>
