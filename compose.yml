@@ -21,6 +21,7 @@ services:
     volumes:
       - ap-data-sender:/var/opt/harmony-ap
       - ./conf/harmony-ap:/etc/harmony-ap-conf
+      - ./conf/certs:/etc/harmony-ap-certs
     depends_on:
       - harmony-db-sender
       - smp
@@ -66,6 +67,7 @@ services:
     volumes:
       - ap-data-receiver:/var/opt/harmony-ap
       - ./conf/harmony-ap:/etc/harmony-ap-conf
+      - ./conf/certs:/etc/harmony-ap-certs
     depends_on:
       - harmony-db-receiver
     entrypoint: /etc/harmony-ap-conf/entrypoint.sh
@@ -95,7 +97,9 @@ services:
     ports:
       - "8080:80"
       - "8053:53/udp"
-    build: dynamic-discovery
+    build:
+      context: .
+      dockerfile: dynamic-discovery/Dockerfile
     networks:
       sml-network:
         aliases:

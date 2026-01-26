@@ -1,7 +1,7 @@
 FROM eclipse-temurin:25-alpine AS build-server
 WORKDIR /app
 
-COPY . ./
+COPY dynamic-discovery ./
 RUN --mount=type=cache,target=/root/.gradle ./gradlew testClasses jar --info
 
 # The final image
@@ -10,7 +10,7 @@ RUN adduser -S user
 
 WORKDIR /app
 
-COPY certs ./certs
+COPY conf/certs/smp ./certs
 RUN rm -fr /usr/sbin /bin/ch*
 
 COPY --from=build-server /app/build/libs ./

@@ -84,8 +84,7 @@ set_keystore() {
   local PARTY="$1"
   echo "Setting up keystore for $PARTY"
 
-  DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-  local KEYSTORE_FILE="$DIR/$PARTY/keystore.p12"
+  local KEYSTORE_FILE="/etc/harmony-ap-certs/$PARTY/keystore.p12"
   [ -f "$KEYSTORE_FILE" ] || { echo "File $KEYSTORE_FILE does not exist"; return 1; }
 
   read -r JSESSIONID XSRF_TOKEN < <(authenticate) || return 1
