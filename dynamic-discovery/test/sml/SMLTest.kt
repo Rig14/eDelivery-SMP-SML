@@ -28,7 +28,7 @@ class SMLTest {
     @JvmStatic
     fun startServer() {
       thread(isDaemon = true) {
-        SMLServer(Name.fromString("testsml.")).start()
+        SMLServer("testsml.").start()
       }
       Thread.sleep(200)
     }

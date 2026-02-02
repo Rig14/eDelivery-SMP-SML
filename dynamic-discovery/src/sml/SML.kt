@@ -3,9 +3,6 @@ package sml
 import klite.Config
 import klite.info
 import klite.logger
-import org.xbill.DNS.ARecord
-import org.xbill.DNS.CNAMERecord
-import org.xbill.DNS.DClass.IN
 import org.xbill.DNS.Flags.QR
 import org.xbill.DNS.Message
 import org.xbill.DNS.Name
@@ -20,33 +17,14 @@ import org.xbill.DNS.Type.CNAME
 import org.xbill.DNS.Type.NAPTR
 import java.net.DatagramPacket
 import java.net.DatagramSocket
-import java.net.InetAddress
 import java.net.InetSocketAddress
-import java.security.MessageDigest
 
 class SMLServer(
-  private val rootDomain: Name,
+  private val rootDomain: String,
   private val listen: InetSocketAddress = InetSocketAddress("0.0.0.0",Config.optional("SML_PORT", "8053").toInt())
 ) {
   private val log = logger()
-
-  private val cnameRecords = mutableMapOf(
-    "B-8bb529042b90c77892efd34f7395f504" to CNAMERecord(
-      Name("B-8bb529042b90c77892efd34f7395f504.$rootDomain"),
-      IN,
-      60,
-      Name("smp.")
-    )
-  )
-
-  private val aRecords = mutableMapOf(
-    "B-8bb529042b90c77892efd34f7395f504" to ARecord(
-      Name("B-8bb529042b90c77892efd34f7395f504.$rootDomain"),
-      IN,
-      60,
-      InetAddress.getByName("172.20.0.250")
-    )
-  )
+  private val recordRegistry = RecordRegistry(rootDomain)
 
   fun start() {
     log.info("Starting SML server on $listen with zone $rootDomain")
@@ -71,7 +49,7 @@ class SMLServer(
     }
 
     val name = query.question.name
-    if (!name.subdomain(rootDomain)) {
+    if (!name.subdomain(Name.fromString(rootDomain))) {
       response.header.rcode = REFUSED
       return response
     }
@@ -90,7 +68,7 @@ class SMLServer(
 
   private fun handleA(query: Message, response: Message) {
     val smpHash = query.question.name.getLabelString(0)
-    response.addRecord(aRecords[smpHash], ANSWER)
+    response.addRecord(recordRegistry.lookupSmpARecord(smpHash), ANSWER)
   }
 
   private fun handleNaptr(query: Message, response: Message) {
@@ -99,7 +77,7 @@ class SMLServer(
 
   private fun handleCname(query: Message, response: Message) {
     val smpHash = query.question.name.getLabelString(0)
-    val record = cnameRecords[smpHash]
+    val record = recordRegistry.lookupSmpCname(smpHash)
     log.info("Found ${if (record == null) "no " else ""}record for $smpHash")
     if (record == null) {
       response.header.rcode = NXDOMAIN
@@ -107,13 +85,4 @@ class SMLServer(
       response.addRecord(record, ANSWER)
     }
   }
-}
-
-fun main() {
-  // for cname
-  // <party id type>:<party id>
-  // as described in finalRecipient property
-  val name = "urn:oasis:names:tc:ebcore:partyid-type:unregistered:C4".lowercase()
-  val out = MessageDigest.getInstance("MD5").digest(name.toByteArray())
-  println(out.toHexString()) // 8bb529042b90c77892efd34f7395f504
 }

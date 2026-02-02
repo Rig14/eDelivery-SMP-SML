@@ -7,7 +7,7 @@ class ServiceMetadataGeneratorTest {
   val metadataGenerator = ServiceMetadataGenerator()
 
   @Test fun subjectDn() {
-    val cert = metadataGenerator.loadFile("certs/own.crt")
+    val cert = metadataGenerator.loadFile("../conf/certs/smp/keystore.crt")
     val subjectDn = metadataGenerator.subjectDn(cert)
     assertTrue { subjectDn == "CN=smp" }
   }
