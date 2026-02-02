@@ -1,4 +1,5 @@
-build
+dynamic-discovery/build
+docs
 /ui/node_modules/
 /.idea/
 /.git/
