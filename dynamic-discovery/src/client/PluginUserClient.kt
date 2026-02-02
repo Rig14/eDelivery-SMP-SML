@@ -13,7 +13,7 @@ val WS_ENDPOINT = URI("http://localhost:8090/services/wsplugin")
 val WS_USER = "service_account"
 val WS_PASSWORD = "Azerty59*1234567"
 val FROM = "sender"
-val TO = "receiver"
+val TO = "urn:oasis:names:tc:ebcore:partyid-type:unregistered:C4"
 
 fun main() {
   @Language("XML")
@@ -55,8 +55,6 @@ fun generateMessage(message: String): String {
                 <ns5:PartyId type="urn:oasis:names:tc:ebcore:partyid-type:unregistered">$FROM</ns5:PartyId>
                 <ns5:Role>http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/initiator</ns5:Role>
               </ns5:From>
-              <ns5:To>
-              </ns5:To>
             </ns5:PartyInfo>
             <ns5:CollaborationInfo>
               <ns5:Service type="tc1">bdx:noprocess</ns5:Service>
@@ -65,7 +63,7 @@ fun generateMessage(message: String): String {
             </ns5:CollaborationInfo>
             <ns5:MessageProperties>
               <ns5:Property name="originalSender">urn:oasis:names:tc:ebcore:partyid-type:unregistered:C1</ns5:Property>
-              <ns5:Property name="finalRecipient">urn:oasis:names:tc:ebcore:partyid-type:unregistered:C4</ns5:Property>
+              <ns5:Property name="finalRecipient">$TO</ns5:Property>
             </ns5:MessageProperties>
             <ns5:PayloadInfo>
               <ns5:PartInfo href="cid:message">
