@@ -26,6 +26,7 @@ Selleks, et standardiseerida suhtlus väravate vahel on kasutusele võetud eDeli
 Platvorm täidab eFTIs andmete looja ja haldaja rolli. Platvormi kaudu on võimalik luua eFTI
 andmehulki, mis kirjeldavad veost ning selle liikumist. Platvormid on üldjuhul eraettevõtted,
 kes soovivad muuta oma veoandmed kättesaadavaks pädevatele asutustele läbi eFTI värava. 
+Platvorm saab registreerida veose metaandmeid väravasse, seeläbi muutes need kättesaadavaks kõigile väravatele eFTI võrgustikus. 
 Värav saab pärida ainult alamhulka eFTI andmetest, mis sisaldab vaid neid andmeid, mida pädev asutus
 seaduslikult peaks kätte saama. Seeläbi minimeeritakse liigsete andmete edastamist.
 eFTI andmete alamhulgad on defineerutud Euroopa Liidu määrusega 2024/2024 \cite{eu_reg_2024_2024}
@@ -49,21 +50,35 @@ riigiasutuste vahel ja erasektoriga. \cite{x_tee_wikipedia}
 Arhitektuursel tasandil on eDelivery ja X-Tee sarnased kuna mõlemad põhinevad nelja nurga mudelil.
 Selle mudeli põhiidee on, et infosüsteemid ei vaheta andmeid omavahel otse.
 Selle asemel on süsteemid ühendatud juurdepääsupunktide kaudu, 
-mis rakendavad samu tehnilisi spetsifikatsioone ning suudavad seetõttu omavahel suhelda.
-Nii X-Tee kui ka eDelivery kasutavad aadressiregistrit, 
-mis tegeleb sõnumite marsruutimise ja teenuste avastamisega. \cite{niis_xroad_edelivery_blog}
+mis rakendavad samu tehnilisi spetsifikatsioone ning suudavad seetõttu omavahel suhelda. \cite{niis_xroad_edelivery_blog}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=.9\textwidth]{figures/4-corner-model.png}
-    \caption{Nelja nurga mudel X-Tee näitel \cite{niis_xroad_edelivery_blog}}
-    \label{fig:4_corner_model}
-\end{figure}
+Sõnumite saatmisel on oluline et saatja teaks saaja metaandmeid. 
+Need andmed on näiteks saaja aadress, sertifikaadid, nimi jms.  
+Saaja Metaandmeid on võimalik leida kahel moel: dünaamiliselt ja staatiliselt.
+Staatilise metaandmete leidmise korral on vajalik info seadistatud saatja andmebaasis.
+Dünaamilise leidmise korral peab andmeid küsima kolmanda osapoole süsteemist. 
+eDelivery-s kutsutakse neid süsteeme teenuse metaandmete avaldaja (SMP) 
+ning teenuse metaandmete leidja (SML). \cite{ria_edelivery_selgitus}
 
-\section{Probleem}
+\section{SMP ja SML taust}
 
-eFTI4EU konsortiumi poolt loodud näidisarhitektuuris on mõningaid puudujääke. 
-Nende puuduste hulgast selle lõputöö kontekstis kõige olulisem on eDelivery SMP/SML kasutamine platvormi ning värava vahel.
-Tänane lahendus võimaldab eDelivery põhist suhtlust värava ja platvormi vahel kasutades staatilist konfiguratsiooni,
-mis ei vasta euroopa liidu regulatsioonile 2024/1942 artikkel 9 (3) \cite{eu_reg_2024_1942}.
-Hetkene lahendus töötab sarnaselt sellele kuidas väravad omavahel suhtlevad - staatiliselt.
+SMP on nagu telefoniraamat, mis sisaldab teavet osalejate kohta: 
+nende aadressid, milliseid andmeid nad pakuvad ja sertifikaadid.
+Iga osaleja eDelivery võrgus haldab oma SMP-d, mis tagab, et süsteem jääb detsentraliseerituks. \cite{ria_edelivery_selgitus}
+
+SML on ainus tsentraliseeritud eDelivery komponent, mis toimib otsingumootorina.
+See aitab juurdepääsupunktidel leida õige SMP, kust nad saavad teavet sõnumi saaja kohta.
+SML põhineb DNS-il, mis tõlgendab organisatsiooni identifikaatori konkreetseks SMP aadressiks. \cite{ria_edelivery_selgitus}
+
+Näide SMP ja SML kasutamisest eFTI kontekstis:
+\begin{enumerate}
+  \item Eesti veoettevõtte registreerib voese digitaalselt oma eFTI platvormi.
+  \item Platvorm peab veose metaandmed edastama Eesti eFTI väravale kuid ei tea värava metaandmeid. Tehakse DNS päring SML-i.
+  \item SML tagastab eFTI värava SMP serveri aadressi.
+  \item Platvormi eDelivery juurdepääsupunkt teeb päringu SMP-le, et saada värava metaandmed.
+  \item Platvorm koostab saadud metaandmetest päringu ning saadab selle eFTI värava juurdepääsupunkti.
+  \item Värav salvestab veose andmed
+\end{enumerate}
+
+
+  
