@@ -7,14 +7,14 @@ CEF transport algatas 2023 aastal eFTI4EU projekti,
 mille eesmärgiks on standardiseeritult digitaliseerida veoinfo vahetus pädevate 
 asutuste ning vedajate vahel lähtudes Euroopa Parlamendi määrusest 2020/1056 \cite{efti4eu_project}. 
 
-eFTI4EU jätkuks loodi 2024 aastal eFTI4ALL projekt, 
-mis kasutab ning täiendab eelnevas projektis loodud lahendusi päriselulistes olukordades. 
-\cite{efti4all_project}
+eFTI4EU projekti üks suuremaid tulemusi on eFTI näidislahenduse loomine.
+näidislahendus sisaldab minimaalset koodibaasi, mis on vastavuses eFTI4EU määrusega ning
+mida arendavad projektis osalevad liikmesriigid.
+Loodud tulemust saavad kasutada liikmesriigid oma riikliku lahenduse alusena. \cite{efti4eu_reference_impl}
 
-\section{Taust}
+\section{eFTI taust}
 
-eFTI4EU projekti üks suuremaid tulemusi oli eFTI näidislahenduse loomine, 
-mis sisaldab kolme põhilist eFTI arhitektuuri komponenti - eFTI värav, eFTI näidisplatvorm 
+eFTI4EU näidislahendus sisaldab kolme põhilist eFTI arhitektuuri komponenti - eFTI värav, eFTI näidisplatvorm 
 ja pädevate asutuste juurdepääsupunkt. \cite{efti4eu_reference_impl}
 
 eFTI värav on süsteemi keskne osa, millega suhtlevad nii eFTI platvormid kui ka pädevad asutused.
@@ -22,10 +22,6 @@ Väravaid haldavad kõik liikmesriigid ise, ning on kohustatud pakkuma seda aval
 teenusena transpordiettevõtetele ja pädevatele asutustele. Värava peamine roll on andmete ning
 päringute edastamine osapoolte vahel.Väravad peavad olema võimelised omavahel päringuid vastu võtma.
 Selleks, et standardiseerida suhtlus väravate vahel on kasutusele võetud eDelivery andmevahetuslahendus.
-eDelivery on avatud spetsifikatsioonidel põhinev infrastruktuur ja protokoll, 
-mis kasutab AS4 (Applicability Statement 4) standardit sõnumite vahetamiseks. 
-See on nagu digitaalne postisüsteem, mis tagab, et sõnumid liiguvad ühest punktist
-teise kontrollitud ja krüpteeritud viisil. \cite{ria_edelivery_selgitus}
 
 Platvorm täidab eFTIs andmete looja ja haldaja rolli. Platvormi kaudu on võimalik luua eFTI
 andmehulki, mis kirjeldavad veost ning selle liikumist. Platvormid on üldjuhul eraettevõtted,
@@ -39,6 +35,31 @@ Vastavalt liikmesriigi vajadustele võib AAP liidestus väravaga olla mistahes s
 Eesti kontekstis on võimalik kasutada X-Tee sõnumeid, et pärida andmeid eFTI keskkonnast. \cite{dlk_2022_efti_analysis}
 Kuna AAP-il pole otsest kokkupuudet eDelivery-ga siis selle lõputöö raamidest jääb AAP välja.
 
+\section{eDelivery taust}
+
+eDelivery on avatud spetsifikatsioonidel põhinev infrastruktuur ja protokoll, 
+mis kasutab AS4 (Applicability Statement 4) standardit sõnumite vahetamiseks. 
+See on nagu digitaalne postisüsteem, mis tagab, et sõnumid liiguvad ühest punktist
+teise kontrollitud ja krüpteeritud viisil. \cite{ria_edelivery_selgitus}
+
+Sarnane infrastruktuur sõnumivahetuseks on kasutusel ka Eestis X-Tee näol, 
+mis võimaldab turvalist ja tõestusväärtust tagavat internetipõhist andmevahetust
+riigiasutuste vahel ja erasektoriga. \cite{x_tee_wikipedia}
+
+Arhitektuursel tasandil on eDelivery ja X-Tee sarnased kuna mõlemad põhinevad nelja nurga mudelil.
+Selle mudeli põhiidee on, et infosüsteemid ei vaheta andmeid omavahel otse.
+Selle asemel on süsteemid ühendatud juurdepääsupunktide kaudu, 
+mis rakendavad samu tehnilisi spetsifikatsioone ning suudavad seetõttu omavahel suhelda.
+Nii X-Tee kui ka eDelivery kasutavad aadressiregistrit, 
+mis tegeleb sõnumite marsruutimise ja teenuste avastamisega. \cite{niis_xroad_edelivery_blog}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.9\textwidth]{figures/4-corner-model.png}
+    \caption{Nelja nurga mudel X-Tee näitel \cite{niis_xroad_edelivery_blog}}
+    \label{fig:4_corner_model}
+\end{figure}
+
 \section{Probleem}
 
 eFTI4EU konsortiumi poolt loodud näidisarhitektuuris on mõningaid puudujääke. 
@@ -46,10 +67,3 @@ Nende puuduste hulgast selle lõputöö kontekstis kõige olulisem on eDelivery 
 Tänane lahendus võimaldab eDelivery põhist suhtlust värava ja platvormi vahel kasutades staatilist konfiguratsiooni,
 mis ei vasta euroopa liidu regulatsioonile 2024/1942 artikkel 9 (3) \cite{eu_reg_2024_1942}.
 Hetkene lahendus töötab sarnaselt sellele kuidas väravad omavahel suhtlevad - staatiliselt.
-
-
-
-
-
-
-
