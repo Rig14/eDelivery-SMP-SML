@@ -54,8 +54,8 @@ mis rakendavad samu tehnilisi spetsifikatsioone ning suudavad seetõttu omavahel
 
 Sõnumite saatmisel on oluline et saatja teaks saaja metaandmeid. 
 Need andmed on näiteks saaja aadress, sertifikaadid, nimi jms.  
-Saaja Metaandmeid on võimalik leida kahel moel: dünaamiliselt ja staatiliselt.
-Staatilise metaandmete leidmise korral on vajalik info seadistatud saatja andmebaasis.
+Saaja metaandmeid on võimalik leida kahel moel: dünaamiliselt ja staatiliselt.
+Staatilise metaandmete leidmise korral on vajalik info seadistatud saatja andmebaasis ning kättesaadav kohe.
 Dünaamilise leidmise korral peab andmeid küsima kolmanda osapoole süsteemist. 
 eDelivery-s kutsutakse neid süsteeme teenuse metaandmete avaldaja (SMP) 
 ning teenuse metaandmete leidja (SML). \cite{ria_edelivery_selgitus}
@@ -73,12 +73,43 @@ SML põhineb DNS-il, mis tõlgendab organisatsiooni identifikaatori konkreetseks
 Näide SMP ja SML kasutamisest eFTI kontekstis:
 \begin{enumerate}
   \item Eesti veoettevõtte registreerib voese digitaalselt oma eFTI platvormi.
-  \item Platvorm peab veose metaandmed edastama Eesti eFTI väravale kuid ei tea värava metaandmeid. Tehakse DNS päring SML-i.
+  \item Platvorm peab veose metaandmed edastama Eesti eFTI väravale kuid ei tea värava metaandmeid. Tehakse DNS päring SML-i nimega EE-GATE.
   \item SML tagastab eFTI värava SMP serveri aadressi.
   \item Platvormi eDelivery juurdepääsupunkt teeb päringu SMP-le, et saada värava metaandmed.
-  \item Platvorm koostab saadud metaandmetest päringu ning saadab selle eFTI värava juurdepääsupunkti.
-  \item Värav salvestab veose andmed
+  \item Saadud metaandmetest koostataakse päring, mis saadetakse eFTI värava juurdepääsupunkti.
+  \item Värav salvestab veose andmed.
 \end{enumerate}
 
+\section{Probleem}
 
-  
+eFTI4EU konsortiumi poolt loodud näidisarhitektuuris on mõningaid puudujääke. 
+Nende puuduste hulgast on näiteks eDelivery SMP/SML kasutamine platvormi ning värava vahel.
+Tänane lahendus võimaldab eDelivery põhist suhtlust värava ja platvormi vahel kasutades staatilist konfiguratsiooni,
+mis ei vasta euroopa liidu regulatsioonile 2024/1942 artikkel 9 (3) \cite{eu_reg_2024_1942}.
+Hetkene lahendus töötab sarnaselt sellele kuidas väravad omavahel suhtlevad - staatiliselt.
+
+eFTI Regulatsioon hakkab kehtima täies ulatuses 9. juulil 2027. 
+Selleks ajaks peab iga liikmesriik võimaldama pädevatel asutustel ligipääsu eFTI väravatele ning
+tegema võimalikus registreerida veoseid eFTI süsteemi. \cite{eu_efti_regulation} 
+Valmisoleku saavutamiseks on oluline, et platvormid oleksid võimelised saatma
+veoandmeid kasutades eDelivery SMP/SML teenuseid.
+
+\section{Eesmärk}
+
+Käesoleva lõputöö eesmärgiks on lahendada eelnevas peatükis mainitud probleem.
+Autor on võtnud eesmärgiks uurida, kuidas töötab eDelivery dünaamilise leidmise mehhanis. 
+Oluline on luua PoC lahendus, mis võimaldaks eDelivery dünaamilist otsimist. 
+Tarkvaralise lahenduse puhul on väga tähtis saavutada võimalikult hea jõudlus.
+Hinnanguliselt väljastavad 27 ELi liikmesriiki ja Ühendkuningriik igal aastal
+umbes 470 miljonit paberkujul veose dokumenti (CMR) \cite{digitalizetrade_cmr}.
+Arvutades CMR-ide hulga minutis Eesti \eqref{eq:estonia_cmr}
+ja Saksamaa \eqref{eq:germany_cmr} kohta saame järgmised tulemused:
+
+\begin{equation} \label{eq:estonia_cmr}
+\frac{470{,}000{,}000 \times 1{,}370{,}000}{515{,}000{,}000 \times 365 \times 24 \times 60} \approx 2.4 \;\text{CMR/min}
+\end{equation}
+
+\begin{equation} \label{eq:germany_cmr}
+\frac{470{,}000{,}000 \times 83{,}000{,}000}{515{,}000{,}000 \times 365 \times 24 \times 60} \approx 144 \;\text{CMR/min}
+\end{equation}
+
