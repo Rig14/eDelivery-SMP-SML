@@ -19,7 +19,7 @@ kes soovivad seda kasutada \cite{ec_edelivery_building_block}. Nende linkide sea
 mis aitab arendajatel leida ja võrrelda AS4 tarkvara või teenuseid, 
 mis on läbinud eDelivery vastavustestimise \cite{ec_edelivery_as4_conformant_solutions}.
 
-Autori eesmärk selle lõputöö raames on luua lahendus, mis töötaks lokaalselt,
+Autori eesmärk on luua lahendus, mis töötaks lokaalselt,
 ning millel ei ole liigseid väliseid sõltuvusi. 
 Selle tõttu on autor otsustanud kasutada ainult eDelivery tooteid, mis on kättesaadavad tasuta, 
 ning mille lähtekood on avalik.
@@ -34,7 +34,60 @@ oluline, et lahendused järgiksid kõige viimast versiooni.
 
 \subsection{Domibus}
 Nimekirjas esimene lahendus, mis on tasuta, 
-ning mille lähtekood on avalik järgides EUPLv1.2 litentsi. \cite{ec_edelivery_domibus_repo}
+ning mille lähtekood on avalik järgides EUPLv1.2 litentsi \cite{ec_edelivery_domibus_repo}. 
+Domibusi koodivaramu sisaldab kõiki eDelivery osasid - juurdepääsupunkt ja SMP server.  
 
 Domibus on Euroopa komisjoni poolt hallatud, AS4 eDelivery juurdepääsupunkti näidislahendus. 
 Tänaseks on sellest välja kujunenud niiõelda etalonlahendus - seda kasutatakse uute lahenduste põhjana.
+
+Analüüsides Domibusi koodibaasi on tegu üpris suure projektiga. Selleks, et projekti suurust paremini
+hinnata leidis autor koodibaasi ridade arvu, kasutades käsklust~\ref{lst:loc-command}.
+Käskluse tulemus oli 428302 rida koodi.
+
+2024 aastal kirjutati analoogne lõputöö eDelivery ning eFTI teemal,
+mis käsitleb samamoodi eFTI värava ning platvormi info vahetust kasutades eDelivery süsteemi \cite{malk_efti_andmevahetus_2024}.
+Selles töös leidis autor, et Domibusi seadistamine dockeri keskkonnas kaasnes probleemidega - 
+Tomcati veebiserverit ei käivitatud automaatselt. Alternatiivina prooviti kasutada docker hubis valmislahendusena 
+leiduvat Domibusi konteinerit. Lähemalt uurides oli tegu väga vana Domibusi versiooniga, mida polnud kaua uuendatud.
+
+Selle uurimustöö metoodika nõuab, et tulemus oleks võimalikult kasutaja ning arendaja sõbralik (\ref{methodology}).
+Loodav lahendus peab olema kindlalt käivitatav dockeri keskkonnas, selleks et tagada vajalik kvaliteet.
+Kuna Domibus seda ei võimalda kukub see lahenduste kandidaatide hulgast välja.
+
+\subsection{Harmony}
+Harmony juurdepääsupunkt on avatud lähtekoodiga tarkvara, 
+mille on välja töötanud Põhjamaade Interoperatiivsuse Instituut (NIIS) ning mis põhineb
+Euroopa Komisjoni Domibus eDelivery lahendusel. 
+See on AS4 protokollil põhinev juurdepääsupunkt, mida kasutatakse turvaliseks ja standarditud 
+andmevahetuseks eDelivery võrgus. \cite{ria_harmony_access_point} 
+NIIS on muuhulgas ka see organisatsioon, mis töötab eesti X-Tee süsteemi arendamisega.
+
+Võrreldes Domibusi koodibaasiga on Harmony access point kood \cite{niis_harmony_access_point_repo} kõvasti mahuka. Lugedes koodi ridu käsklusega~\ref{lst:loc-command}, 
+saame 741098, mis on umbes 1.7 korda rohkem kui Domibus.
+
+Kuna Harmony põhineb Domibusi projektil, võtab see endaga kaasa suure osa selle projekti kompleksusest.
+Kuigi Harmony arendajad on seda proovinud parandada, 
+luues nn \textit{common} koodivaramu \cite{niis_harmony_common_repo}.
+See koodivaramu sisaldab kasulikke skripte Harmony juurdepääsupunkti ja SMP serveri ülesseadmiseks.
+
+Kõige suurem kvaliteet Harmony juurdepääsupunktil, 
+võrreldes Domibusiga on see, et lahendus on arendajate poolt hästi konteineriseeritud, 
+mis muudab selle juurutamise kõvasti lihtsamaks. 
+Konteineriseeritud lahendus on leitav Docker Hubist \cite{niis_harmony_ap_docker}.
+
+Harmony projekt on väga hästi dokumenteeritud ning sisaldab kirjeldusi iga projekti osa kohta.
+Samuti on olemas dokumentatsioon dünaamilise otsingu seadistamiseks, mis on selles lõputöös väga oluline.
+
+\subsection{Phase4}
+Phase4 \cite{phax_phase4_as4_library} on vabavaraline projekt, mis võimaldab implementeerida erineviad AS4 põhinevaid kasutusjuhte.
+Projekt on peamiselt ehitatud ühe arendaja poolt - Philip Helger, 
+kes on Peppoli ning eDelivery maastikul töötanud juba mitukümend aastat \cite{helger_linkedin}.
+
+Phase4 on võimalik kasutada kui teeki, mis suudab võtta vastu ja saata AS4 sõnumeid osapoolte vahel.
+AS4 üks profiil - eDelivery on ka Phase4 poolt implementeeritud. 
+Selle projekti koodi ridade arvu on raske analüüsida, kuna see sisaldab peale eDelivery veel teisi funktsionaalsuseid.
+See tähendab reaalsete ridade arv võib olla petlik.
+Sellegi pooles on ridade arv 495735 käsklusega~\ref{lst:loc-command}.
+
+Arvestades, et praegune eFTI süsteem ning paljud teised turul kasutatavad lahendused põhinevad Domibusil,
+on Phase4 kasutamine testimise ja ühilduvuse seisukohast keerulisem. Seetõttu kukub Phase4 kasutamine selle lõputöö raamidest välja.

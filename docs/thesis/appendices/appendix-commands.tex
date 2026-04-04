@@ -1,0 +1,4 @@
+\renewcommand{\lstlistingname}{Käsklus}
+\begin{lstlisting}[language=bash, frame=single, basicstyle=\small, caption={Koodibaasi ridade arvu leidmise käsklus}, label={lst:loc-command}]
+git ls-files -z | xargs -0 cat | wc -l
+\end{lstlisting}
