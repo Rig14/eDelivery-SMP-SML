@@ -91,3 +91,21 @@ Sellegi pooles on ridade arv 495735 käsklusega~\ref{lst:loc-command}.
 
 Arvestades, et praegune eFTI süsteem ning paljud teised turul kasutatavad lahendused põhinevad Domibusil,
 on Phase4 kasutamine testimise ja ühilduvuse seisukohast keerulisem. Seetõttu kukub Phase4 kasutamine selle lõputöö raamidest välja.
+
+\section{eDelivery teenuse metaandmete avaldaja (SMP)}
+Nimekiri täna saadaval olevatest SMP serverites on Euroopa komisjoni lehel \cite{ec_edelivery_smp_conformant_solutions}.
+Iga kirje kohta on saadaval testimise raport, 
+mis kirjeldab testimise kuupäeva ning ühiktestide tulemusi - kas on läbitud või ei ole.
+
+\subsection{Phoss SMP}
+Phoss SMP on täielik SMP-server, mis toetab nii Peppol SMP 1.x spetsifikatsiooni 
+kui ka OASIS BDXR SMP 1.0 ja 2.0 spetsifikatsioone, mis on kasutusel eDelivery SMP-s \cite{ec_edelivery_smp_2.0}. 
+See sisaldab haldusliidest (GUI) ning XML-, SQL- või MongoDB põhist andmebaasi,
+mis lihtsustab haldusprotsesse. 
+Muuhulgas oli Phoss SMP esimene, mis vastas CEF eDelivery nõuetele \cite{phax_phoss_smp}.
+
+Phoss SMP looja on juba eelnevas peatükis mainitud Philip Helger.
+
+Selle projekti tugevus seisneb selles, et lahendus on väga hästi konteineriseeritud 
+ning lihtsasti kättesaadaval Docker Hubis \cite{phelger_phoss_smp_xml_docker}. 
+Samuti on lahendust võimalik kasutada misiganes eDelivery juurdepääsupunkti jaoks.  
