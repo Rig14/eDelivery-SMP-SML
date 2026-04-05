@@ -15,7 +15,8 @@ Selle lõputöö raames on vaja leida ja kasutusele võtta kolme tüüpi eDelive
 \end{enumerate}
 
 Euroopa komisjoni eDelivery tutvustaval veebilehel on välja toodud abistavaid linke ja juhendeid nendele,
-kes soovivad seda kasutada \cite{ec_edelivery_building_block}. Nende linkide seas on viide veebilehele,
+kes soovivad eDeliveryt kasutusele võtta \cite{ec_edelivery_building_block}. 
+Nende linkide seas on viide veebilehele,
 mis aitab arendajatel leida ja võrrelda AS4 tarkvara või teenuseid, 
 mis on läbinud eDelivery vastavustestimise \cite{ec_edelivery_as4_conformant_solutions}.
 
@@ -108,4 +109,41 @@ Phoss SMP looja on juba eelnevas peatükis mainitud Philip Helger.
 
 Selle projekti tugevus seisneb selles, et lahendus on väga hästi konteineriseeritud 
 ning lihtsasti kättesaadaval Docker Hubis \cite{phelger_phoss_smp_xml_docker}. 
-Samuti on lahendust võimalik kasutada misiganes eDelivery juurdepääsupunkti jaoks.  
+Samuti on lahendust võimalik kasutada misiganes eDelivery juurdepääsupunkti jaoks.
+
+Projektis on kokku 315850 rida koodi, mis on saadud käsklusega~\ref{lst:loc-command}.
+Arvestades, et see SMP implementeerib peale eDelivery OASIS BDXR-i spesifikatsiooni 
+veel Peppol SMPd, on suurem ridade arv õigustatud.
+
+\subsection{Harmony SMP}
+Harmony SMP \cite{niis_harmony_smp_repo} on välja töötanud, ning seda haldab sama organisatsioon, 
+kes vastutavad Harmony juurdepääsupunkti eest (NIIS). Tarkvara põhineb Euroopa Komisjoni 
+loodud avatud lähtekoodiga projektil DomiSMP \cite{niis_edelivery_components}. 
+DomiSMP on eDelivery SMP tarkvara näidislahendus, mida on võimalik kasutada teiste lahenduste põhjana.
+
+Harmony SMP koodibaas sisaldab 188220 rida koodi.
+Võrreldes DomiSMP näidislahendusega \cite{ec_edelivery_smp_repo}, mille
+ridade arv on 216789 siis saame et Harmony SMP on umbes
+13\% väiksem vastavalt käsule \ref{lst:loc-command}  
+
+Harmony SMP suur miinus seisneb selles, et seda ei ole konteineriseeritud, 
+mis muudab tarkvara kasutamise raskemaks. \cite{niis_harmony_common_repo}
+
+\section{eDelivery teenuse metaandmete leidja (SML)}
+eDelivery SMLi pakutakse täna teenusena Euroopa Komisjoni poolt kõikidele huvitatud osapooltele. 
+Küllaga on hetkel teenusega ühinemine võimatu, 
+kuna ajutiselt on piiratud uute süsteemide integreerimine SML-i \cite{ec_edelivery_sml_service}.
+
+Komisjoni poolt hallatud eDelivery SML teenus põhineb DomiSML projektil \cite{ec_edelivery_domisml_faq}
+
+\subsection{DomiSML}
+DomiSML on Euroopa Komisjoni poolt pakutav vabavaraline näidislahendus.
+DomiSML lisab, uuendab ja kustutab DNS-is infot osalejate SMP asukohtade kohta,
+suunates saatjad õige SMP-ni. See põhineb eDelivery BDXL-profiilil 
+ja PEPPOL SML-i spetsifikatsioonil \cite{ec_edelivery_domisml_faq} \cite{ec_edelivery_domisml_repo}.
+
+DomiSML tarkvara ei ole konteineriseeritud, mis muudab selle väga raskesti kasutatavaks. 
+Samuti sisaldab dokumentatsioon katkiseid linke, tarkvara kasutamise kohta.
+
+DomiSML on siiamaani kõige väiksem tarkvaraprojekt, 
+mis sisaldab 176307 rida koodi vastavalt käsule \ref{lst:loc-command}.  

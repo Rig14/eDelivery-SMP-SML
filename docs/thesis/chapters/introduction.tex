@@ -47,10 +47,17 @@ Sarnane infrastruktuur sõnumivahetuseks on kasutusel ka Eestis X-Tee näol,
 mis võimaldab turvalist ja tõestusväärtust tagavat internetipõhist andmevahetust
 riigiasutuste vahel ja erasektoriga. \cite{x_tee_wikipedia}
 
-Arhitektuursel tasandil on eDelivery ja X-Tee sarnased kuna mõlemad põhinevad nelja nurga mudelil.
+Arhitektuursel tasandil on eDelivery ja X-Tee sarnased kuna mõlemad põhinevad nelja nurga mudelil (joonis~\ref{fig:4-corner-model}).
 Selle mudeli põhiidee on, et infosüsteemid ei vaheta andmeid omavahel otse.
 Selle asemel on süsteemid ühendatud juurdepääsupunktide kaudu, 
 mis rakendavad samu tehnilisi spetsifikatsioone ning suudavad seetõttu omavahel suhelda. \cite{niis_xroad_edelivery_blog}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/4-corner-model.png}
+  \caption{Nelja nurga mudel eDelivery ning X-Tee kontekstis}
+  \label{fig:4-corner-model}
+\end{figure}
 
 Sõnumite saatmisel on oluline et saatja teaks saaja metaandmeid. 
 Need andmed on näiteks saaja aadress, sertifikaadid, nimi jms.  
