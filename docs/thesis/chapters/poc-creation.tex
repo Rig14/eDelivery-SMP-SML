@@ -1,6 +1,6 @@
 Käesoleva lõputöö eesmärgiks on luua töötav näidislahendus, 
 mis demonstreerib eDelivery dünaamilise otsimise mehanismi kasutust.
-Lõppeesmärgini jõudmiseks tegi autor kolmeosalise plaani:
+Lõppeesmärgini jõudmiseks tegi autor neljaosalise plaani:
 
 \begin{enumerate}
   \item Saada tööle staatiline eDelivery konfiguratsioon.
@@ -10,3 +10,41 @@ Lõppeesmärgini jõudmiseks tegi autor kolmeosalise plaani:
 \end{enumerate}
 
 \section{Staatiline eDelivery konfiguratsioon}
+eDelivery staatilise konfiguratsiooni puhul vahetavad juurdepääsupunktid infot otse, 
+ilma kolmanda osapooleta. See on tehniliselt vähem keerukas lahendus, kui dünaamiline otsing,
+ning selle tõttu ka hea esimene samm lõppeesmärgini jõudmiseks.
+
+\subsection{Juurdepääsupunktide konteinerite seadistamine}
+Näidislahendus eeldab, et kaks juurdepääsupunkti suudavad omavahel infot jagada.
+Sellest tulenevalt on vaja käivitada kaks instantsi juurdepääsupunkti tarkvara.
+
+Tarkvara käivitamise lihtsustamiseks, ning üheselt igas masinas samamoodi töötava lahenduse loomiseks
+kasutab näidislahendus Dockeri konteinereid. Kuna käivitada tuleb mitu erinevat konteinerit,
+siis kasutab näidislahendus \textit{docker compose} mehhanismi. 
+Compose võimaldab käivitada palju erinevaid konteinereid koos kindla konfiguratsiooniga, 
+kasutades ainult ühte definitsioonifaili: \textit{compose.yml}
+
+Harmony eDelivery juurdepääsupunkt on hästi konteineriseeritud ning dokumenteeritud tarkvara
+mis on saadaval Docker Hub-is. Seal on olemas ka dokumentatsioon kuidas kasutada Harmony konteinereid
+compose failis. Sealsete juhitse kohaselt nõuab üks Harmony instants ka MySQL andmebaasi. \cite{niis_harmony_ap_docker}
+See tähendab, et kahe Harmony instantsi jooksutamine nõuab kokku nelja konteinerit.
+
+Näidislahenduse \textit{compose.yml} fail sisaldab kahte juurdepääsupunkti
+nimedega \textit{sender} ja \textit{receiver}, vastavalt nende tööpõhimõtetele, 
+ning ka kahte MySQL andmebaasi analoogsete nimedega.
+
+\subsection{Juurdepääsupunktide staatiline konfigureerimine}
+Juurdepääsupunkte on võimalik seadistada kahest kohast - keskkonnamuutujad ja veebipõhine kasutajaliides.
+
+Näidislahenduses on \textit{compose.yml} lisatud paar keskkonnamuutujat, mida Docker Hubis 
+oleval näidisel ei olnud. Need lisandused võimaldavad juurdepääsupunkti õige toimimise.
+keskkonnamuutujatest kõige olulisemad on LB\_TLS\_TERMINATION ja SECURITY\_*\_PASSWORD.
+
+\subsubsection{Keskkonnamuutujad}
+LB\_TLS\_TERMINATION muudab juurdepääsupunkti kättesaadavaks pordil 80 (http), mis muudab
+digitaalsete sertifikaatide haldamise lihtsamaks, kuna ei pea arvestama TLS sertifikaatidega.
+
+SECURITY\_*\_PASSWORD võimaldab kasutajal, läbi veebiliidese, laadida alla, 
+sirvida ning muuta juurdepääsupunkti privaatseid võtmeid ning avalikke sertifikaate. 
+Ligipääs avalikkele sertifikaatidele on oluline selleks, 
+et neid saaks jagada juurdepääsupunktide vahel, kas staatiliselt või dünaamiliselt.
