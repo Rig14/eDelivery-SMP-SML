@@ -63,7 +63,8 @@ See on AS4 protokollil põhinev juurdepääsupunkt, mida kasutatakse turvaliseks
 andmevahetuseks eDelivery võrgus. \cite{ria_harmony_access_point} 
 NIIS on muuhulgas ka see organisatsioon, mis töötab eesti X-Tee süsteemi arendamisega.
 
-Võrreldes Domibusi koodibaasiga on Harmony access point kood \cite{niis_harmony_access_point_repo} kõvasti mahuka. Lugedes koodi ridu käsklusega~\ref{lst:loc-command}, 
+Võrreldes Domibusi koodibaasiga on Harmony access point kood \cite{niis_harmony_access_point_repo} kõvasti mahukam.
+Lugedes koodi ridu käsklusega~\ref{lst:loc-command}, 
 saame 741098, mis on umbes 1.7 korda rohkem kui Domibus.
 
 Kuna Harmony põhineb Domibusi projektil, võtab see endaga kaasa suure osa selle projekti kompleksusest.
@@ -147,3 +148,17 @@ Samuti sisaldab dokumentatsioon katkiseid linke, tarkvara kasutamise kohta.
 
 DomiSML on siiamaani kõige väiksem tarkvaraprojekt, 
 mis sisaldab 176307 rida koodi vastavalt käsule \ref{lst:loc-command}.  
+
+Autor proovis käivitada DomiSML tarkvara lokaalselt enda arvutis.
+Tarkvara käima panekul esines palju erinevaid takistusi.
+README.md failis leidus viide juhendile, kuidas projekti käivitada. 
+Avades viite veebilehitsejas selgus et link oli katki ning dokumentatsiooni enam ei eksisteerinud.
+
+DomiSML projektis leidus ka \textit{bdmsl-springboot} nimeline alamprojekt,
+millel oli olemas käivitamisjuhised. Analüüsides juhist lähemalt selgus, et 
+enne käivitamist tuli läbida kahesammuline konfigureeerimise protsess.
+Konfiguratsiooni üks osa oli \textit{MySQL} andmebaasi seadistamine. 
+Kusjuures dokumentatsioon ei täpsustanud millist MySQL versiooni tarkvara ootab.
+
+DomiSML projekti keerukuse ning dokumentatsiooni nappuse 
+tõttu otsustas autor sinna aega mitte investeerida. 
