@@ -88,4 +88,33 @@ selle lõputöö jaoks alusena.
 
 PMode fail peab sisaldama mitmeid eFTI spetsiifilisi elemente, 
 nende hulgas näiteks \texttt{eftiGateService}, mis kirjeldab olemasolevat eFTI teenust.
-Näide saatja PMode failist on toodud koodinäites~\ref{lst:pmode-sender-xml}.
+Näide saatja PMode failist on toodud koodinäites~\ref{lst:pmode-sender-xml},
+kus on kirjeldatud kõik vajalikud eFTI spetsiifilised teenused.
+
+PMode faili uuendamine toimub üldjuhul manuaalselt veebikeskkonnast. 
+Selle projekti raames on selle uuendamine automatiseeritud.
+
+
+
+\subsection{WS plugin seadistus}
+
+WS plugin võimaldab taustsüsteemidel saata sõnumeid juurdepääsupunktile ning vastupidi.
+Harmony juurdepääsupunkt on vaikimisi seadistatud kasutama WS pluginat kuid
+võimaldab lihtsasti lisada ka teisi pluginaid.
+
+Võrreldes teiste pluginatega, mida turul täna leidub, autor ühtegi lihtsamini kasutatavat ei leidnud.
+Kõige silmapaistvam oli Ademico Software nimelise ettevõtte poolt toodetud REST plugin, 
+mis oli kahjuks tasuline ning kinnise lähtekoodiga toode. \cite{ademico_domibus_rest_api}
+
+Juurdepääsupunkti veebiliideses peab WS Pluginale määrama kasutaja ning parooli, 
+mille abil on hiljem võimalik teha päringuid. 
+Selle projekti raames on nende väljade määramine automatiseeritud.
+
+
+
+\subsection{WS plugina kasutamine}
+
+Veebiteenuste klassikalisi standardeid (nagu SOAP ja WSDL) kohtab täna uutes projektides 
+üpris vähe, kuna nende kasutuselevõtt on väga ressursikulukas. Seda eelkõige liigse keerukuse,
+mahuka XML-struktuuri ja rangete standardite tõttu, mis muudavad süsteemide arendamise ja
+haldamise kohmakaks. \cite{tammet_veebiteenused_2007}
