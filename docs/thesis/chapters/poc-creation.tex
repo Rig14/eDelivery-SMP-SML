@@ -118,3 +118,13 @@ Veebiteenuste klassikalisi standardeid (nagu SOAP ja WSDL) kohtab täna uutes pr
 üpris vähe, kuna nende kasutuselevõtt on väga ressursikulukas. Seda eelkõige liigse keerukuse,
 mahuka XML-struktuuri ja rangete standardite tõttu, mis muudavad süsteemide arendamise ja
 haldamise kohmakaks. \cite{tammet_veebiteenused_2007}
+
+WS plugina WSDL kirjeldus sisaldab 1479 rida XMLi, mis muudab selle väga mahukaks ning keeruliseks.
+
+Kuna WS päringud toimuvad üle HTTP protokolli ning on oma olemuselt POST päringud mille sisu on XML,
+siis on võimalik neid päringuid teha ka tavapäraste tööriistatega. 
+See tähendab, et pole vaja kasutada väliseid teeke, mis tihtipeale on aeglased ning sisaldavad turvariske. 
+Küllaga tekitab see ühe probleemi - arendaja peab ise sõnumi koostama, 
+mille muidu oleks valmis teinud väline WS teek.
+
+Arvestades probleemi, otsustas autor leida näidissõnumi, mis töötaks sõnumi saatmiseks. todo siia wireshark etcetc
