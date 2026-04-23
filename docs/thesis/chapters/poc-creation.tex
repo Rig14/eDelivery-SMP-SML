@@ -9,10 +9,14 @@ Lõppeesmärgini jõudmiseks tegi autor neljaosalise plaani:
   \item Saada tööle SMP server, mis suudab vastata juurdepääsupunkti päringutele.
 \end{enumerate}
 
+
+
 \section{Staatiline eDelivery konfiguratsioon}
 eDelivery staatilise konfiguratsiooni puhul vahetavad juurdepääsupunktid infot otse, 
 ilma kolmanda osapooleta. See on tehniliselt vähem keerukas lahendus, kui dünaamiline otsing,
 ning selle tõttu ka hea esimene samm lõppeesmärgini jõudmiseks.
+
+
 
 \subsection{Juurdepääsupunktide konteinerite seadistamine}
 Näidislahendus eeldab, et kaks juurdepääsupunkti suudavad omavahel infot jagada.
@@ -33,7 +37,9 @@ Näidislahenduse \textit{compose.yml} fail sisaldab kahte juurdepääsupunkti
 nimedega \textit{sender} ja \textit{receiver}, vastavalt nende tööpõhimõtetele, 
 ning ka kahte MySQL andmebaasi analoogsete nimedega.
 
-\subsection{Juurdepääsupunktide staatiline konfigureerimine}
+
+
+\subsection{Juurdepääsupunktide seadistusvõimalused}
 Juurdepääsupunkte on võimalik seadistada kahest kohast - keskkonnamuutujad ja veebipõhine kasutajaliides.
 
 Näidislahenduses on \textit{compose.yml} lisatud paar keskkonnamuutujat, mida Docker Hubis 
@@ -41,6 +47,7 @@ oleval näidisel ei olnud. Need lisandused võimaldavad juurdepääsupunkti õig
 keskkonnamuutujatest kõige olulisemad on LB\_TLS\_TERMINATION ja SECURITY\_*\_PASSWORD.
 
 \subsubsection{Keskkonnamuutujad}
+
 LB\_TLS\_TERMINATION muudab juurdepääsupunkti kättesaadavaks pordil 80 (http), mis muudab
 digitaalsete sertifikaatide haldamise lihtsamaks, kuna ei pea arvestama TLS sertifikaatidega.
 
@@ -48,3 +55,37 @@ SECURITY\_*\_PASSWORD võimaldab kasutajal, läbi veebiliidese, laadida alla,
 sirvida ning muuta juurdepääsupunkti privaatseid võtmeid ning avalikke sertifikaate. 
 Ligipääs avalikkele sertifikaatidele on oluline selleks, 
 et neid saaks jagada juurdepääsupunktide vahel, kas staatiliselt või dünaamiliselt.
+
+\subsubsection{Veebipõhine kasutajaliides}
+
+Läbi kasutajaliidese on võimalik konfigureerida juurdepääsupunkti äriloogika põhiseid seadeid.
+Nende hulgas näiteks digitaalsed sertifikaadid, pluginad ja PMode fail.
+
+PMode fail defineerib juurdepääsupunktide vahelised ühendused ning nende detailid. Tegu
+on XML dokumendiga, mis kirjeldab näiteks: teise juurdepääsupunkti nime, URLi ja teenuseid. 
+
+pluginatest kõige olulisem on selle lõputöö jaoks WS plugin, 
+mille abil on võimalik juurdepääsupunktile saata sõnumeid, mis edastatakse kolmandatele osapooltele.
+
+Loodava lahenduse üks olulisemaid tugevusi on võimaldada väga head arenduskogemust.
+Selle eesmärgi saavutamiseks on oluline et arendaja 
+saab süsteemi oma masinas tööle panna ilma manuaalse konfiguratsioonita.
+Näidislahenduses on veebipõhine konfiguratsioon ära automatiseeritud kasutades \textit{bash} skripte,
+mis sisestavad vajaminevad väärtused automaatselt läbi juurdepääsupunkti REST liidese.
+
+Loodud \textit{bash} skriptid ja vajaminevad konfiguratsioonifailid on liigutatud konteinerite sisse,
+ning neid käivitatakse konteineri jooksutamisel. Jooksutamise eest vastutab \texttt{entrypoint.sh},
+mis põhineb originaalsel failil, mida Harmony konteiner kasutab.
+
+
+
+\subsection{PMode seadistus}
+
+PMode fail sisaldab detaile pakutavate teenuste kui ka teiste juurdepääsupunktide kohta.
+eFTI keskkonnas on väga oluline et iga liikmesriigi värav toetaks samasuguseid teenuseid.
+eFTI näidisarhitektuur \cite{efti4eu_reference_impl} sisaldab näidis PMode faile, mida on kasutatud
+selle lõputöö jaoks alusena.
+
+PMode fail peab sisaldama mitmeid eFTI spetsiifilisi elemente, 
+nende hulgas näiteks \texttt{eftiGateService}, mis kirjeldab olemasolevat eFTI teenust.
+Näide saatja PMode failist on toodud koodinäites~\ref{lst:pmode-sender-xml}.
