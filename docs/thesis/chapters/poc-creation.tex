@@ -124,7 +124,22 @@ WS plugina WSDL kirjeldus sisaldab 1479 rida XMLi, mis muudab selle väga mahuka
 Kuna WS päringud toimuvad üle HTTP protokolli ning on oma olemuselt POST päringud mille sisu on XML,
 siis on võimalik neid päringuid teha ka tavapäraste tööriistatega. 
 See tähendab, et pole vaja kasutada väliseid teeke, mis tihtipeale on aeglased ning sisaldavad turvariske. 
-Küllaga tekitab see ühe probleemi - arendaja peab ise sõnumi koostama, 
+Küllaga tekitab see ühe probleemi - arendaja peab ise sõnumi koostama WSDL kirjelduse järgi, 
 mille muidu oleks valmis teinud väline WS teek.
 
-Arvestades probleemi, otsustas autor leida näidissõnumi, mis töötaks sõnumi saatmiseks. todo siia wireshark etcetc
+Arvestades probleemi, otsustas autor leida WS plugina näidissõnumi, 
+mida suudaks juurdepääsupunkt töödelda. Näidissõnumit saaks kasutada põhjana teiste sõnumite loomisel.
+
+Näidissõnumi leidmiseks käivitas autor eFTI näidisarhitektuuri projekti 
+ning ka WireShark programmi, selleks et jälgida, milliseid andmeid süsteemide vahel saadetakse. 
+eFTI näidisarhitektuuris on värav kasutusel kui taustsüsteem, mis suhtleb Domibus juurdepääsupunktiga 
+kasutades WS plugin ühendust. Kui käivitada päring eFTI identifikaatoritele siis tehakse päring igasse
+teise ühendatud väravasse. 
+See tähendab et iga värava kohta tehakse üks WS plugin päring, 
+mida on võimalik WireShark programmiga jälgida.
+
+Eelmainitud protsessi tulemusel leidis autor WS pluginale saadetud näidissõnumi, mis on kirjeldatud
+koodinäites~\ref{lst:wsplugin-example}.
+
+Kasutades näidissõnumit kirjutas autor ühe failise programmi Kotlinis, mille abil saab saata sõnumeid
+juurdepääsupunktile. 
