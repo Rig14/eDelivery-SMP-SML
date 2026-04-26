@@ -131,7 +131,7 @@ Arvestades probleemi, otsustas autor leida WS plugina näidissõnumi,
 mida suudaks juurdepääsupunkt töödelda. Näidissõnumit saaks kasutada põhjana teiste sõnumite loomisel.
 
 Näidissõnumi leidmiseks käivitas autor eFTI näidisarhitektuuri projekti 
-ning ka WireShark programmi, selleks et jälgida, milliseid andmeid süsteemide vahel saadetakse. 
+ning ka WireShark programmi \cite{wireshark_org}, selleks et jälgida, milliseid andmeid süsteemide vahel saadetakse. 
 eFTI näidisarhitektuuris on värav kasutusel kui taustsüsteem, mis suhtleb Domibus juurdepääsupunktiga 
 kasutades WS plugin ühendust. Kui käivitada päring eFTI identifikaatoritele siis tehakse päring igasse
 teise ühendatud väravasse. 
@@ -143,3 +143,7 @@ koodinäites~\ref{lst:wsplugin-example}.
 
 Kasutades näidissõnumit kirjutas autor ühe failise programmi Kotlinis, mille abil saab saata sõnumeid
 juurdepääsupunktile. 
+
+Selleks, et edukalt lõpetada arendusplaani esimene etapp, saatis autor näidissõnumil põhineva
+päringu juurdepääsupunktile, mis omakorda edastase selle teisele juurdepääsupunktile.
+Saatmiseks oli vaja sõnumis muuta saatja ning saaja andmeid, vastavalt eelnevale seadistusele.
