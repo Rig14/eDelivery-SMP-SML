@@ -151,3 +151,26 @@ Saatmiseks oli vaja sõnumis muuta saatja ning saaja andmeid, vastavalt eelneval
 
 
 \section{Dünaamiline eDelivery konfiguratsioon}
+
+eDelivery dünaamilise konfiguratsiooni puhul toimub sõnumite vahetus juurdepääsupunktide vahel sarnaselt
+staatilisele ühendusele. Erinevus seisneb selles, et saatev juurdepääsupunkt ei tea ette,
+kuhu, kellele ja mis moodi tuleb sõnum saata. Selle info leidmiseks tehakse kaks päringut - 
+DNS päring SMLi ja HTTP päring SMPsse.
+
+Selleks, et võimaldada dünaamilist otsingut tuleb juurdepääsupunktid ümber seadistada ning ka sõnumid ära muuta.
+
+\subsection{Juurdepääsupunkti seaded}
+
+Dünaamilise otsingu võimaldamiseks tuleb lülidada juurdepääsupunkt ümber kasutadama SML tsooni.
+\cite[Peatükk 3.2.11 Domibus configuration for OASIS]{ec_domibus_docs_52}
+
+Vastavalt Domibusi kasutusmanuaalile saab juurdepääsupunkti
+äriloogika põhiseid seadeid muuta \textit{domibus.properties} failis. 
+Need samad seaded on saadaval ning muudetavad ka veebipõhises kasutajaliideses. 
+Kuna kõik eelnevad seadistused on tehtud läbi kasutajaliidese automaatselt, 
+otsustas autor samamoodi automatiseerida ka selle seadistuse.
+
+SML tsooniks märkis autor ajutise kohahoidja, mis aktiveerib juurdepääsupunktis dünaamilise otsingu, 
+kuid ei võimalda edukaid päringuid SML-i.
+
+TODO kirjuta env vars USE\_DYNAMIC\_DISCOVERY
