@@ -180,7 +180,7 @@ kus on näha vahetatud sõnumite metaandmed.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{figures/poc-stage-1-result.png}
-  \caption{Esimese etappi lõpptulemus - Kahe osapoole vahel vahetatakse sõnumit staatiliselt.}
+  \caption{Esimese etapi lõpptulemus - Kahe osapoole vahel vahetatakse sõnumit staatiliselt.}
   \label{fig:poc-stage-1-result}
 \end{figure}
 
@@ -246,3 +246,16 @@ See väli võib sõnumist ka puududa. Oluline on \texttt{finalRecipient} välja 
 \cite[Peatükk 3.2.11 Message format for OASIS]{ec_domibus_docs_52}.
 
 Kõik muud väljad jäävad sõnumis samaks mis olid staatilise otsingu puhul.
+
+Arendusplaani teise etapi lõpuks, saatis autor samasuguse muudetud päringu juurdepääsupunktile
+mis oli konfigureeritud kasutama dünaamilist otsingut. Selle tulemusel tuvastas saatja juurdepääsupunkt
+õigesti et tal puudub vajalik info sõnumi edastamiseks ning alsutas dünaamilise otsingu protsessi. 
+Selle käigus tehti \texttt{CNAME} päring SML serverile, mida teise etapi lõpuks veel ei eksisteerinud.
+Juurdepääsupunkt andis oodatud veateate päringu ebaõnnestumisest (joonis~\ref{fig:poc-stage-2-result}) 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/poc-stage-2-result.png}
+  \caption{Teise etapi lõpptulemus - Sõnumi saatja alustab dünaamilist otsingut ja saab veateate.}
+  \label{fig:poc-stage-2-result}
+\end{figure}
