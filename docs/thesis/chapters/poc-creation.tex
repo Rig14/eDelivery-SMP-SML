@@ -78,6 +78,33 @@ ning neid käivitatakse konteineri jooksutamisel. Jooksutamise eest vastutab \te
 mis põhineb originaalsel failil, mida Harmony konteiner kasutab.
 
 
+\subsection{Digitaalsete sertifikaatide ja võtmete seadistus}
+eDelivery sõnumite saatmise turvalisus põhineb digitaalsetel sertifikaatidel ja võtmetel, 
+mida kasutatakse sõnumite allkirjastamiseks ja krüpteerimiseks.
+
+Harmony juurdepääsupunkt genereerib vajalikud võtmed ja sertifikaadid automaatselt esimesel käivitusel.
+
+Selleks et saavutada võimaliklt hea arenduskogemus tuleb vastavad sertifikaadid ja võtmefailid 
+ise genereerida väljaspool Harmony süsteemi. 
+See tuleneb vajadusest jagada faile kahe juurdepääsupunkti vahel. 
+Kui failid on kohe saadaval sellisel kujul nagu neid vaja on, 
+siis saab neid lihtsasti konteinerisse paigutada.
+
+Harmony juurdepääsupunkt kontollib sertifikaatide allkirjastamist ning keelab
+sertifikaatide kasutamise mis ei ole loodud pädevate sertifitseerimiskeskuste (CA) poolt või mida
+ei ole seadistatud Harmony \texttt{truststore}-i.
+
+CA sertifikaatide saamine on tasuline ning jääb selle lõputöö raamidest välja. 
+Selle asemel kasutas autor ise allkirjastatud sertifikaate.
+Selliseid sertifikaate Harmony automaatselt ei usalda, aga neid on lintne luua ja kasutada. 
+Alternatiivina oleks võimalik luua ka juursertifikaat, mis allkirjastaks kõiki teisi sertifikaate.
+Siis tuleks usaldada ainult juursertifikaati. Küllaga ei anna see meetod olulisi eeliseid 
+ise allkirjastatud sertifikaatide ees.
+
+Ise allkirjastud sertifikaatide ja privaatvõtmete loomiseks 
+kasutas autor openssl teeki käsklusega~\ref{lst:openssl-command}. Projekt sisaldab ka \textit{bash}
+skripti, mis loob vajalikud sertifkaadid ning paigutab need projektis õigetesse kaustadesse. 
+
 
 \subsection{PMode seadistus}
 
@@ -197,6 +224,21 @@ lihtalt rollid on vahetatud: sõnumite saatja pole eelnevalt teada.
 Mistõttu ei ole vaja parameetrit \texttt{PMode.Initiator} määrata
 \cite[Peatükk 3.2.11 PMode configuration for OASIS]{ec_domibus_docs_52}.
 
+\subsection{Dünaamilise otsingu sertifikaadid}
+Dünaamiline otsing võimaldab leida saaja metaandmeid. 
+Sellest tulenevalt ei ole saatjal enam vaja teada sõnumi saaja avalikku sertifikaati, 
+kuna seda on võimalik SMP serverist küsida. 
+Seega eemaldas autor saatja \texttt{truststore}-ist saaja sertifikaadid.
+
+Sõnumi saatja peab usaldama saaja SMP serveri sertifikaati.
+Selleks seadistas autor SMP serveri sertifikaadi saatja \texttt{truststore}-i. 
+See võimaldab saatjal pärida metaandmeid teise osapoole kohta läbi SMP serveri.
+
+Erinevalt saatjast, peab sõnumi saaja usaldama saatja sertifikaate
+\cite[Peatükk 3.2.11 Policy and certificates for OASIS]{ec_domibus_docs_52}.
+Selle tõttu jäi sõnumi saaja \texttt{truststore} muutmata.
+
+
 \subsection{Dünaamilise otsingu sõnumi formaat}
 Dünaamilise otsingu puhul ei ole vaja sõnumi \texttt{to} välja konfigureerida.
 See väli võib sõnumist ka puududa. Oluline on \texttt{finalRecipient} välja olemasolu sõnumi 
@@ -204,26 +246,3 @@ See väli võib sõnumist ka puududa. Oluline on \texttt{finalRecipient} välja 
 \cite[Peatükk 3.2.11 Message format for OASIS]{ec_domibus_docs_52}.
 
 Kõik muud väljad jäävad sõnumis samaks mis olid staatilise otsingu puhul.
-
-\subsection{Dünaamilise otsingu sertifikaadid}
-Sõnumi saatja peab usaldama saaja SMP serveri sertifikaati. 
-Üldjuhul see ei nõua kasutaja poolt mingit seadistust, 
-kuna sertifikaadid on loodud ja allkirjastatud pädeva asutuse poolt, 
-mille usaldus on üldjuhul operatsioonisüsteemi sisse ehitatud.
-
-Selliste sertifikaatida saamine on tasuline ning jääb selle lõputöö raamidest välja. 
-Selle asemel kasutas autor ise allkirjastatud sertifikaate.
-Selliseid sertifikaate süsteemid automaatselt ei usalda, aga neid on lintne luua ja kasutada. 
-Alternatiivina oleks võimalik luua ka juursertifikaat, mis allkirjastaks kõiki teisi sertifikaate.
-Siis tuleks usaldada ainult juursertifikaati. Küllaga ei anna see meetod olulisi eeliseid 
-ise allkirjastatud sertifikaatide ees. 
-
-Selleks, et saatja usaldaks saaja SMP serverit seadistas autor SMP serveri sertifikaadi
-saatja \texttt{truststore}-i, mis on Harmony usaldatud sertifikaatide hoidla. See võimaldab
-saatjal pärida metaandmeid teise osapoole kohta läbi SMP serveri.
-
-Erinevalt saatjast, peab sõnumi saaja usaldama saatja sertifikaate. Eelmainitud piirangute tõttu otsustas
-autor seadistada saajale saatja sertifikaadi tema \texttt{truststore}-i
-\cite[Peatükk 3.2.11 Policy and certificates for OASIS]{ec_domibus_docs_52}.
-
-Kõikide sertifikaatide seadistamine on näidisprojektis automatiseeritud kasutades bash scripte.

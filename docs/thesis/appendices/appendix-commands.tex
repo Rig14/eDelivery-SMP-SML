@@ -2,3 +2,10 @@
 \begin{lstlisting}[language=bash, frame=single, basicstyle=\small, caption={Koodibaasi ridade arvu leidmise käsklus}, label={lst:loc-command}]
 git ls-files -z | xargs -0 cat | wc -l
 \end{lstlisting}
+
+\renewcommand{\lstlistingname}{Käsklus}
+\begin{lstlisting}[language=bash, frame=single, basicstyle=\footnotesize\ttfamily, breaklines=true, breakatwhitespace=true, caption={OpenSSL käsklus ise allkirjastatud sertifikaatide ja privaatvõtmete loomiseks}, label={lst:openssl-command}]
+openssl genpkey -algorithm RSA -out "$cert_dir/$NAME.key" -pkeyopt rsa_keygen_bits:2048
+openssl req -new -x509 -key "$cert_dir/$NAME.key" -out "$cert_dir/$NAME.crt" -days 1825 -subj "/CN=$party_id"
+openssl pkcs12 -export -out "$cert_dir/$NAME.p12" -inkey "$cert_dir/$NAME.key" -in "$cert_dir/$NAME.crt" -name "$party_id" -passout pass:changeit
+\end{lstlisting}
