@@ -14,22 +14,19 @@ val WS_USER = "service_account"
 val WS_PASSWORD = "Azerty59*1234567"
 val FROM = "sender"
 val TO = "urn:oasis:names:tc:ebcore:partyid-type:unregistered:C4"
+val MESSAGE = /* language=xml */ """
+  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+  <hello>world</hello>
+""".trimIndent()
 
 fun main() {
-  @Language("XML")
-  val message = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-  <hello>world</hello>
-  """.trimIndent()
-
   val request = HttpRequest.newBuilder()
     .uri(WS_ENDPOINT)
     .headers(
-      "Content-Type",
-      "application/soap+xml",
-      "Authorization",
-      "Basic ${Base64.encode("$WS_USER:$WS_PASSWORD".toByteArray())}"
+      "Content-Type", "application/soap+xml",
+      "Authorization", "Basic ${Base64.encode("$WS_USER:$WS_PASSWORD".toByteArray())}"
     )
-    .POST(ofString(generateMessage(message)))
+    .POST(ofString(generateMessage(MESSAGE)))
     .build()
 
   val response = HttpClient.newHttpClient().send(request, ofString())
