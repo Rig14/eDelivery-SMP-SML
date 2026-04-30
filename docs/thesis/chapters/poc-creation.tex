@@ -161,8 +161,8 @@ Selleks, et võimaldada dünaamilist otsingut tuleb juurdepääsupunktid ümber 
 
 \subsection{Juurdepääsupunkti seaded}
 
-Dünaamilise otsingu võimaldamiseks tuleb lülidada juurdepääsupunkt ümber kasutadama SML tsooni.
-\cite[Peatükk 3.2.11 Domibus configuration for OASIS]{ec_domibus_docs_52}
+Dünaamilise otsingu võimaldamiseks tuleb lülidada juurdepääsupunkt ümber kasutadama SML tsooni ning
+dünaamilist otsingut. \cite[Peatükk 3.2.11 Domibus configuration for OASIS]{ec_domibus_docs_52}
 
 Vastavalt Domibusi kasutusmanuaalile saab juurdepääsupunkti
 äriloogika põhiseid seadeid muuta \textit{domibus.properties} failis. 
@@ -170,7 +170,51 @@ Need samad seaded on saadaval ning muudetavad ka veebipõhises kasutajaliideses.
 Kuna kõik eelnevad seadistused on tehtud läbi kasutajaliidese automaatselt, 
 otsustas autor samamoodi automatiseerida ka selle seadistuse.
 
-SML tsooniks märkis autor ajutise kohahoidja, mis aktiveerib juurdepääsupunktis dünaamilise otsingu, 
+SML tsooniks märkis autor ajutise kohahoidja, mis on dünaamilise otsingu aktiveerimiseks vajalik, 
 kuid ei võimalda edukaid päringuid SML-i.
 
-TODO kirjuta env vars USE\_DYNAMIC\_DISCOVERY
+Selleks et aktiveerida dünaamilist otsingut tuleb sisse lülitada
+\texttt{domibus.\allowbreak{}dynamicdiscovery.\allowbreak{}useDynamicDiscovery} seadistus
+\textit{domibus.properties} failis \cite[dynamic\_discovery\_configuration\_guide.md]{niis_harmony_common_repo}.
+See seadistus on Harmony juurdepääsupunkti puhul hallatav keskkonnamuutujaga \texttt{USE\_DYNAMIC\_DISCOVERY},
+mille väärtust saab lihtsasti määrata \textit{compose.yml} failis \cite{niis_harmony_ap_docker}.
+
+\subsection{Dünaamilise otsingu PMode seadistus}
+Saatjana ei ole dünaamilises otsinguprotsessis sõnumi saaja ette teada, 
+mistõttu ei ole vaja määrata parameetrit \texttt{PMode.Responder}.
+
+Vastuvõtja dünaamilise otsingu konfiguratsioon on sarnane saatja konfiguratsiooniga,
+lihtalt rollid on vahetatud: sõnumite saatja pole eelnevalt teada.
+Mistõttu ei ole vaja parameetrit \texttt{PMode.Initiator} määrata
+\cite[Peatükk 3.2.11 PMode configuration for OASIS]{ec_domibus_docs_52}.
+
+\subsection{Dünaamilise otsingu sõnumi formaat}
+Dünaamilise otsingu puhul ei ole vaja sõnumi \texttt{to} välja konfigureerida.
+See väli võib sõnumist ka puududa. Oluline on \texttt{finalRecipient} välja olemasolu sõnumi 
+\texttt{MessageProperties} osas, mis defineerib saaja unikaalse nime
+\cite[Peatükk 3.2.11 Message format for OASIS]{ec_domibus_docs_52}.
+
+Kõik muud väljad jäävad sõnumis samaks mis olid staatilise otsingu puhul.
+
+\subsection{Dünaamilise otsingu sertifikaadid}
+Sõnumi saatja peab usaldama saaja SMP serveri sertifikaati. 
+Üldjuhul see ei nõua kasutaja poolt mingit seadistust, 
+kuna sertifikaadid on loodud ja allkirjastatud pädeva asutuse poolt, 
+mille usaldus on üldjuhul operatsioonisüsteemi sisse ehitatud.
+
+Selliste sertifikaatida saamine on tasuline ning jääb selle lõputöö raamidest välja. 
+Selle asemel kasutas autor ise allkirjastatud sertifikaate.
+Selliseid sertifikaate süsteemid automaatselt ei usalda, aga neid on lintne luua ja kasutada. 
+Alternatiivina oleks võimalik luua ka juursertifikaat, mis allkirjastaks kõiki teisi sertifikaate.
+Siis tuleks usaldada ainult juursertifikaati. Küllaga ei anna see meetod olulisi eeliseid 
+ise allkirjastatud sertifikaatide ees. 
+
+Selleks, et saatja usaldaks saaja SMP serverit seadistas autor SMP serveri sertifikaadi
+saatja \texttt{truststore}-i, mis on Harmony usaldatud sertifikaatide hoidla. See võimaldab
+saatjal pärida metaandmeid teise osapoole kohta läbi SMP serveri.
+
+Erinevalt saatjast, peab sõnumi saaja usaldama saatja sertifikaate. Eelmainitud piirangute tõttu otsustas
+autor seadistada saajale saatja sertifikaadi tema \texttt{truststore}-i
+\cite[Peatükk 3.2.11 Policy and certificates for OASIS]{ec_domibus_docs_52}.
+
+Kõikide sertifikaatide seadistamine on näidisprojektis automatiseeritud kasutades bash scripte.
