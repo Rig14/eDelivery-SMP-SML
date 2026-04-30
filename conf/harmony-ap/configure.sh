@@ -80,25 +80,36 @@ set_sml_zone() {
   fi
 }
 
-set_keystore() {
-  local PARTY="$1"
-  echo "Setting up keystore for $PARTY"
+upload_store() {
+  local LABEL="$1" FILE="$2" ENDPOINT="$3" SUCCESS_MSG="$4"
 
-  local KEYSTORE_FILE="/etc/harmony-ap-certs/$PARTY/keystore.p12"
-  [ -f "$KEYSTORE_FILE" ] || { echo "File $KEYSTORE_FILE does not exist"; return 1; }
+  [ -f "$FILE" ] || { echo "File $FILE does not exist"; return 1; }
 
   read -r JSESSIONID XSRF_TOKEN < <(authenticate) || return 1
 
-  UPLOAD_RESPONSE=$(curl -s -w "%{http_code}" -o /dev/null -X POST http://localhost:8080/rest/keystore/save \
+  local STATUS
+  STATUS=$(curl -s -w "%{http_code}" -o /dev/null -X POST "http://localhost:8080/rest/${ENDPOINT}/save" \
     -H "Cookie: JSESSIONID=$JSESSIONID; XSRF-TOKEN=$XSRF_TOKEN" \
     -H "X-XSRF-TOKEN: $XSRF_TOKEN" \
-    -F "file=@${KEYSTORE_FILE};type=application/pkcs12" \
+    -F "file=@${FILE};type=application/pkcs12" \
     -F "password=changeit") || { echo "Upload request failed"; return 1; }
 
-  if [ "$UPLOAD_RESPONSE" -ge 200 ] && [ "$UPLOAD_RESPONSE" -lt 300 ]; then
-    echo "Keystore uploaded for $PARTY"
+  if [ "$STATUS" -ge 200 ] && [ "$STATUS" -lt 300 ]; then
+    echo "$SUCCESS_MSG"
   else
-    echo "Keystore upload failed with status $UPLOAD_RESPONSE"
+    echo "${LABEL} upload failed with status $STATUS"
     return 1
   fi
+}
+
+set_keystore() {
+  local PARTY="$1"
+  echo "Setting up keystore for $PARTY"
+  upload_store "Keystore" "/etc/harmony-ap-certs/${PARTY}/keystore.p12" "keystore" "Keystore uploaded for $PARTY"
+}
+
+set_smp_truststore() {
+  local PARTY="$1"
+  echo "Setting up smp truststore for $PARTY"
+  upload_store "Truststore" "/etc/harmony-ap-certs/smp/keystore.p12" "truststore" "Truststore uploaded for $PARTY"
 }

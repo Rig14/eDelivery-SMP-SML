@@ -40,6 +40,7 @@ fi
   source "$DIR/configure.sh"
   upload_pmode "$PARTY_NAME"
   set_keystore "$PARTY_NAME"
+  set_smp_truststore "$PARTY_NAME"
   [ -n "$SML_ZONE" ] && set_sml_zone "$SML_ZONE"
   [ -n "$PLUGIN_USER_NAME" ] && [ -n "$PLUGIN_USER_PASSWORD" ] && setup_plugin_user "$PLUGIN_USER_NAME" "$PLUGIN_USER_PASSWORD"
 
