@@ -263,3 +263,18 @@ Juurdepääsupunkt andis oodatud veateate päringu ebaõnnestumisest (joonis~\re
 
 
 \section{SML}
+Selles arendusetapis lahendatakse ära veateade, mis saadi teise etapi lõpus. 
+Veateade tuleneb sellest, et juurdepääsupunkt ei saa kätte SML serverit, kuhu teha DNS CNAME päring.
+
+Vastavalt eDelivery valmiskomponentide analüüsile, 
+tuleb SML implementeerida koodis otse (vt jaotist \ref{sml-components-analysis}).
+Selle etapi lõpuks valmib tarkvara, mis käitub kui SML server ning tagastab õiged 
+vastused tehtud päringutele.
+
+\subsection{DNS päring}
+SML on oma olemuselt DNS server, kus kasutajad saavad hallata oma SMP serverite DNS kirjeid.
+Neid kirjeid saavad pärida juurdepääsupunktid nii nagu seda tehti teise etapi lõpus.
+
+Uurime lähemalt millist päringut tehakse juurdepääsupunkti poolt. 
+Selleks kasutame WireShark programmi \cite{wireshark_org}.
+
