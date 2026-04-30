@@ -39,7 +39,7 @@ ning ka kahte MySQL andmebaasi analoogsete nimedega.
 
 
 
-\subsection{Juurdepääsupunktide seadistusvõimalused}
+\subsection{Juurdepääsupunkti seadistused}
 Juurdepääsupunkte on võimalik seadistada kahest kohast - keskkonnamuutujad ja veebipõhine kasutajaliides.
 
 Näidislahenduses on \textit{compose.yml} lisatud paar keskkonnamuutujat, mida Docker Hubis 
@@ -195,7 +195,7 @@ DNS päring SMLi ja HTTP päring SMPsse.
 
 Selleks, et võimaldada dünaamilist otsingut tuleb juurdepääsupunktid ümber seadistada ning ka sõnumid ära muuta.
 
-\subsection{Juurdepääsupunkti seaded}
+\subsection{domibus.propertis seadistused}
 
 Dünaamilise otsingu võimaldamiseks tuleb lülidada juurdepääsupunkt ümber kasutadama SML tsooni ning
 dünaamilist otsingut. \cite[Peatükk 3.2.11 Domibus configuration for OASIS]{ec_domibus_docs_52}
@@ -215,7 +215,7 @@ Selleks et aktiveerida dünaamilist otsingut tuleb sisse lülitada
 See seadistus on Harmony juurdepääsupunkti puhul hallatav keskkonnamuutujaga \texttt{USE\_DYNAMIC\_DISCOVERY},
 mille väärtust saab lihtsasti määrata \textit{compose.yml} failis \cite{niis_harmony_ap_docker}.
 
-\subsection{Dünaamilise otsingu PMode seadistus}
+\subsection{PMode seadistus}
 Saatjana ei ole dünaamilises otsinguprotsessis sõnumi saaja ette teada, 
 mistõttu ei ole vaja määrata parameetrit \texttt{PMode.Responder}.
 
@@ -224,7 +224,7 @@ lihtalt rollid on vahetatud: sõnumite saatja pole eelnevalt teada.
 Mistõttu ei ole vaja parameetrit \texttt{PMode.Initiator} määrata
 \cite[Peatükk 3.2.11 PMode configuration for OASIS]{ec_domibus_docs_52}.
 
-\subsection{Dünaamilise otsingu sertifikaadid}
+\subsection{Sertifikaadid}
 Dünaamiline otsing võimaldab leida saaja metaandmeid. 
 Sellest tulenevalt ei ole saatjal enam vaja teada sõnumi saaja avalikku sertifikaati, 
 kuna seda on võimalik SMP serverist küsida. 
@@ -239,7 +239,7 @@ Erinevalt saatjast, peab sõnumi saaja usaldama saatja sertifikaate
 Selle tõttu jäi sõnumi saaja \texttt{truststore} muutmata.
 
 
-\subsection{Dünaamilise otsingu sõnumi formaat}
+\subsection{Sõnumi formaat}
 Dünaamilise otsingu puhul ei ole vaja sõnumi \texttt{to} välja konfigureerida.
 See väli võib sõnumist ka puududa. Oluline on \texttt{finalRecipient} välja olemasolu sõnumi 
 \texttt{MessageProperties} osas, mis defineerib saaja unikaalse nime
@@ -259,3 +259,7 @@ Juurdepääsupunkt andis oodatud veateate päringu ebaõnnestumisest (joonis~\re
   \caption{Teise etapi lõpptulemus - Sõnumi saatja alustab dünaamilist otsingut ja saab veateate.}
   \label{fig:poc-stage-2-result}
 \end{figure}
+
+
+
+\section{SML}
