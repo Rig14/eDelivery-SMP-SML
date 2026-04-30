@@ -82,11 +82,9 @@ set_sml_zone() {
 
 upload_store() {
   local LABEL="$1" FILE="$2" ENDPOINT="$3" SUCCESS_MSG="$4"
-
   [ -f "$FILE" ] || { echo "File $FILE does not exist"; return 1; }
 
   read -r JSESSIONID XSRF_TOKEN < <(authenticate) || return 1
-
   local STATUS
   STATUS=$(curl -s -w "%{http_code}" -o /dev/null -X POST "http://localhost:8080/rest/${ENDPOINT}/save" \
     -H "Cookie: JSESSIONID=$JSESSIONID; XSRF-TOKEN=$XSRF_TOKEN" \
@@ -104,12 +102,10 @@ upload_store() {
 
 set_keystore() {
   local PARTY="$1"
-  echo "Setting up keystore for $PARTY"
   upload_store "Keystore" "/etc/harmony-ap-certs/${PARTY}/keystore.p12" "keystore" "Keystore uploaded for $PARTY"
 }
 
-set_smp_truststore() {
-  local PARTY="$1"
-  echo "Setting up smp truststore for $PARTY"
-  upload_store "Truststore" "/etc/harmony-ap-certs/smp/keystore.p12" "truststore" "Truststore uploaded for $PARTY"
+set_truststore() {
+  local LABEL="$1" PARTY="$2"
+  upload_store "Truststore" "/etc/harmony-ap-certs/${PARTY}/keystore.p12" "truststore" "Truststore uploaded for $LABEL"
 }
