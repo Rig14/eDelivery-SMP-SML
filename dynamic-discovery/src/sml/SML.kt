@@ -62,7 +62,6 @@ class SMLServer(
     val record: Record? = when (type) {
       CNAME -> recordRegistry.lookupSmpCname(hash)
       NAPTR -> recordRegistry.lookupSmpNaptr(hash)
-      A -> recordRegistry.lookupSmpARecord(hash)
       else -> null
     }
 
