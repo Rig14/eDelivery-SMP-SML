@@ -75,14 +75,8 @@ class SMLServer(
   }
 
   private fun handleNaptr(query: Message, response: Message) {
-    response.addRecord(
-      NAPTRRecord(
-        query.question.name, IN, 3600L, 100, 10, "U",
-        "Meta:SMP", "!^.*$!http://smp!", Name.root
-      ),
-      ANSWER
-    )
-    response.header.rcode = NOERROR
+    val smpHash = query.question.name.getLabelString(0)
+    response.addRecord(recordRegistry.lookupSmpNaptr(smpHash), ANSWER)
   }
 
   private fun handleCname(query: Message, response: Message) {

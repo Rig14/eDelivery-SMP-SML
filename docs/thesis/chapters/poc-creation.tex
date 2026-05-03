@@ -271,10 +271,63 @@ tuleb SML implementeerida koodis otse (vt jaotist \ref{sml-components-analysis})
 Selle etapi lõpuks valmib tarkvara, mis käitub kui SML server ning tagastab õiged 
 vastused tehtud päringutele.
 
-\subsection{DNS päring}
+\subsection{DNS päringu kuju}
 SML on oma olemuselt DNS server, kus kasutajad saavad hallata oma SMP serverite DNS kirjeid.
 Neid kirjeid saavad pärida juurdepääsupunktid nii nagu seda tehti teise etapi lõpus.
 
-Uurime lähemalt millist päringut tehakse juurdepääsupunkti poolt. 
-Selleks kasutame WireShark programmi \cite{wireshark_org}.
+Selleks, et uurida milline näeb välja saadetud päring, kasutas autor CoreDNS serverit.
+CoreDNS on lihtne ja vabavaraline DNS serveri tarkvara, mis on ka konteineriseeritud.
+Konteineriseerimine võimaldab seda kasutada juba olemasolevas docker compose konfiguratsioonis.
+
+Docker võimaldab konteineritele määrata kohandatud DNS serveri kasutades selleks 
+\texttt{dns} nimelist parameetrit. See seadistus eeldab argumendiks IP aadressi, kus asub DNS server.
+Seda arvestades seadistas autor kõik konteinerid ühte dockeri võrku. 
+Saatja juurdepääsupunkti \texttt{dns} väljale määrati CoreDNS serveri IP aadress.
+
+CoreDNS-i on võimalik seadistada kasutades \texttt{Corefile}-i, mis kirjeldab DNS päringute 
+töötlemise äriloogikat. Selleks, et uurida milliseid päringuid tehakse juurdepääsupunkti poolt,
+kasutas autor CoreDNS \texttt{log} pluginat, mis logib iga päringu konsooli.
+Algatanud uue eDelivery päringu kasutades WS pluginat, väljastas CoreDNS sellised logid:
+
+\begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
+[INFO] 172.20.0.5:51024 - 48291 "NAPTR IN FSPLJSRASNOET76WWBU3VGOATHNBC7HNZ7EUJXU5LKJFNIZVJJSA.testsml. udp 84 false 4096" NXDOMAIN qr,rd,ra 110 0.0014s
+[INFO] 172.20.0.5:49220 - 08273 "CNAME IN B-8bb529042b90c77892efd34f7395f504.testsml. udp 42 false 4096" NXDOMAIN qr,rd,ra 98 0.0009s
+\end{lstlisting}
+
+Logidest saab järeldada, et Harmony juurdepääsupunkt teeb kahte sorti DNS päringuid - NAPTR ja CNAME.
+
+\subsection{CNAME}
+CNAME kirje puhul on tegemist nimega, mis viitab teisele nimele. 
+Tehniliselt võib seda nimetada aliaseks - üks ja sama aadress on kättesaadav mitme nime kaudu \cite{zone_cname_help}.
+
+Selle loogika põhjal peaks Harmony juurdepääsupunkti poolt tehtud 
+\seqsplit{B-8bb529042b90c77892efd34f7395f504.testsml} CNAME päring vastama SMP serveri URL-ile.
+Selleks et leida SMP serveri URL, peab teadma kuidas koostada \texttt{B-*} räsi. 
+
+Algoritm CNAME päringu koostamiseks näeb pseudokoodis välja selline \cite{peppol_cname_naptr_2025}: 
+
+\begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
+"B-"+hexstring(md5(lowercase(ID-VALUE)))+"."+ID-SCHEME+"."+SMLZONE-NAME
+\end{lstlisting}
+
+ID väärtus, millest räsi luuakse, vastab \texttt{finalRecipient} väljale saadetavas sõnumis,
+mis antud kontekstis on \seqsplit{urn:oasis:names:tc:ebcore:partyid-type:unregistered:c4} 
+
+\subsection{NAPTR}
+NAPTR-päring on DNS-i kirje tüüp, mis võimaldab reeglipõhiselt teisendada ühe sümbolistringi 
+(näiteks telefoninumbri või domeeninime) konkreetseks teenuseks või aadressiks. 
+Seda kasutatakse peamiselt VoIP-s, et leida õige protokoll ja server, 
+mille kaudu kõnet alustada \cite[Sektsioon 1]{rfc3403}.
+
+Juurdepääsupunkti poolt tehtud NAPTR päringu loomiseks kasutatakse 
+järgnevat algoritmi \cite{peppol_cname_naptr_2025}:
+
+\begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
+strip-trailing(base32(sha256(lowercase(ID-VALUE))),"=")+"."+IDSCHEME+"."+SML-ZONE-NAME
+\end{lstlisting}
+
+ID väärtus on on sama mis CNAME päringu puhul.
+
+
+
 
