@@ -8,7 +8,7 @@ import klite.annotations.PathParam
 class SMPRoutes(
   private val metadataGenerator: ServiceMetadataGenerator
 ) {
-  @GET() fun info() = "Service Discovery is running"
+  @GET fun info() = "Service Discovery is running"
 
   @GET(":partyId/services/:serviceId")
   fun metadata(@PathParam partyId: String, @PathParam serviceId: String, e: HttpExchange) {
