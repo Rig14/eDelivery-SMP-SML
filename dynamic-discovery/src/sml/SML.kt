@@ -3,15 +3,13 @@ package sml
 import klite.Config
 import klite.info
 import klite.logger
-import org.xbill.DNS.DClass.IN
+import klite.warn
 import org.xbill.DNS.Flags.QR
 import org.xbill.DNS.Message
-import org.xbill.DNS.NAPTRRecord
 import org.xbill.DNS.Name
-import org.xbill.DNS.Rcode.NOERROR
-import org.xbill.DNS.Rcode.NOTIMP
 import org.xbill.DNS.Rcode.NXDOMAIN
 import org.xbill.DNS.Rcode.REFUSED
+import org.xbill.DNS.Record
 import org.xbill.DNS.Section.ANSWER
 import org.xbill.DNS.Section.QUESTION
 import org.xbill.DNS.Type
@@ -59,34 +57,22 @@ class SMLServer(
 
     val type = query.question.type
     log.info("Handling query for ${Type.string(type)} $name")
-    when (type) {
-      CNAME -> handleCname(query, response)
-      NAPTR -> handleNaptr(query, response)
-      A -> handleA(query, response)
-      else -> response.apply { header.rcode = NOTIMP }
+
+    val hash = query.question.name.getLabelString(0)
+    val record: Record? = when (type) {
+      CNAME -> recordRegistry.lookupSmpCname(hash)
+      NAPTR -> recordRegistry.lookupSmpNaptr(hash)
+      A -> recordRegistry.lookupSmpARecord(hash)
+      else -> null
     }
 
-    return response
-  }
-
-  private fun handleA(query: Message, response: Message) {
-    val smpHash = query.question.name.getLabelString(0)
-    response.addRecord(recordRegistry.lookupSmpARecord(smpHash), ANSWER)
-  }
-
-  private fun handleNaptr(query: Message, response: Message) {
-    val smpHash = query.question.name.getLabelString(0)
-    response.addRecord(recordRegistry.lookupSmpNaptr(smpHash), ANSWER)
-  }
-
-  private fun handleCname(query: Message, response: Message) {
-    val smpHash = query.question.name.getLabelString(0)
-    val record = recordRegistry.lookupSmpCname(smpHash)
-    log.info("Found ${if (record == null) "no " else ""}record for $smpHash")
     if (record == null) {
+      log.warn("Record $name not found")
       response.header.rcode = NXDOMAIN
     } else {
       response.addRecord(record, ANSWER)
     }
+
+    return response
   }
 }
