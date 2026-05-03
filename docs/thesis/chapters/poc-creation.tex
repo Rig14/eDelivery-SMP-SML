@@ -271,6 +271,7 @@ tuleb SML implementeerida koodis otse (vt jaotist \ref{sml-components-analysis})
 Selle etapi lõpuks valmib tarkvara, mis käitub kui SML server ning tagastab õiged 
 vastused tehtud päringutele.
 
+
 \subsection{DNS päringu kuju}
 SML on oma olemuselt DNS server, kus kasutajad saavad hallata oma SMP serverite DNS kirjeid.
 Neid kirjeid saavad pärida juurdepääsupunktid nii nagu seda tehti teise etapi lõpus.
@@ -296,7 +297,8 @@ Algatanud uue eDelivery päringu kasutades WS pluginat, väljastas CoreDNS selli
 
 Logidest saab järeldada, et Harmony juurdepääsupunkt teeb kahte sorti DNS päringuid - NAPTR ja CNAME.
 
-\subsection{CNAME}
+
+\subsection{CNAME}\label{cname}
 CNAME kirje puhul on tegemist nimega, mis viitab teisele nimele. 
 Tehniliselt võib seda nimetada aliaseks - üks ja sama aadress on kättesaadav mitme nime kaudu \cite{zone_cname_help}.
 
@@ -304,30 +306,73 @@ Selle loogika põhjal peaks Harmony juurdepääsupunkti poolt tehtud
 \seqsplit{B-8bb529042b90c77892efd34f7395f504.testsml} CNAME päring vastama SMP serveri URL-ile.
 Selleks et leida SMP serveri URL, peab teadma kuidas koostada \texttt{B-*} räsi. 
 
-Algoritm CNAME päringu koostamiseks näeb pseudokoodis välja selline \cite{peppol_cname_naptr_2025}: 
+Algoritm CNAME päringu koostamiseks näeb pseudokoodis välja selline \cite[Peatükk 2.1.2]{peppol_cname_naptr_2025}: 
 
 \begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
 "B-"+hexstring(md5(lowercase(ID-VALUE)))+"."+ID-SCHEME+"."+SMLZONE-NAME
 \end{lstlisting}
 
 ID väärtus, millest räsi luuakse, vastab \texttt{finalRecipient} väljale saadetavas sõnumis,
-mis antud kontekstis on \seqsplit{urn:oasis:names:tc:ebcore:partyid-type:unregistered:c4} 
+mis eFTI kontekstis on \seqsplit{urn:oasis:names:tc:ebcore:partyid-type:unregistered:C4} 
 
-\subsection{NAPTR}
+
+\subsection{NAPTR}\label{naptr}
 NAPTR-päring on DNS-i kirje tüüp, mis võimaldab reeglipõhiselt teisendada ühe sümbolistringi 
-(näiteks telefoninumbri või domeeninime) konkreetseks teenuseks või aadressiks. 
+(näiteks telefoninumbri või domeeninime) konkreetseks teenuseks või aadressiks.
+Teisendusi kirjeldab vastuses olev regulaaravaldis. 
 Seda kasutatakse peamiselt VoIP-s, et leida õige protokoll ja server, 
 mille kaudu kõnet alustada \cite[Sektsioon 1]{rfc3403}.
 
 Juurdepääsupunkti poolt tehtud NAPTR päringu loomiseks kasutatakse 
-järgnevat algoritmi \cite{peppol_cname_naptr_2025}:
+järgnevat algoritmi \cite[Peatükk 2.1.2]{peppol_cname_naptr_2025}:
 
 \begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
 strip-trailing(base32(sha256(lowercase(ID-VALUE))),"=")+"."+IDSCHEME+"."+SML-ZONE-NAME
 \end{lstlisting}
 
-ID väärtus on on sama mis CNAME päringu puhul.
+ID väärtus on sama mis CNAME päringu puhul.
 
 
+\subsection{SML serveri implementatsioon}
+Täieliku SML serveri loomiseks tuleb implementeerida nii NAPTR kui ka CNAME päringute tugi.
+See võimaldab vastata igale päringule mida juurdepääsupunkt teha võib. 
+NAPTR päringu implementeerimine on eriti oluline, kuna sellega on võimalik kasutada HTTPS-i, 
+erinevalt CNAME päringutest, mis toetavad ainult HTTP protokolli \cite{ionite_sml_2024}.
+
+SML server luuakse samas keeles, milles loodi WS plugina klient rakendus - Kotlin.
+
+\subsubsection{Klite}
+Serveri raamistikuks valis autor Klite-i
+
+Klite on modulaarne ja välissõltuvusteta Kotlini veebiraamistik, 
+mille arhitektuuriline fookus on suunatud tarkvara jätkusuutlikkusele 
+ning ökoloogilise jalajälje minimeerimisele. Raamistik tugineb Java sisseehitatud lahendustele
+ja Kotlini korutiinidele, mis muudab asünkroonsete lahenduste loomise väga lihtsaks.
+Vaatamata oma kergusele pakub Klite arendajale täisfunktsionaalset ökosüsteemi,
+kus integreeritud baasmoodulid ja läbipaistev koodibaas lihtsustavad nii rakenduse loomist 
+kui ka selle pikaajalist hooldamist \cite{klite_readme}.
+
+
+\subsection{Arhitektuur}
+Arhitektuurilisel koosneb SML server kahest osast - DNS, Register.
+
+
+\textbf{DNS} on alguspunkt, kuhu kõik SML päringud alguses jõuavad.
+DNS moodul kasutab \texttt{dnsjava} teeki päringute ja vastuste haldamiseks.
+
+Dnsjava on Java programmeerimiskeeles loodud terviklik DNS-protokolli teostus,
+mis toetab peaaegu kõiki kirjetüüpe, päringute tegemist, tsoonisiirdeid, dünaamilisi uuendusi
+ja DNSSEC-i valideerimist \cite{dnsjava_lib}.
+
+DNS server kuulab päringuid ning vastab neile sõltuvalt sellest mis tüüpi need on. 
+SML puhul on vaja vastata ainult kahte sorti päringutele. 
+Päringule leiab õige vastuse \textbf{Register} moodul.
+
+
+\textbf{Registri} ülesanne on hoida DNS päringute vastuseid. 
+SML kontekstis peab register hoidma võti-väärtus kirjeid CNAME ja NAPTR päringute jaoks.
+Mõlema puhul on võtmeks ärireeglite kohaselt räsitud \texttt{finalRecipient} 
+(vt~\ref{cname},~\ref{naptr}). CNAME puhul on väärtuseks SMP kanooniline nimi. 
+NAPTR puhul on väärtuseks regulaaravaldis, mis suunab SMP serverisse.
 
 
