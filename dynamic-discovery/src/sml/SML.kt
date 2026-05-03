@@ -67,7 +67,7 @@ class SMLServer(
     }
 
     if (record == null) {
-      log.warn("Record $name not found")
+      log.warn("No record for ${Type.string(type)} $name")
       response.header.rcode = NXDOMAIN
     } else {
       response.addRecord(record, ANSWER)
