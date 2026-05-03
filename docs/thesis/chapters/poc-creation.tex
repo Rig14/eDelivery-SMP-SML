@@ -239,7 +239,7 @@ Erinevalt saatjast, peab sõnumi saaja usaldama saatja sertifikaate
 Selle tõttu jäi sõnumi saaja \texttt{truststore} muutmata.
 
 
-\subsection{Sõnumi formaat}
+\subsection{Sõnumi formaat}\label{stage-2-results}
 Dünaamilise otsingu puhul ei ole vaja sõnumi \texttt{to} välja konfigureerida.
 See väli võib sõnumist ka puududa. Oluline on \texttt{finalRecipient} välja olemasolu sõnumi 
 \texttt{MessageProperties} osas, mis defineerib saaja unikaalse nime
@@ -366,7 +366,7 @@ ja DNSSEC-i valideerimist \cite{dnsjava_lib}.
 
 DNS server kuulab päringuid ning vastab neile sõltuvalt sellest mis tüüpi need on. 
 SML puhul on vaja vastata ainult kahte sorti päringutele. 
-Päringule leiab õige vastuse \textbf{Register} moodul.
+Päringule leiab õige vastuse register.
 
 
 \textbf{Registri} ülesanne on hoida DNS päringute vastuseid. 
@@ -376,3 +376,19 @@ Mõlema puhul on võtmeks ärireeglite kohaselt räsitud \texttt{finalRecipient}
 NAPTR puhul on väärtuseks regulaaravaldis, mis suunab SMP serverisse.
 
 
+\subsection{Testimine}
+Tulemuse testimiseks kirjutas autor ühikteste DNS mooduli ja räsimise äriloogika jaoks.
+
+SML serveri funktsionaalseks testimiseks tegi autor sama WS plugin 
+päringu nagu teise etapi lõpus. Seekord oli veasõnum teine - 
+Harmony juurdepääsupunkt ei leia SMP-st metaandmeid. 
+Küllaga on näha et NAPTR päring tehakse edukalt, 
+ning juurdepääsupunkt üritab teha päringut SMP serverile (joonis~\ref{fig:poc-stage-3-result}).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/poc-stage-3-result.png}
+  \caption{Kolmanda etapi lõpptulemus - Sõnumi saatja alustab dünaamilist otsingut, saab SML-ist vastuse
+  ning siis veateate.}
+  \label{fig:poc-stage-3-result}
+\end{figure}
