@@ -3,9 +3,12 @@ package sml
 import klite.Config
 import klite.info
 import klite.logger
+import org.xbill.DNS.DClass.IN
 import org.xbill.DNS.Flags.QR
 import org.xbill.DNS.Message
+import org.xbill.DNS.NAPTRRecord
 import org.xbill.DNS.Name
+import org.xbill.DNS.Rcode.NOERROR
 import org.xbill.DNS.Rcode.NOTIMP
 import org.xbill.DNS.Rcode.NXDOMAIN
 import org.xbill.DNS.Rcode.REFUSED
@@ -72,7 +75,14 @@ class SMLServer(
   }
 
   private fun handleNaptr(query: Message, response: Message) {
-    response.apply { header.rcode = NOTIMP } // TODO impl
+    response.addRecord(
+      NAPTRRecord(
+        query.question.name, IN, 3600L, 100, 10, "U",
+        "Meta:SMP", "!^.*$!http://smp!", Name.root
+      ),
+      ANSWER
+    )
+    response.header.rcode = NOERROR
   }
 
   private fun handleCname(query: Message, response: Message) {
