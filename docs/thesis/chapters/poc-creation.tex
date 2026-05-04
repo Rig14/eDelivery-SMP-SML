@@ -428,9 +428,10 @@ Näidisprojekti raames on sõnumi saatja kui ka saaja osaleja id tüübiks
 \seqsplit{\texttt{urn:oasis:names:tc:ebcore:partyid-type:unregistered}}.
 
 Osalejate id väärtusteks märkis autor vastavalt \texttt{sender} ja \texttt{receiver}. 
-Selle tõttu pidi muutma ka SML registri sissekannet, kuna eelnevalt oli sõnumi saaja id \texttt{C4}.
-Samuti oli vaja muuta WS plugin sõnumi \texttt{finalRecipient} välja.   
 
+Registreerinud \texttt{receiver} osaleja SMP-sse loodi
+\seqsplit{/urn:oasis:names:tc:ebcore:partyid-type:unregistered::receiver}
+nimeline REST API lõppunkt, mis väljastab metaandmeid selle osaleja kohta XML kujul.
 
 
 
