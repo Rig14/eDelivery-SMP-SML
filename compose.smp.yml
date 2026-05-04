@@ -10,7 +10,7 @@ services:
 
   phoss-smp:
     image: phelger/phoss-smp-xml:latest
-    container_name: smp
+    container_name: phoss-smp
     profiles: [ "phoss-smp" ]
     ports:
       - "8080:8080"

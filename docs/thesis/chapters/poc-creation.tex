@@ -354,7 +354,7 @@ kui ka selle pikaajalist hooldamist \cite{klite_readme}.
 
 
 \subsection{Arhitektuur}
-Arhitektuurilisel koosneb SML server kahest osast - DNS, Register.
+Arhitektuurilisel koosneb SML server kahest osast - DNS ja Register.
 
 
 \textbf{DNS} on alguspunkt, kuhu kõik SML päringud alguses jõuavad.
@@ -392,3 +392,46 @@ ning juurdepääsupunkt üritab teha päringut SMP serverile (joonis~\ref{fig:po
   ning siis veateate.}
   \label{fig:poc-stage-3-result}
 \end{figure}
+
+
+
+\section{SMP}
+Selles etapis, sarnaselt eelmisele, lahendatakse ära saadud veateade. 
+Veateate põhjuseks on see, et Harmony juurdepääsupunkt ei saa vastust SMP serverist, kuna seda ei eksisteeri.
+
+Viimases etapis kasutab autor SMP tarkvara valmiskomponente, et uurida kuidas need töötavad, 
+ning loob saadud teadmiste abil töötava SMP serveri.
+
+\subsection{Phoss SMP}
+Vastavalt eDelivery SMP tarkvara valmiskomponentide analüüsile (vt jaotist \ref{smp-components-analysis})
+on Phoss SMP väga lihtsasti kasutatav SMP serveri tarkvara. 
+Selle tõttu otsustas autor seda ka lähemalt uurida.
+
+Phoss SMP toetab kolme sorti tagasüsteemi - MongoDB, XML ja SQL, mis on kõik konteineriseeritud \cite{phax_phoss_smp}.
+Näidislahenuse arendamise jaoks valis autor XML põhise lahenduse, kuna see ei nõua, peale SMP enda, 
+veel ühte lisakonteinerit andmebaasi jaoks. XML taustsüsteemis on kõik salvestatud XML failidesse \cite{phelger_phoss_smp_xml_docker}.
+
+Autor käivitas Phoss SMP serveri ning logis sisse veebipõhisesse adminliidesesse. Sealt avanes vaade erinevatele
+SMP süsteemi osadele, mida on administraatoril võimalik muuta. Konfiguratsioonidest kõige olulisemateks osutusid 
+"Service Groups" ja "Endpoints", mille abil on võimalik SMP-sse uusi teenuseid registreerida.
+
+\textbf{Service Groups} abil on võimalik lisada süsteemi uusi osalejaid. Uue osaleja lisamiseks peab määrama osaleja 
+id ning id tüübi, mis kokku moodustavad osaleja tunnuse. 
+eDelivery osaleja tunnus on defineeritud OASIS ebCore Party Id Type spetsifikatsiooni järgi \cite{ec_ebcore_partyid_spec},
+mille kohasel on osaleja id tüübi alguseks alati 
+\texttt{urn:oasis:names:tc:ebcore:partyid-type} \cite[2.1]{oasis_partyid_v1}, peale mida järgneb skeemikatalogi tunnus.
+
+Üldjuhul peab id väärtus olema registreeritud mõnes skeemikataloogis nagu näiteks iso6523, iso9735 and iso20022.
+Skeemikataloog \texttt{unregistered} määrab funktsionaalselt seda, et osaleja id võib olla ükskõik mis väärtus, 
+ning ei pea kuuluma mõnda üldtuntud skeemikataloogi \cite[2.5]{oasis_partyid_v1}. 
+Näidisprojekti raames on sõnumi saatja kui ka saaja osaleja id tüübiks
+\seqsplit{\texttt{urn:oasis:names:tc:ebcore:partyid-type:unregistered}}.
+
+Osalejate id väärtusteks märkis autor vastavalt \texttt{sender} ja \texttt{receiver}. 
+Selle tõttu pidi muutma ka SML registri sissekannet, kuna eelnevalt oli sõnumi saaja id \texttt{C4}.
+Samuti oli vaja muuta WS plugin sõnumi \texttt{finalRecipient} välja.   
+
+
+
+
+

@@ -13,7 +13,6 @@ import org.xbill.DNS.Record
 import org.xbill.DNS.Section.ANSWER
 import org.xbill.DNS.Section.QUESTION
 import org.xbill.DNS.Type
-import org.xbill.DNS.Type.A
 import org.xbill.DNS.Type.CNAME
 import org.xbill.DNS.Type.NAPTR
 import java.net.DatagramPacket

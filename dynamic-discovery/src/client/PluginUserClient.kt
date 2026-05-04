@@ -12,8 +12,9 @@ import kotlin.io.encoding.Base64
 val WS_ENDPOINT = URI("http://localhost:8090/services/wsplugin")
 val WS_USER = "service_account"
 val WS_PASSWORD = "Azerty59*1234567"
+val SCHEME_ID = "urn:oasis:names:tc:ebcore:partyid-type:unregistered"
 val FROM = "sender"
-val TO = "urn:oasis:names:tc:ebcore:partyid-type:unregistered:C4"
+val TO = "receiver"
 val MESSAGE = /* language=xml */ """
   <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
   <hello>world</hello>
@@ -49,7 +50,7 @@ fun generateMessage(message: String): String {
             </ns5:MessageInfo>
             <ns5:PartyInfo>
               <ns5:From>
-                <ns5:PartyId type="urn:oasis:names:tc:ebcore:partyid-type:unregistered">$FROM</ns5:PartyId>
+                <ns5:PartyId type="$SCHEME_ID">$FROM</ns5:PartyId>
                 <ns5:Role>http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/initiator</ns5:Role>
               </ns5:From>
             </ns5:PartyInfo>
@@ -59,8 +60,8 @@ fun generateMessage(message: String): String {
               <ns5:ConversationId>$conversationId</ns5:ConversationId>
             </ns5:CollaborationInfo>
             <ns5:MessageProperties>
-              <ns5:Property name="originalSender">urn:oasis:names:tc:ebcore:partyid-type:unregistered:C1</ns5:Property>
-              <ns5:Property name="finalRecipient">$TO</ns5:Property>
+              <ns5:Property name="originalSender" type="$SCHEME_ID">$FROM</ns5:Property>
+              <ns5:Property name="finalRecipient" type="$SCHEME_ID">$TO</ns5:Property>
             </ns5:MessageProperties>
             <ns5:PayloadInfo>
               <ns5:PartInfo href="cid:message">

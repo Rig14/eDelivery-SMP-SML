@@ -3,13 +3,17 @@ package sml
 import org.xbill.DNS.*
 import org.xbill.DNS.DClass.IN
 
+val SCHEME_ID = "urn:oasis:names:tc:ebcore:partyid-type:unregistered"
+
 class RecordRegistry(private val rootDomain: String) {
   private val cnameRecords = mapOf(
-    "urn:oasis:names:tc:ebcore:partyid-type:unregistered:C4" to "smp.",
+    "$SCHEME_ID:C4" to "smp.",
+    "$SCHEME_ID:receiver" to "smp.",
   ).map { getCnameHash(it.key) to it.value }.toMap()
 
   private val naptrRecords = mapOf(
-    "urn:oasis:names:tc:ebcore:partyid-type:unregistered:C4" to "!^.*$!http://smp!",
+    "$SCHEME_ID:C4" to "!^.*$!http://smp!",
+    "$SCHEME_ID:receiver" to "!^.*$!http://smp!",
   ).map { getNaptrHash(it.key) to it.value }.toMap()
 
 
