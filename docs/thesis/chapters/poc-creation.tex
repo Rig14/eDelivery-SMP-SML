@@ -402,6 +402,47 @@ Veateate põhjuseks on see, et Harmony juurdepääsupunkt ei saa vastust SMP ser
 Viimases etapis kasutab autor SMP tarkvara valmiskomponente, et uurida kuidas need töötavad, 
 ning loob saadud teadmiste abil töötava SMP serveri.
 
+SMP serverid peavad avalikustama kahte sorti REST API lõpp-punkte - 
+Teenuse grupp ja Teenuse Metaandmed \cite[ptk 5.4]{oasis_smp_v2}.
+
+
+\subsection{Teenuse grupp}
+Teenuse grupp kirjeldab mingit kindlat osalejat SMP-s. Osaleja unikaalne tunnus moodustub tema id-st ning id skeemist. 
+eDelivery osaleja tunnus on defineeritud OASIS ebCore Party Id Type spetsifikatsiooni järgi \cite{ec_ebcore_partyid_spec},
+mille kohasel on osaleja id skeemi alguseks alati \texttt{\seqsplit{urn:oasis:names:tc:ebcore:partyid-type}}
+\cite[ptk 2.1]{oasis_partyid_v1}, peale mida järgneb skeemikatalogi tunnus.
+
+Üldjuhul peab id väärtus olema registreeritud mõnes skeemikataloogis nagu näiteks iso6523, iso9735 and iso20022.
+Skeemikataloog \texttt{unregistered} määrab funktsionaalselt seda, et osaleja id võib olla ükskõik mis väärtus, 
+ning ei pea kuuluma mõnda üldtuntud skeemikataloogi \cite[ptk 2.5]{oasis_partyid_v1}. 
+Näidisprojekti raames on sõnumi saatja kui ka saaja osaleja id skeemiks
+\texttt{\seqsplit{urn:oasis:names:tc:ebcore:partyid-type:unregistered}}.
+
+Osalejate id väärtusteks märkis autor vastavalt \texttt{sender} ja \texttt{receiver}.
+Selle muudatusega koos muutis autor ka SML serveri registri sissekandeid ning WS plugin sõnumi saatja ning saaja väljasid.
+
+Osaleja id väärtuse ning id skeemi vahel võib olla kas üks koolon või kaks koolonit.
+See tuleneb kahest erinevast standardist, mis mõlemad on eDeliverys lubatud
+\cite[ptk 3.3]{ec_edelivery_smp_21}
+\cite[ptk 5.4]{oasis_smp_v2}
+\cite[ptk 2.7]{oasis_partyid_v1}.
+Küllaga on kahe kooloni kasutamine eelistatud, kuna ilma selleta ei saa kindlalt eraldada id skeemi ning väärtust.
+Kui iga sõne vahel oleks ainult üks koolon siis ei oleks üheselt mõistetav milline osa tunnusest on skeem ning milline
+on väärtus \cite[Kommentaar 3]{ec_edelivery_smp2_disposition_2024}. Seda arvestades lisas autor WS plugin sõnumis 
+\texttt{originalSender} ja \texttt{finalRecipient} väljade ette ühe kooloni. 
+
+Peale kõiki muudatusi tehakse Harmony juurdepääsupunkti poolt päringuid SMP serverisse järgmiselt:
+
+\begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
+GET /urn:oasis:names:tc:ebcore:partyid-type:unregistered::receiver/services/::eftiGateAction
+\end{lstlisting}
+
+
+\subsection{Teenuse Metaandmed}
+Teenuse metaandmed sisaldavad infot juurdepääsupunkti kui ka tema teenuse kohta. 
+
+
+
 \subsection{Phoss SMP}
 Vastavalt eDelivery SMP tarkvara valmiskomponentide analüüsile (vt jaotist \ref{smp-components-analysis})
 on Phoss SMP väga lihtsasti kasutatav SMP serveri tarkvara. 
@@ -413,37 +454,8 @@ veel ühte lisakonteinerit andmebaasi jaoks. XML taustsüsteemis on kõik salves
 
 Autor käivitas Phoss SMP serveri ning logis sisse veebipõhisesse adminliidesesse. Sealt avanes vaade erinevatele
 SMP süsteemi osadele, mida on administraatoril võimalik muuta. Konfiguratsioonidest kõige olulisemateks osutusid 
-"Service Groups" ja "Endpoints", mille abil on võimalik SMP-sse uusi teenuseid registreerida.
-
-\textbf{Service Groups} abil on võimalik lisada süsteemi uusi osalejaid. Uue osaleja lisamiseks peab määrama osaleja 
-id ning id tüübi, mis kokku moodustavad osaleja tunnuse. 
-eDelivery osaleja tunnus on defineeritud OASIS ebCore Party Id Type spetsifikatsiooni järgi \cite{ec_ebcore_partyid_spec},
-mille kohasel on osaleja id tüübi alguseks alati 
-\texttt{urn:oasis:names:tc:ebcore:partyid-type} \cite[2.1]{oasis_partyid_v1}, peale mida järgneb skeemikatalogi tunnus.
-
-Üldjuhul peab id väärtus olema registreeritud mõnes skeemikataloogis nagu näiteks iso6523, iso9735 and iso20022.
-Skeemikataloog \texttt{unregistered} määrab funktsionaalselt seda, et osaleja id võib olla ükskõik mis väärtus, 
-ning ei pea kuuluma mõnda üldtuntud skeemikataloogi \cite[2.5]{oasis_partyid_v1}. 
-Näidisprojekti raames on sõnumi saatja kui ka saaja osaleja id tüübiks
-\texttt{\seqsplit{urn:oasis:names:tc:ebcore:partyid-type:unregistered}}.
-
-Osalejate id väärtusteks märkis autor vastavalt \texttt{sender} ja \texttt{receiver}. 
+"Service Groups" ja "Endpoints", mille abil on võimalik registreerida vastavalt osalejaid ja teenuseid.
 
 Registreerinud \texttt{receiver} osaleja SMP-sse loodi
 \texttt{\seqsplit{/urn:oasis:names:tc:ebcore:partyid-type:unregistered::receiver}}
 nimeline REST API lõpp-punkt, mis väljastab metaandmeid selle osaleja kohta XML kujul.
-
-Loodud API lõpp-punkt on erinev sellest, mida ootab Harmony juurdepääsupunkt (vt joonis~\ref{fig:poc-stage-3-result}).
-Selle tõttu asendas autor WS plugin sõnumil saaja id väärtuse \texttt{C4} pealt \texttt{receiver} peale.
-
-Phoss SMP ootab sõnumi saaja id tüübi ning id väärtuse vahele kahte koolonit. See tuleneb kahest erinevast standardist
-mis mõlemad on eDeliverys lubatud
-\cite[\nopp 3.3]{ec_edelivery_smp_21}
-\cite[\nopp 5.4]{oasis_smp_v2}
-\cite[\nopp 2.7]{oasis_partyid_v1}.
-Küllaga on kahe kooloni kasutamine eelistatud, kuna ilma selleta ei saa kindlalt eraldada id tüüpi ning väärtust.
-Kui iga sõne vahel oleks ainult üks koolon siis ei oleks üheselt mõistetav milline osa tunnusest on tüüp ning milline
-on väärtus \cite{ec_edelivery_smp2_disposition_2024}.
-
-Arvestades eelnevaga muutis autor sõnumi saatja ning saaja id väätust uuesti WS plugin sõnumis, lisades mõlema
-id väärtuse ette ühe kooloni.
