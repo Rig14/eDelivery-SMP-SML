@@ -60,8 +60,8 @@ fun generateMessage(message: String): String {
               <ns5:ConversationId>$conversationId</ns5:ConversationId>
             </ns5:CollaborationInfo>
             <ns5:MessageProperties>
-              <ns5:Property name="originalSender" type="$SCHEME_ID">$FROM</ns5:Property>
-              <ns5:Property name="finalRecipient" type="$SCHEME_ID">$TO</ns5:Property>
+              <ns5:Property name="originalSender" type="$SCHEME_ID">:$FROM</ns5:Property>
+              <ns5:Property name="finalRecipient" type="$SCHEME_ID">:$TO</ns5:Property>
             </ns5:MessageProperties>
             <ns5:PayloadInfo>
               <ns5:PartInfo href="cid:message">

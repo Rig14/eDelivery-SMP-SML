@@ -7,12 +7,10 @@ val SCHEME_ID = "urn:oasis:names:tc:ebcore:partyid-type:unregistered"
 
 class RecordRegistry(private val rootDomain: String) {
   private val cnameRecords = mapOf(
-    "$SCHEME_ID:C4" to "smp.",
     "$SCHEME_ID:receiver" to "smp.",
   ).map { getCnameHash(it.key) to it.value }.toMap()
 
   private val naptrRecords = mapOf(
-    "$SCHEME_ID:C4" to "!^.*$!http://smp!",
     "$SCHEME_ID:receiver" to "!^.*$!http://smp!",
   ).map { getNaptrHash(it.key) to it.value }.toMap()
 

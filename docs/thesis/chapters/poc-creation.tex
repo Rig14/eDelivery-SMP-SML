@@ -425,14 +425,25 @@ mille kohasel on osaleja id tüübi alguseks alati
 Skeemikataloog \texttt{unregistered} määrab funktsionaalselt seda, et osaleja id võib olla ükskõik mis väärtus, 
 ning ei pea kuuluma mõnda üldtuntud skeemikataloogi \cite[2.5]{oasis_partyid_v1}. 
 Näidisprojekti raames on sõnumi saatja kui ka saaja osaleja id tüübiks
-\seqsplit{\texttt{urn:oasis:names:tc:ebcore:partyid-type:unregistered}}.
+\texttt{\seqsplit{urn:oasis:names:tc:ebcore:partyid-type:unregistered}}.
 
 Osalejate id väärtusteks märkis autor vastavalt \texttt{sender} ja \texttt{receiver}. 
 
 Registreerinud \texttt{receiver} osaleja SMP-sse loodi
-\seqsplit{/urn:oasis:names:tc:ebcore:partyid-type:unregistered::receiver}
-nimeline REST API lõppunkt, mis väljastab metaandmeid selle osaleja kohta XML kujul.
+\texttt{\seqsplit{/urn:oasis:names:tc:ebcore:partyid-type:unregistered::receiver}}
+nimeline REST API lõpp-punkt, mis väljastab metaandmeid selle osaleja kohta XML kujul.
 
+Loodud API lõpp-punkt on erinev sellest, mida ootab Harmony juurdepääsupunkt (vt joonis~\ref{fig:poc-stage-3-result}).
+Selle tõttu asendas autor WS plugin sõnumil saaja id väärtuse \texttt{C4} pealt \texttt{receiver} peale.
 
+Phoss SMP ootab sõnumi saaja id tüübi ning id väärtuse vahele kahte koolonit. See tuleneb kahest erinevast standardist
+mis mõlemad on eDeliverys lubatud
+\cite[\nopp 3.3]{ec_edelivery_smp_21}
+\cite[\nopp 5.4]{oasis_smp_v2}
+\cite[\nopp 2.7]{oasis_partyid_v1}.
+Küllaga on kahe kooloni kasutamine eelistatud, kuna ilma selleta ei saa kindlalt eraldada id tüüpi ning väärtust.
+Kui iga sõne vahel oleks ainult üks koolon siis ei oleks üheselt mõistetav milline osa tunnusest on tüüp ning milline
+on väärtus \cite{ec_edelivery_smp2_disposition_2024}.
 
-
+Arvestades eelnevaga muutis autor sõnumi saatja ning saaja id väätust uuesti WS plugin sõnumis, lisades mõlema
+id väärtuse ette ühe kooloni.
