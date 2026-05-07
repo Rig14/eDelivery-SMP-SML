@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="LauncherKt" type="JetRunConfigurationType" nameIsGenerated="true">
+  <configuration default="false" name="Launch SML-SMP" type="JetRunConfigurationType">
     <option name="MAIN_CLASS_NAME" value="LauncherKt" />
-    <module name="smp.main" />
+    <module name="dynamic-discovery.main" />
     <shortenClasspath name="NONE" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dynamic-discovery" />
     <method v="2">

@@ -2,6 +2,7 @@
 
 declare -A PARTIES=(
     ["smp"]="conf/certs/smp"
+    ["smp"]="dynamic-discovery/certs"
     ["sender"]="conf/certs/sender"
     ["receiver"]="conf/certs/receiver"
 )
