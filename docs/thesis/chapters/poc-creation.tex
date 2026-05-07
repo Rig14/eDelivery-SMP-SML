@@ -438,9 +438,14 @@ GET /urn:oasis:names:tc:ebcore:partyid-type:unregistered::receiver/services/::ef
 \end{lstlisting}
 
 
-\subsection{Teenuse Metaandmed}
+\subsection{Teenuse Metaandmed}\label{service-metadata-description}
 Teenuse metaandmed sisaldavad infot juurdepääsupunkti kui ka tema teenuse kohta. 
+Kindlat teenust iseloomustab tema unikaalne tunnus mis koosneb id-st ning skeemi id-st.
 
+Vastavalt eFTI näidisarhitektuurile \cite{efti4eu_reference_impl} on teenuse tunnuseks \texttt{::eftiGateAction}.
+Sellise tunnusega teenust otsitakse SMP-st, kuna WS Plugin poolt saadetud sõnum sisaldab 
+\texttt{<Action>} väärtuses \texttt{eftiGateAction}. Seda väärtust autor muutma ei hakanud 
+selleks, et säilitada ühilduvus eFTI näidisarhitektuuriga.  
 
 
 \subsection{Phoss SMP}
@@ -459,3 +464,40 @@ SMP süsteemi osadele, mida on administraatoril võimalik muuta. Konfiguratsioon
 Registreerinud \texttt{receiver} osaleja SMP-sse loodi
 \texttt{\seqsplit{/urn:oasis:names:tc:ebcore:partyid-type:unregistered::receiver}}
 nimeline REST API lõpp-punkt, mis väljastab metaandmeid selle osaleja kohta XML kujul.
+
+Peale osaleja registreerimist avas autor \textit{Endpoints} menüü, et registreerida eFTI teenust.
+Teenuse registreerimisel oli vaja sisestada oluliselt rohkem väärtuseid kui osaleja puhul.
+
+Kaks kõige esimest välja teenuse registreerimisel olid \textbf{dokumendi id tüüp} ning \textbf{protsessi id}.
+Välja nimed tekitasid segadust, kuna sellenimelisi välju ei ole defineeritud WS plugin sõnumis.
+Uurimuse käigus selgus, et SMP ning juurdepääsupunkti sõnavara erineb üksteisest, kuigi põhimõtted on samad.
+Vastavalt AS4 spesifikatsioonile, saab luua kujutuse SMP väärtustest juurdepääsupunktide väärtustesse 
+\cite[ptk 5]{peppol_as4_spec} (Tabel~\ref{tab:smp-to-ap-mapping})
+
+\begin{table}[h]
+    \centering
+    \caption{Kujutis (mapping) SMP väärtustest juurdepääsupunkti väärtustesse}
+    \label{tab:smp-to-ap-mapping}
+    \begin{tabular}{|l|r|}
+        \hline
+        SMP väärtus & Juurdepääsupunkti väärtus \\
+        \hline
+        Process & Service \\
+        Document & Action \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Arvestades leitud erisusi, täitis autor ära kõik kohustuslikud väljad teenuse registreerimiseks 
+(Joonis~\ref{fig:phoss-smp-service-registration}). Küllaga ei olnud võimalik teenust registreerida, 
+kuna süsteem andis veateate - dokumendi tüübi id skeem peab olema defineeritud. 
+Dokumendi tüübi id skeemi aga eFTI kontekstis ei eksisteeri (vt \ref{service-metadata-description}).
+Näidislahenduse loomiseks ei ole seega võimalik kasutada Phoss SMP serverit.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/phoss-smp-service-registration.png}
+  \caption{Phoss SMP teenuse metaandmete registreerimine}
+  \label{fig:phoss-smp-service-registration}
+\end{figure}
+
