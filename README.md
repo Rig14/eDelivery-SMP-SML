@@ -23,12 +23,27 @@ Username: `harmony`
 Password: `secret`
 
 ### Phoss SMP
+```bash
+docker compose -f compose.smp.yml up phoss-smp
+```
+
 SMP server admin: http://localhost:8080/secure
 SMP server public info: http://localhost:8080
 
 Default admin credentials:
 Username: `admin@helger.com`
 Password: `password`
+
+### Harmony SMP
+```bash
+docker compose -f compose.smp.yml up harmony-smp
+```
+
+Admin UI: http://localhost:8080/smp/ui
+
+Default admin credentials:
+User: system
+Password: 123456
 
 ## Additional Resources
 

@@ -491,7 +491,7 @@ Vastavalt AS4 spesifikatsioonile, saab luua kujutuse SMP väärtustest juurdepä
 Arvestades leitud erisusi, täitis autor ära kõik kohustuslikud väljad teenuse registreerimiseks 
 (Joonis~\ref{fig:phoss-smp-service-registration}). Küllaga ei olnud võimalik teenust registreerida, 
 kuna süsteem andis veateate - dokumendi tüübi id skeem peab olema defineeritud. 
-Dokumendi tüübi id skeemi aga eFTI kontekstis ei eksisteeri (vt \ref{service-metadata-description}).
+Dokumendi tüübi id skeemi eFTI kontekstis ei eksisteeri (vt \ref{service-metadata-description}).
 Näidislahenduse loomiseks ei ole seega võimalik kasutada Phoss SMP serverit.
 
 \begin{figure}[H]
@@ -501,3 +501,32 @@ Näidislahenduse loomiseks ei ole seega võimalik kasutada Phoss SMP serverit.
   \label{fig:phoss-smp-service-registration}
 \end{figure}
 
+
+
+\subsection{Harmony SMP}
+Vastavalt valmiskomponentide analüüsile on Harmony SMP serveri üks suurimaid miinuseid see,
+et seda pole konteineriseeritud (vt jaotist \ref{smp-components-analysis}). Katsetamise eesmärgil
+Otsustas autor Harmony SMP ise konteineriseerida.
+
+Autor uuris Harmony SMP koodibaasi ning leidis, et projekt oli juba konteineriseeritud. 
+Küllaga ei olnud võimalik ehitada dockeri pilti sealsete skriptide abil.
+Põhjus seisnes selles, et Harmony SMP muudatused DomiSMP vastu olid ära lõhkunud SMP serveri
+konteinerite piltide ehitamise funktsionaaluse. Autor parandas leitud vead ning
+sai pildid uuesti ehitama. Loodud pildid laadis autor ka Docker hub keskkonda. 
+\cite{harmony_smp_docker} \cite{harmony_smp_mysql_docker}.
+
+Kasutades dokeriseeritud Harmony SMP serverit, logis autor sisse veebipõhisesse admin liidesesse.
+Võrreldes Phoss SMP-ga oli Harmony kasutajaliides raskemini arusaadav ning navigeeritav.
+Teenuse metaandmete registreerimine oli võimalik ainult manuaalselt XML-i muutes 
+(Joonis~\ref{fig:harmony-smp-service-registration}).
+
+Manuaalne XML-i muutmine võimaldas autoril sisestada dokumendi id skeemi vastavalt eFTI nõetele, 
+ilma et oleks tekkinud veateade. Selle tulemusena oli võimalik koguda näidis XML-e, mille abil on 
+võimalik luua minimaalne SMP implementatsioon näidisprojekti raames.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/harmony-smp-service-registration.png}
+  \caption{Harmony SMP teenuse metaandmete registreerimine}
+  \label{fig:harmony-smp-service-registration}
+\end{figure}
