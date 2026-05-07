@@ -530,3 +530,13 @@ võimalik luua minimaalne SMP implementatsioon näidisprojekti raames.
   \caption{Harmony SMP teenuse metaandmete registreerimine}
   \label{fig:harmony-smp-service-registration}
 \end{figure}
+
+
+
+\subsection{SMP serveri implementatsioon}
+Selleks, et lahendada eelmises peatükis olev veateade metaandmete päringu kohta, tuleb luua 
+REST API lõpp-punkt mis tagastab juurdepääsupunktile teenuse metaandmeid. Lõpp-punkti URL on kujul:
+
+\begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
+GET /urn:oasis:names:tc:ebcore:partyid-type:unregistered::receiver/services/::eftiGateAction
+\end{lstlisting}
