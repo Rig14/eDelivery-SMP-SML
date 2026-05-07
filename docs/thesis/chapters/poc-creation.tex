@@ -288,12 +288,19 @@ Saatja juurdepääsupunkti \texttt{dns} väljale määrati CoreDNS serveri IP aa
 CoreDNS-i on võimalik seadistada kasutades \texttt{Corefile}-i, mis kirjeldab DNS päringute 
 töötlemise äriloogikat. Selleks, et uurida milliseid päringuid tehakse juurdepääsupunkti poolt,
 kasutas autor CoreDNS \texttt{log} pluginat, mis logib iga päringu konsooli.
-Algatanud uue eDelivery päringu kasutades WS pluginat, väljastas CoreDNS sellised logid:
+Algatanud uue eDelivery päringu kasutades WS pluginat, väljastas CoreDNS logisid (Joonis~\ref{coredns-logs}) 
 
-\begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
+\begin{figure}[H]
+  \centering
+  \begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
 [INFO] 172.20.0.5:51024 - 48291 "NAPTR IN FSPLJSRASNOET76WWBU3VGOATHNBC7HNZ7EUJXU5LKJFNIZVJJSA.testsml. udp 84 false 4096" NXDOMAIN qr,rd,ra 110 0.0014s
 [INFO] 172.20.0.5:49220 - 08273 "CNAME IN B-8bb529042b90c77892efd34f7395f504.testsml. udp 42 false 4096" NXDOMAIN qr,rd,ra 98 0.0009s
-\end{lstlisting}
+  \end{lstlisting}
+  \caption{Harmony juurdepääsupunkti poolt tekitatud CoreDNS logid}
+  \label{coredns-logs}
+\end{figure}
+
+
 
 Logidest saab järeldada, et Harmony juurdepääsupunkt teeb kahte sorti DNS päringuid - NAPTR ja CNAME.
 
@@ -306,11 +313,16 @@ Selle loogika põhjal peaks Harmony juurdepääsupunkti poolt tehtud
 \seqsplit{B-8bb529042b90c77892efd34f7395f504.testsml} CNAME päring vastama SMP serveri URL-ile.
 Selleks et leida SMP serveri URL, peab teadma kuidas koostada \texttt{B-*} räsi. 
 
-Algoritm CNAME päringu koostamiseks näeb pseudokoodis välja selline \cite[Peatükk 2.1.2]{peppol_cname_naptr_2025}: 
+Algoritm CNAME päringu koostamiseks on pseudokoodis kirjeldatud joonisel \ref{cname-algoritm} \cite[Peatükk 2.1.2]{peppol_cname_naptr_2025}.
 
+\begin{figure}[H]
+  \centering
 \begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
 "B-"+hexstring(md5(lowercase(ID-VALUE)))+"."+ID-SCHEME+"."+SMLZONE-NAME
 \end{lstlisting}
+  \caption{Algoritm CNAME päringu koostamiseks}
+  \label{cname-algoritm}
+\end{figure}
 
 ID väärtus, millest räsi luuakse, vastab \texttt{finalRecipient} väljale saadetavas sõnumis,
 mis eFTI kontekstis on \seqsplit{urn:oasis:names:tc:ebcore:partyid-type:unregistered:C4} 
@@ -324,11 +336,16 @@ Seda kasutatakse peamiselt VoIP-s, et leida õige protokoll ja server,
 mille kaudu kõnet alustada \cite[Sektsioon 1]{rfc3403}.
 
 Juurdepääsupunkti poolt tehtud NAPTR päringu loomiseks kasutatakse 
-järgnevat algoritmi \cite[Peatükk 2.1.2]{peppol_cname_naptr_2025}:
+algoritmi, mis on pseudokoodis kirjeldatud joonisel \ref{naptr-algorithm} \cite[Peatükk 2.1.2]{peppol_cname_naptr_2025}.
 
+\begin{figure}[H]
+  \centering
 \begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
 strip-trailing(base32(sha256(lowercase(ID-VALUE))),"=")+"."+IDSCHEME+"."+SML-ZONE-NAME
 \end{lstlisting}
+  \caption{Algoritm NAPTR päringu koostamiseks}
+  \label{naptr-algorithm}
+\end{figure}
 
 ID väärtus on sama mis CNAME päringu puhul.
 
@@ -430,12 +447,19 @@ Küllaga on kahe kooloni kasutamine eelistatud, kuna ilma selleta ei saa kindlal
 Kui iga sõne vahel oleks ainult üks koolon siis ei oleks üheselt mõistetav milline osa tunnusest on skeem ning milline
 on väärtus \cite[Kommentaar 3]{ec_edelivery_smp2_disposition_2024}. Seda arvestades lisas autor WS plugin sõnumis 
 \texttt{originalSender} ja \texttt{finalRecipient} väljade ette ühe kooloni. 
+ 
+Peale kõiki muudatusi tehakse Harmony juurdepääsupunkti poolt päringuid SMP serverisse
+joonisel \ref{smp-metatada-request-url} kirjeldatud kujul. 
 
-Peale kõiki muudatusi tehakse Harmony juurdepääsupunkti poolt päringuid SMP serverisse järgmiselt:
-
+\begin{figure}[H]
+  \centering
 \begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
 GET /urn:oasis:names:tc:ebcore:partyid-type:unregistered::receiver/services/::eftiGateAction
 \end{lstlisting}
+  \caption{Harmony juurdepääsupunkti poolt tehtav päring SMP-sse metaandmete saamiseks}
+  \label{smp-metatada-request-url}
+\end{figure}
+
 
 
 \subsection{Teenuse Metaandmed}\label{service-metadata-description}
@@ -535,8 +559,108 @@ võimalik luua minimaalne SMP implementatsioon näidisprojekti raames.
 
 \subsection{SMP serveri implementatsioon}
 Selleks, et lahendada eelmises peatükis olev veateade metaandmete päringu kohta, tuleb luua 
-REST API lõpp-punkt mis tagastab juurdepääsupunktile teenuse metaandmeid. Lõpp-punkti URL on kujul:
+REST API lõpp-punkt mis tagastab juurdepääsupunktile teenuse metaandmeid. Käringu kuju on 
+kirjeldatud joonisel \ref{smp-metatada-request-url}.
 
-\begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
-GET /urn:oasis:names:tc:ebcore:partyid-type:unregistered::receiver/services/::eftiGateAction
-\end{lstlisting}
+Selleks et hoida projekt lihtsana otsustas autor integreerida SMP REST teenuse SML-iga kokku.
+See tähendab et Klite haldab nii SMP kui ka SML osa.
+
+
+
+\subsection{Arhitektuur}
+SMP alamsüsteem koosneb kolmest osast - Metaandmete register, Metaandmete genereerija ja SMP ruuter
+
+\textbf{Metaandmete registri} ülesanne on hoida teenuse metaandmeid ning osalejate paare. 
+Ühele osalejale vastab üks sissekanne metaandmeid XML kujul. Kuna teenus on alati sama
+(\texttt{eftiGateAction}), siis pole vaja hoida võtmetena osaleja-tennuse ennikuna.
+
+\textbf{Metaandmete genereerija} ülesanne on genereerida metandmete XML. 
+Ainukesed muutuvad osad metaandmetes on sõnumi saaja, sõnumi saaja juurdepääsupunkti URL ja
+saaja digitaalne sertifikaat. Nende abil on võimalik luua teenuse metaandmed, mida võtab vastu
+juurdepääsupunkt.
+
+\textbf{SMP ruuter} võtab vastu HTTP päringuid teenuse metaandmetele ning tagastab 
+küsitud andmed XML kujul, juhul kui need on olemas. 
+
+
+\subsection{Arendus}
+Teenuse metaandete XML põhjana kasutas autor Harmony SMP serveri poolt loodud andmeid.
+Võrreldes Phoss SMP-ga ei kasutanud Harmony SMP XML väljade jaoks NS prefiksit.
+NS prefiksi mitte kasutamine, kui see võimalik on, muudab XMLi lihtsamini loetavaks,
+mille tõttu autor otsustas selle kasuks.
+
+Kõige keerulisem osa selle projekti juures oli õige metaandmete XMLi loomine,
+mida suudaks juurdepääsupunkt vastu võtta. Keerukust tekitas XMLDSIG.
+
+XMLDSIG ehk XML-allkirjad pakuvad terviklust, sõnumi autentimist ja allkirjastaja autentimist
+mis tahes tüüpi andmetele, olenemata sellest, kas need asuvad allkirja sisaldavas 
+XML-failis või mujal \cite{w3c_xmldsig_core1}. 
+
+Üldjuhul kasutatakse spetsiifilisi teeke selleks, et allkirjastada XML dokumente.
+Nende teekide probleem on see, et need on üldjuhul väga aeglased. Nagu näiteks Java
+XMLSignature mis kasutab XML-i töötlemiseks DOM-i. DOM on väga aeglane algoritm XML-i
+töötlemiseks \cite{ximpleware_benchmark_2003}. Sellest tulenevalt otsustas autor
+XML-i allkirjastamiseks klassikalisi XML-i töötlemise tööriistu mitte kasutada.
+
+
+\subsection{XML C14N}
+On võimalik, et XML-dokumendid, mis on paljude rakenduste jaoks samaväärsed, 
+erinevad oma füüsilise esituse poolest. Näiteks võivad need erineda oma olemite
+struktuuri, atribuutide järjestuse ja märgikodeeringu poolest 
+(Joonis~\ref{same-xml-different-form}) \cite{w3c_xml_c14n11}.
+
+
+\begin{figure}[H]
+  \centering
+
+  \begin{lstlisting}[language=xml, frame=single, basicstyle=\small, breaklines=true]
+    <user id="123" status="active">
+      <name>Jane Doe</name>
+    </user>
+
+    <user status="active" id="123">
+      <name>Jane Doe</name>
+    </user>
+  \end{lstlisting}
+
+  \caption{Funktsionaalselt samaväärsed XML-id aga erinev kuju}
+  \label{same-xml-different-form}
+\end{figure}
+
+XML-i Kanooniline kuju on funktsionaalselt samasusgustel XML-idel ka samasugune.
+See võimaldab räsida XML-e samamoodi, olenemata millisel kujul nad algselt olid.
+Räsimisel on oluline et sisendandmed oleks alati samad, kuna isegi väike muudatus 
+sisendis toob kaasa teise räsi.
+
+Teenuse metaandmete XML-is on kasutatud Canonical XML v1 formaati kanoonilise
+kuju leidmiseks. See tuleneb \texttt{CanonicalizationMethod} välja
+\texttt{\seqsplit{http://www.w3.org/TR/2001/REC-xml-c14n-20010315}} väärtusest 
+\cite{w3c_xml_c14n_2001}.
+
+Lähtudes ülaltoodust, paigutas autor metaandmete XMLi väljad kanoonilisele kujule.
+Kuna andmed juba on kanoonilisel kujul siis ei ole vaja kasutada mahukaid XMLi
+teeke, mis muudab koodi lihtsamaks ning kiiremaks.
+
+
+\subsection{XMLDSIG Digest}
+Selleks et veenduda, et teenuse metaandmeid pole kuidagi muudetud, luuaks \texttt{SHA256} 
+räsi nendest andmetest. Räsimise algoritm on kirjeldatud XML-is viitega 
+\texttt{\seqsplit{http://www.w3.org/2001/04/xmlenc\#sha256}}
+
+Räsimiseks tuli paigutada XML-i metaandmete osa \texttt{SignedServiceMetadata} osa vahele.
+Väga oluline oli eemaldada kõik teised XMLi osad räsimisel, sest muidu loodi vale räsi.
+See tuleneb viitest \texttt{\seqsplit{http://www.w3.org/2000/09/xmldsig\#enveloped-signature}}
+mille kohaselt tuleb eemaldada \texttt{Signature} osa täielikult räsi loomisel. 
+\cite[ptk 6.6.4]{w3c_xmldsig_core1}
+
+Loodud räsi paigutati \texttt{DigestValue} väljana \texttt{SignedInfo} sisse.  
+
+
+\subsection{XMLDSIG SignatureValue}
+Loodud \texttt{SignedInfo} välja peab digitaalselt allkirjastama.
+Selleks tuleb kasutada \texttt{SHA256withRSA} algoritmi, mis tuleb \texttt{SignatureMethod}
+väljast \texttt{\seqsplit{http://www.w3.org/2001/04/xmldsig-more\#rsa-sha256}} 
+\cite[ptk 3.1.2]{rfc3275}.
+
+Saadud allkiri tuleb paigutada \texttt{SignatureValue} välja sisse \cite[ptk 3.1.2]{rfc3275}.
+
