@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Send WS Plugin Message" type="JetRunConfigurationType">
+    <option name="MAIN_CLASS_NAME" value="client.PluginUserClientKt" />
+    <module name="dynamic-discovery.main" />
+    <shortenClasspath name="NONE" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
