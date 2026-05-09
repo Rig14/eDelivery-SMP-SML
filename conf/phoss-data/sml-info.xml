@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file was generated automatically - do NOT modify!
+Written at May 9, 2026, 9:24:50 AM Z-->
+<root>
+  <item id="digitprod" displayname="SML" clientcert="true">
+    <dnszone>edelivery.tech.ec.europa.eu.</dnszone>
+    <mgmtsvc>https://edelivery.tech.ec.europa.eu/edelivery-sml</mgmtsvc>
+    <suffix-manage-smp>/manageservicemetadata</suffix-manage-smp>
+    <suffix-manage-participant>/manageparticipantidentifier</suffix-manage-participant>
+  </item>
+  <item id="digittest" displayname="SMK" clientcert="true">
+    <dnszone>acc.edelivery.tech.ec.europa.eu.</dnszone>
+    <mgmtsvc>https://acc.edelivery.tech.ec.europa.eu/edelivery-sml</mgmtsvc>
+    <suffix-manage-smp>/manageservicemetadata</suffix-manage-smp>
+    <suffix-manage-participant>/manageparticipantidentifier</suffix-manage-participant>
+  </item>
+  <item id="local" displayname="Development" clientcert="false">
+    <dnszone>smj.peppolcentral.org.</dnszone>
+    <mgmtsvc>http://localhost:8080</mgmtsvc>
+    <suffix-manage-smp>/manageservicemetadata</suffix-manage-smp>
+    <suffix-manage-participant>/manageparticipantidentifier</suffix-manage-participant>
+  </item>
+</root>

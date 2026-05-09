@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file was generated automatically - do NOT modify!
+Written at May 9, 2026, 9:24:50 AM Z-->
+<namedsmtpsettingslist>
+  <namedsmtpsettings id="default">
+    <name>default</name>
+    <smtpsettings host="localhost" port="25" charset="UTF-8" sslenabled="false" starttlsenabled="false" connectiontimeout="5000" timeout="10000" debugsmtp="false" />
+  </namedsmtpsettings>
+</namedsmtpsettingslist>

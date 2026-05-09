@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file was generated automatically - do NOT modify!
+Written at May 9, 2026, 9:25:00 AM Z-->
+<root>
+  <item id="ugadmin" creationldt="2026-05-09T09:24:50.871335978" lastmodldt="2026-05-09T09:24:50.874123526" lastmoduserid="$GUEST$" name="Administrators">
+    <user id="admin" />
+    <role id="config" />
+    <role id="writablerestapi" />
+  </item>
+  <item id="ugconfig" creationldt="2026-05-09T09:24:50.874437937" lastmodldt="2026-05-09T09:24:50.874596228" lastmoduserid="$GUEST$" name="Config user">
+    <role id="config" />
+  </item>
+  <item id="ugwritablerestapi" creationldt="2026-05-09T09:24:50.874837561" lastmodldt="2026-05-09T09:24:50.874970337" lastmoduserid="$GUEST$" name="Writable REST API users">
+    <role id="writablerestapi" />
+  </item>
+</root>

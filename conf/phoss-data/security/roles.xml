@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file was generated automatically - do NOT modify!
+Written at May 9, 2026, 9:25:00 AM Z-->
+<root>
+  <item id="config" creationldt="2026-05-09T09:24:50.870343392" name="Config user" />
+  <item id="writablerestapi" creationldt="2026-05-09T09:24:50.871074669" name="Writable REST API access" />
+</root>

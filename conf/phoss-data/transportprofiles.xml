@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file was generated automatically - do NOT modify!
+Written at May 9, 2026, 9:24:50 AM Z-->
+<root>
+  <item id="bdxr-as4-1.0#dbnalliance-1.0" name="DBNAlliance AS4 1.0" state="active" />
+  <item id="bdxr-transport-ebms3-as4-v1p0" name="CEF AS4" state="active" />
+  <item id="busdox-transport-as2-ver1p0" name="Peppol AS2 v1" state="deleted" />
+  <item id="busdox-transport-as2-ver2p0" name="Peppol AS2 v2" state="deleted" />
+  <item id="busdox-transport-ebms3-as4" name="AS4" state="deprecated" />
+  <item id="busdox-transport-start" name="START" state="deleted" />
+  <item id="eracun-transport-as4-v1_0" name="HR eDelivery AS4 1.0" state="active" />
+  <item id="peppol-transport-as4-v1_0" name="Peppol AS4 v1" state="deleted" />
+  <item id="peppol-transport-as4-v2_0" name="Peppol AS4 v2" state="active" />
+</root>
