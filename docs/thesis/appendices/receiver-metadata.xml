@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SignedServiceMetadata xmlns="http://docs.oasis-open.org/bdxr/ns/SMP/2016/05">
+    <ServiceMetadata>
+        <ServiceInformation>
+            <ParticipantIdentifier>receiver</ParticipantIdentifier>
+            <DocumentIdentifier>eftiGateAction</DocumentIdentifier>
+            <ProcessList>
+                <Process>
+                    <ProcessIdentifier scheme="tc1">bdx:noprocess</ProcessIdentifier>
+                    <ServiceEndpointList>
+                        <Endpoint transportProfile="bdxr-transport-ebms3-as4-v1p0">
+                            <EndpointURI>http://ap-receiver:8080/services/msh</EndpointURI>
+                            <Certificate>
+                                MIIDBzCCAe+gAwIBAgIUbuRbzUbZmORNjZar6OrGHZf3f54wDQYJKoZIhvcNAQELBQAwEzERMA8GA1UEAwwIcmVjZWl2ZXIwHhcNMjYwMTIzMTM1NzI1WhcNMzEwMTIyMTM1NzI1WjATMREwDwYDVQQDDAhyZWNlaXZlcjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMl4UeYRkI9eC958NgYsBufFFtgg8WjL+DeFSUkCfY+sK78yo0fQygxrVbktw4wJVLJ/aj8vLt/fDFXYdoGNhv5pVT1qlUyGCG0+jVK66Z+WjR3PuLAZ24XPDacTqCe1tbmzRItmUwQWIV+HIXxChGYu0/S7Cz4xgIP8QfczO0FBrZIS88+Ku1LGrv6hRjAlrvz2RVL7mk1rhxdLeNy3aKVhXeifA/sQo3YDdGPtvNCO+ICjxIuROhj3YgZ9Y1Dl8H978j6GHtZGFK4k02ol45MklgsRD7mKgvZraS25ZwTpSWMp+dw2pdU6L5Gb7Vr+wWeGQ1jb/97TshqVx7Te230CAwEAAaNTMFEwHQYDVR0OBBYEFOSf7RTt28wd1GBaOqcYdgnWK7AqMB8GA1UdIwQYMBaAFOSf7RTt28wd1GBaOqcYdgnWK7AqMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAF3WWPoK8BghNw6Ihai6aX2xv2xrF+Vo+XT6ErEg0jnQVk3LGFlSbNaAjevhPp/8+VUROqrf52zto219+rwkjbPs7/ApTS/UabmUjys9vv43Mla2aLq/iqlk4QZQf6g/dmFOrzTnFosvLrruWUBCT8g7Er8hqYHwmitSUOiLupAIDSLqGtffxQKnao7M5PxP0ihXyoXVzlQ7kSqqydYp3WZFsfR9GIkgmRk5tGb3bR18EMdcPKDhZFXJrNEG6Xz4fmY+zT1stpsdhvUMADvh5j4+76vCHSf/EjAWjz4A+n6S6u4QR/s03EHb8jhGEJxr429LzAowRgiz/dveLmPxu3A=</Certificate>
+                            <ServiceDescription>This service is used to upload identifiers to the
+                                eFTI Gate</ServiceDescription>
+                            <TechnicalContactUrl>contact@efti.eu</TechnicalContactUrl>
+                        </Endpoint>
+                    </ServiceEndpointList>
+                </Process>
+            </ProcessList>
+        </ServiceInformation>
+    </ServiceMetadata>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <SignedInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+            <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></CanonicalizationMethod>
+            <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
+            <Reference URI="">
+                <Transforms>
+                    <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></Transform>
+                </Transforms>
+                <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+                <DigestValue>s1sO+7+OiA+eAXMyiSaL8f0uPh9koFtIb+1U34nvO1U=</DigestValue>
+            </Reference>
+        </SignedInfo>
+        <SignatureValue>
+            AFJv9g3qa40bL5GQRlWjm79FxnduQF1TjYcjLFKELstebGYS6i2scihsIAgGAD6fNk30XnomCKfHsbJ4VIUqIWzefU824XeXvTsh0tZ1FxQrBKg6gD2Rrb+4J3PKuyWu3Y8+zd6oS910KESBaKN801u2+OAJpn/HoBGRSbPmei+yEWCgyW4rn1+lk8/2yie/zP6zQzms8vqNob24FCrmhmRE5XWdjHKgo6HFIfIW7lg4cWTwvLP29FkigqxpinNm2Vkh1+nv1ZcPmIOtuq9ir4Ta68VtfEzduJ32DE9ohd7pvPTVH6EY8073DPtwL2qtilCN8/IcAFhcA17UWqOMYA==</SignatureValue>
+        <KeyInfo>
+            <X509Data>
+                <X509SubjectName>CN=smp</X509SubjectName>
+                <X509Certificate>
+                    MIIC/TCCAeWgAwIBAgIUCDwqXg/F9gY4fgzPSCZePs5ZnXwwDQYJKoZIhvcNAQELBQAwDjEMMAoGA1UEAwwDc21wMB4XDTI2MDUwNzEwMDM0OVoXDTMxMDUwNjEwMDM0OVowDjEMMAoGA1UEAwwDc21wMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsWf1hrqIU14eccD1LqNpRe7dFhOFXK55rzssy3QaBKhta4u8f0R0B1POmmkIdaIy7V/4wZEC5ah+7KXnKzStE7UVLYpXCdh5FBK2LvYNwi77TPLnC3eZijOde9O/LpGQjEEsMeaBJPfAKaRpGQiiuykKnX937sBCJ/ssXLviz/ow7ShkERecQHQKJps+WqLbkpA8swBHsc1AUYCPrW3AOWFhFyOlVm29Tmxt+MuvmgfXYjp6cnTfD/xwSTBJEgGoxChpW25qfiffl2jL+Ogq4Cq4JVlcH3zehweLeVsZ/UBfQ/BPID+xqZyJaJ0OrRSWibBECiEUjHUjZMNeOmLOZQIDAQABo1MwUTAdBgNVHQ4EFgQUIzdg2vbeejpheJ1u3+CLcuIpPBIwHwYDVR0jBBgwFoAUIzdg2vbeejpheJ1u3+CLcuIpPBIwDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAV2aSqgRuqsZ45hn5I83dI1MogsosPrnpTIeDVqzSOtCH3lC7FXn7aAWKOKQZgSqXXMbPTTUDJWB2SbA7gLHy/4zJal+8aYaRGPiAvDtb7accu5sPByiinw5p9wGmxvOZWbSbZsT1dxGxYqEaBo6sM5pZnoaXrlLiRVefWdsdrKW1o2SqV8ebt3IETLdyZKLhkd/8nnqvACSnWOQkpxQ6zgdE2KLPagNk0KpgNCi4nXdeDlQVNDc2Zwzgayn4qTCG4d9PG3rtcZNH8uvDRnGGlG1ANTQOjtlv/P43NYp9Ci5ZSs+WYUe6itCqW/2pjMLvP+lV2HlElR9K2zxHM3ujpQ==</X509Certificate>
+            </X509Data>
+        </KeyInfo>
+    </Signature>
+</SignedServiceMetadata>
