@@ -2,11 +2,14 @@ Jõudlustestimise eesmärgiks on saada teada kui kiire ja vastupidav on mingi ta
 Selle lõputöö käigus viiakse läbi jõudlustestimine loodud näidislahenduse peal. 
 Testimise skoopi kuuluvad ka Harmony SMP ning Phoss SMP server.
 
+Jõudlustestimise skoopi ei kuulu WS plugin sõnumite saatmine läbi juurdepääsupunkti. 
+Testimise eesmärgiks on teha kindlaks loodud näidislahenduse tulemused võrreldes teiste komponentidega.
+Sellest tulenevalt ei ole vajalik testida Harmony juurdepääsupunkti jõudlust.
+
 Testimine jaguneb järgnevateks etappideks:
 
 \begin{enumerate}
-  \item Näidislahenduse kui terviku jõudlustestimine
-  \item Näidislahenduse SMP testimine
+  \item Näidislahenduse SMP ja SML testimine
   \item Phoss SMP testimine
   \item Harmony SMP testimine
 \end{enumerate}
@@ -27,6 +30,10 @@ päringuid tehakse samaaaegselt. Autor tegi jõudlustestimiseks ab argumentide j
 (tabel~\ref{tab:ab-performance-table-template}). Päringute arv ja samaaegsus on järjest kasvav.
 Nii on võimalik võrrelda tarkvara jõudlust erinevatel koormusastmetel.
 
+Apache Benchmark moodi lahendus DNS-i maastikul on \texttt{dnsperf}. \texttt{dnsperf} on tasuta tööriist,
+mille on välja töötanud Nominum/Akamai (2006–2018) ja DNS-OARC (alates 2019. aastast)
+ning mis teeb latentsuse ja läbilaskevõime meetrikate kogumise lihtsaks \cite{dnsperf_tool}.
+
 \begin{table}[H]
     \caption{ab jõudlustestimise mall}
     \label{tab:ab-performance-table-template}
@@ -45,6 +52,9 @@ Nii on võimalik võrrelda tarkvara jõudlust erinevatel koormusastmetel.
     \end{tabular}
 \end{table}
 
+Kõik testimised toimuvad kasutades Intel(R) Core(TM) Ultra 7 255H (16) @ 5.10 GHz protsessorit.
 
 
-
+\section{Näidislahenduse SMP}
+Autor käivitas näidislahenduse SMP/SML serveri. 
+Apache Benchmark tulemused
