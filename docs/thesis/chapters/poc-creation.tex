@@ -567,7 +567,7 @@ See tähendab et Klite haldab nii SMP kui ka SML osa.
 
 
 
-\subsection{Arhitektuur}
+\subsection{Arhitektuur ja arendusmetoodika}
 SMP alamsüsteem koosneb kolmest osast - Metaandmete register, Metaandmete genereerija ja SMP ruuter
 
 \textbf{Metaandmete registri} ülesanne on hoida teenuse metaandmeid ning osalejate paare. 
@@ -582,8 +582,6 @@ juurdepääsupunkt.
 \textbf{SMP ruuter} võtab vastu HTTP päringuid teenuse metaandmetele ning tagastab 
 küsitud andmed XML kujul, juhul kui need on olemas. 
 
-
-\subsection{Arendus}
 Teenuse metaandete XML põhjana kasutas autor Harmony SMP serveri poolt loodud andmeid.
 Võrreldes Phoss SMP-ga ei kasutanud Harmony SMP XML väljade jaoks NS prefiksit.
 NS prefiksi mitte kasutamine, kui see võimalik on, muudab XMLi lihtsamini loetavaks,
@@ -664,3 +662,9 @@ väljast \texttt{\seqsplit{http://www.w3.org/2001/04/xmldsig-more\#rsa-sha256}}
 
 Saadud allkiri tuleb paigutada \texttt{SignatureValue} välja sisse \cite[ptk 3.1.2]{rfc3275}.
 
+
+\subsection{Testimine}
+Autor kirjutas SMP serveri implementatsioonile ühikteste ning viis läbi funktsionaalse testimise.
+
+Funktsionaalse testimise käigus tegi autor HTTP GET päringu teenuse metaandmetele. Metaandmete
+vastus on kirjeldatud lisas~\ref{lst:receiver-metadata}.
