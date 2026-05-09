@@ -668,3 +668,14 @@ Autor kirjutas SMP serveri implementatsioonile ühikteste ning viis läbi funkts
 
 Funktsionaalse testimise käigus tegi autor HTTP GET päringu teenuse metaandmetele. Metaandmete
 vastus on kirjeldatud lisas~\ref{lst:receiver-metadata}.
+
+Viimaseks saatis autor WS plugin sõnumi saatja juurdepääsupunktile, mis edukalt leidis 
+sõnumi saaja andmed SMP serverist (joonis~\ref{fig:poc-stage-4-results})
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/poc-stage-4-result.png}
+  \caption{Neljanda etapi lõpptulemus - sõnumi saatja saadab sõnumi, kasutade dünaamilist otsingut,
+  sõnumi saajale. Vasakul saaja, paremal saatja}
+  \label{fig:poc-stage-4-results}
+\end{figure}
