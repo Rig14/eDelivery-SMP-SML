@@ -16,13 +16,35 @@ Testimine jaguneb järgnevateks etappideks:
 Jõudluse testimisel tuleb paika seada millised on testimise sisendid ning
 millised on võrreldavad väljundid.
 
-Testimise sisenditeks on argumendid, mis määravad tehtavate päringute koguse ning samaaegsuse.
+Väljundina võrreldakse töödeldud päringute kogust sekundis ning päringute 99\% latentsust.
+Seda tüüpi tulemuste kogumiseks on kõige paremaks tööriistaks Apache Benchmark. Apache Benchmark (ab)
+on lihtne, kuid võimas käsureatööriist, mida kasutatakse veebiserverite (mitte ainult Apache) 
+koormustestimiseks ja jõudluse mõõtmiseks. See annab kiire ülevaate sellest, kui hästi suudab 
+server tulla toime suure hulga päringutega. \cite{apache_ab_tool}
 
-Väljundina võrreldakse töödeldud päringute kogust sekundis ning 99\% päringute latentsust.
+Apache Benchmark tööriista puhul peab määrama mitu päringut tehakse kokku ning kui palju
+päringuid tehakse samaaaegselt. Autor tegi jõudlustestimiseks ab argumentide ja tulemuste malli
+(tabel~\ref{tab:ab-performance-table-template}). Päringute arv ja samaaegsus on järjest kasvav.
+Nii on võimalik võrrelda tarkvara jõudlust erinevatel koormusastmetel.
 
+\begin{table}[H]
+    \caption{ab jõudlustestimise mall}
+    \label{tab:ab-performance-table-template}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Päringute arv (-n) & Samaaegsed päringud (-c) & Päringuid sekundis (mediaan) & 99\% latentsus \\
+        \hline
+        100 & 10 &  &  \\
+        \hline
+        1000 & 100 &  &  \\
+        \hline
+        5000 & 250 &  &  \\
+        \hline
+        10000 & 1000 &  &  \\
+        \hline
+    \end{tabular}
+\end{table}
 
-
-\section{Kogu näidislahenduse testimine}
 
 
 
