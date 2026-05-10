@@ -25,18 +25,18 @@ on lihtne, kuid võimas käsureatööriist, mida kasutatakse veebiserverite (mit
 koormustestimiseks ja jõudluse mõõtmiseks. See annab kiire ülevaate sellest, kui hästi suudab 
 server tulla toime suure hulga päringutega. \cite{apache_ab_tool}
 
-Apache Benchmark tööriista puhul peab määrama mitu päringut tehakse kokku ning kui palju
-päringuid tehakse samaaaegselt. Autor tegi jõudlustestimiseks ab argumentide ja tulemuste malli
-(tabel~\ref{tab:ab-performance-table-template}). Päringute arv ja samaaegsus on järjest kasvav.
-Nii on võimalik võrrelda tarkvara jõudlust erinevatel koormusastmetel.
-
 Apache Benchmark moodi lahendus DNS-i maastikul on \texttt{dnsperf}. \texttt{dnsperf} on tasuta tööriist,
 mille on välja töötanud Nominum/Akamai (2006–2018) ja DNS-OARC (alates 2019. aastast)
 ning mis teeb latentsuse ja läbilaskevõime meetrikate kogumise lihtsaks \cite{dnsperf_tool}.
 
+Mõlema tööriista puhul peab määrama mitu päringut tehakse kokku ning kui palju
+päringuid tehakse samaaaegselt. Autor tegi jõudlustestimiseks argumentide ja tulemuste malli
+(tabel~\ref{tab:performance-table-template}). Päringute arv ja samaaegsus on järjest kasvav.
+Nii on võimalik võrrelda tarkvara jõudlust erinevatel koormusastmetel.
+
 \begin{table}[H]
     \caption{ab jõudlustestimise mall}
-    \label{tab:ab-performance-table-template}
+    \label{tab:performance-table-template}
     \begin{tabular}{|c|c|c|c|}
         \hline
         Päringute arv (-n) & Samaaegsed päringud (-c) & Päringuid sekundis (mediaan) & 99\% latentsus \\
@@ -55,6 +55,158 @@ ning mis teeb latentsuse ja läbilaskevõime meetrikate kogumise lihtsaks \cite{
 Kõik testimised toimuvad kasutades Intel(R) Core(TM) Ultra 7 255H (16) @ 5.10 GHz protsessorit.
 
 
-\section{Näidislahenduse SMP}
-Autor käivitas näidislahenduse SMP/SML serveri. 
-Apache Benchmark tulemused
+\section{Näidislahenduse SMP/SML}
+Autor käivitas näidislahenduse SMP/SML serveri ning kogus selle kohta jõudlusandmeid kasutades selleks
+\texttt{ab} ja \texttt{dnsperf} tööriistu.
+
+Näidislahenduse SMP serveri jõudlus hinnati kasutades käsklust \ref{lst:ab-command-smp}.
+Tulemused on kirjeldatud tabelis~\ref{tab:poc-smp-performance-results}.
+
+\begin{table}[H]
+    \caption{Näidislahenduse SMP metaandmete API jõudlus}
+    \label{tab:poc-smp-performance-results}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Päringute arv (-n) & Samaaegsed päringud (-c) & Päringuid sekundis (mediaan) & 99\% latentsus (ms) \\
+        \hline
+        100 & 10 & 3134 & 3.2 \\
+        \hline
+        1000 & 100 & 920 & 108 \\
+        \hline
+        5000 & 250 & 3220 & 77 \\
+        \hline
+        10000 & 1000 & 4920 & 200 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Näidislahenduse SML serveri jõudlus hinnati kasutades käsklust \ref{lst:dnsperf-command-sml}. 
+Tulemused on kirjeldatud tabelis~\ref{tab:poc-sml-performance-results}.
+
+\begin{table}[H]
+    \caption{Näidislahenduse SML DNS-i jõudlus}
+    \label{tab:poc-sml-performance-results}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Päringute arv (-n) & Samaaegsed päringud (-c) & Päringuid sekundis (mediaan) & 99\% latentsus (ms) \\
+        \hline
+        100 & 10 & 11314 & 1.6 \\
+        \hline
+        1000 & 100 & 20221 & 4 \\
+        \hline
+        5000 & 250 & 38383 & 2 \\
+        \hline
+        10000 & 1000 & 5192 & 19 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Tulemustest saab järeldada et näidislahenduse SMP moodul kui ka SML moodul suudavad toime tulla väga
+suure koormusega. SMP serveri jõudlustabel sisaldab anomaaliat tuhande
+päringu ja saja samaaegse päringu puhul. Autor ei suutnud välja selgitada millest tuleneb madalam
+jõuldlus just sellel koormusastmel.
+
+
+
+\section{Phoss SMP}
+Kuna Phoss SMP võimaldab vaid SMP funktsionaalust siis koguti andmeid ainult selle osa kohta.
+Autor muutis käsklust \ref{lst:ab-command-smp} ning määras metaandmete URL-iks
+\texttt{\seqsplit{http://localhost:8080/urn:oasis:names:tc:ebcore:partyid-type:unregistered::receiver/services/bus::eftiGateAction}}.
+Muudatus tuleneb sellest, et Phoss SMP ei võimalda registreerida teenust millel ei ole skeemi id-d.
+Jõudlustestimise võimaldamiseks määras autor skeemi id-ks \texttt{bus}, 
+kõik teised väärtused jäid näidislahendusega samaks.
+
+Jõudlustestide tulemusi kirjeldab tabel~\ref{tab:phoss-smp-performance-results}.
+
+\begin{table}[H]
+    \caption{Phoss SMP jõudlustestide tulemused}
+    \label{tab:phoss-smp-performance-results}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Päringute arv (-n) & Samaaegsed päringud (-c) & Päringuid sekundis (mediaan) & 99\% latentsus (ms) \\
+        \hline
+        100 & 10 & 1245 & 8 \\
+        \hline
+        1000 & 100 & 3080 & 32 \\
+        \hline
+        5000 & 250 & 1297 & 192 \\
+        \hline
+        10000 & 1000 & 1290 & 774 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Tulemustest saab järeldada, et Phoss SMP suudab taluda suurt koormust hästi.
+Samuti on näha et serveri jõudlus langeb kiirelt koormuse suurenemisel.
+
+
+
+\section{Harmony SMP}
+
+Kuna Harmony SMP ei serveeri teenuse metaandmeid URL-i juurelt, tuleb kohandada
+käsklust \ref{lst:ab-command-smp}, muutes SMP URL-iks 
+\texttt{\seqsplit{http://localhost:8080/smp/urn:oasis:names:tc:ebcore:partyid-type:unregistered:receiver/services/::eftigateaction}}.
+
+Jõudlustestide tulemusi kirjeldab tabel~\ref{tab:harmony-smp-performance-results}.
+
+\begin{table}[H]
+    \caption{Harmony SMP jõudlustestide tulemused}
+    \label{tab:harmony-smp-performance-results}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Päringute arv (-n) & Samaaegsed päringud (-c) & Päringuid sekundis (mediaan) & 99\% latentsus (ms) \\
+        \hline
+        100 & 10 & 132 & 75 \\
+        \hline
+        1000 & 100 & 178 & 559 \\
+        \hline
+        5000 & 250 & 209 & 1191 \\
+        \hline
+        10000 & 1000 & 211 & 4725 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Võrreldes kõigi teiste SMP lahendustega on Harmony SMP koormustaluvuse mõttes kõige kehvem.
+Päringute arv sekundis on piiritletud kuid suurema koormuse puhul tõuseb vastuste latentsus.
+
+
+
+\section{Järeldused}
+
+SMP serverite jõudlustestide tulemusi saab võrrelda kasutades tabelit~\ref{tab:smp-performance-comparison}
+Punasega on tähistatud kõige halvem tulemus. Rohelisega kõige parem tulemus.
+
+\definecolor{best}{RGB}{234, 243, 222}
+\definecolor{worst}{RGB}{252, 235, 235}
+\begin{table}[H]
+    \caption{SMP jõudlustestide võrdlus}
+    \label{tab:smp-performance-comparison}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \multicolumn{2}{|c|}{Koormus} & \multicolumn{3}{c|}{Päringuid sekundis (mediaan)} \\
+        \hline
+        Päringute arv (-n) & Samaaegsed päringud (-c) & POC SMP & Phoss SMP & Harmony SMP \\
+        \hline
+        100 & 10 & \cellcolor{best}3134 & 1245 & \cellcolor{worst}132 \\
+        \hline
+        1000 & 100 & 920 & \cellcolor{best}3080 & \cellcolor{worst}178 \\
+        \hline
+        5000 & 250 & \cellcolor{best}3220 & 1297 & \cellcolor{worst}209 \\
+        \hline
+        10000 & 1000 & \cellcolor{best}4920 & 1290 & \cellcolor{worst}211 \\
+        \hline
+        \multicolumn{2}{|c|}{Koormus} & \multicolumn{3}{c|}{99\% latentsus (ms)} \\
+        \hline
+        Päringute arv (-n) & Samaaegsed päringud (-c) & POC SMP & Phoss SMP & Harmony SMP \\
+        \hline
+        100 & 10 & \cellcolor{best}3.2 & 8 & \cellcolor{worst}75 \\
+        \hline
+        1000 & 100 & 108 & \cellcolor{best}32 & \cellcolor{worst}559 \\
+        \hline
+        5000 & 250 & \cellcolor{best}77 & 192 & \cellcolor{worst}1191 \\
+        \hline
+        10000 & 1000 & \cellcolor{best}200 & 774 & \cellcolor{worst}4725 \\
+        \hline
+    \end{tabular}
+\end{table}

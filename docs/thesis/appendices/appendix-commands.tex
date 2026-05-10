@@ -9,3 +9,33 @@ openssl genpkey -algorithm RSA -out "$cert_dir/$NAME.key" -pkeyopt rsa_keygen_bi
 openssl req -new -x509 -key "$cert_dir/$NAME.key" -out "$cert_dir/$NAME.crt" -days 1825 -subj "/CN=$party_id"
 openssl pkcs12 -export -out "$cert_dir/$NAME.p12" -inkey "$cert_dir/$NAME.key" -in "$cert_dir/$NAME.crt" -name "$party_id" -passout pass:changeit
 \end{lstlisting}
+
+\renewcommand{\lstlistingname}{Käsklus}
+\begin{lstlisting}[
+  frame=single,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  breakindent=0pt,
+  basicstyle=\small\ttfamily,
+  caption={ab tööriista kasutamise käsklus SMP serveri jõudluse hindamiseks}, 
+  label={lst:ab-command-smp}]
+SERVER_URL = http://localhost:8080/urn%3Aoasis%3Anames%3Atc%3Aebcore%3Apartyid-type%3Aunregistered%3A%3Areceiver/services/%3A%3AeftiGateAction
+ab -n $TOTAL_REQUESTS -c $CONCURRENCY $SERVER_URL
+\end{lstlisting}
+
+\renewcommand{\lstlistingname}{Käsklus}
+\begin{lstlisting}[
+  frame=single,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  breakindent=0pt,
+  basicstyle=\small\ttfamily,
+  caption={dnsperf tööriista kasutamise käsklus SML serveri jõudluse hindamiseks}, 
+  label={lst:dnsperf-command-sml}]
+dnsperf -s 127.0.0.1 -p 8053 -d <(yes "SG7WQEA6Z27EYWS575WTM3AZ6SVFZIY7G6TRTKZDWC45AZRV6OEQ.testsml NAPTR" | head -n $TOTAL_REQUESTS) -c $CONCURRENCY
+\end{lstlisting}
+
