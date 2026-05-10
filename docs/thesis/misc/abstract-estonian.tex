@@ -4,8 +4,8 @@ vahetamise pädevate asutuste ja veoettevõtete vahel. Liikmesriigid peavad olem
 veoinfot digitaalsel kujul ning muutma selle kättesaadavaks pädevatele asutustele.
 Sellest tulenevalt peab olema igal liikmesriigil oma eFTI värav, mis infot osapoolte vahel edastama hakkab.
 
-Regulatsiooni kohalset on liikmesriikide ja riigisisese andmevahetuse aluseks eDelivery infovahetuse süsteem.
-Riikide vahel kasutatake staatilist eDelivery konfiguratsiooni,
+Regulatsiooni kohaselt on liikmesriikide ja riigisisese andmevahetuse aluseks eDelivery infovahetuse süsteem.
+Riikide vahel kasutatakse staatilist eDelivery konfiguratsiooni,
 mille kohaselt seadistatakse vajaminevad sertifikaadid ning muud parameetrid manuaalselt.
 eFTI värav peab võimaldama veoettevõtetele ehk eFTI platvormidele ka eDelivery liidest,
 kuid võib pakkuda ka teisi lahendusi nagu näiteks REST liides.
@@ -14,8 +14,15 @@ Platvormidele loodud eDelivery lahendus peab kasutama dünaamilist konfiguratsio
 sertifikaatide ning muude parameetrite leidmist.
 Dünaamiliselt metaandmete leidmiseks on eDeliverys kasutusel kaks lisakomponenti: SMP (Teenuse metaandmete avaldaja) ja SML (Teenuse metaandmete leidja).
 
-Selle lõputöö eesmärk on uurida kuidas töötavad eDelivery dünaamilise otsingu komponendid ning luua prototüüplahendus.
-Oluline on analüüsida olemasolevaid lahendusi ning luua jätkusuutlik tarkvara, mis suudaks töödelda võimalikult palju päringuid.
+Käesolev lõputöö uurib, kuidas eDelivery dünaamiline otsing praktikas toimib, ning realiseerib töötava prototüübi.
+Töö analüüsib olemasolevaid avatud lähtekoodiga komponente, toob välja praktilised integratsioonipiirangud
+ning implementeerib minimaalse Kotlinil põhineva SMP/SML lahenduse, mis toetab Harmony Access Pointi
+dünaamilise otsingu nõudeid.
+
+Valminud prototüüp demonstreerib kahe juurdepääsupunkti vahelist täielikku dünaamilist sõnumivahetust ning seda hinnatakse
+funktsionaalsete testide ja jõudlusmõõtmiste abil. Tulemused näitavad, et fokusseeritud ja minimaalsete
+sõltuvustega teostus suudab lokaalses testkeskkonnas pakkuda suurt läbilaskevõimet nii SMP metaandmete vastustele
+kui ka SML DNS-päringutele.
 
 
 

@@ -1,5 +1,27 @@
-% Abstract's text goes here (square brackets should be removed)
-[YOUR TEXT GOES HERE]
+The EU eFTI (Electronic Freight Transport Information) regulation requires digital exchange of freight data
+between competent authorities and transport operators. By 2027, Member States must be ready to accept
+freight information in digital form and make it available to competent authorities.
+As a result, each Member State must have its own eFTI gateway to transmit information between parties.
+
+According to the regulation, eDelivery is the basis for data exchange between Member States and within national systems.
+For cross-border exchange, static eDelivery configuration is used,
+where required certificates and other parameters are configured manually.
+The eFTI gateway must also provide an eDelivery interface to transport operators (eFTI platforms),
+but it may also offer other integration options, such as a REST interface.
+
+The eDelivery solution provided to platforms must use dynamic configuration, which automates
+the discovery of certificates and other technical parameters.
+For dynamic metadata discovery, eDelivery uses two additional components:
+SMP (Service Metadata Publisher) and SML (Service Metadata Locator).
+
+This thesis studies how eDelivery dynamic discovery works in practice and implements a working prototype.
+The work analyzes existing open-source components, identifies practical integration limitations,
+and implements a minimal Kotlin-based SMP/SML solution that supports Harmony Access Point
+dynamic discovery requirements.
+
+The resulting prototype demonstrates full dynamic message exchange between two access points and is evaluated
+with functional tests and performance measurements. The results show that a focused implementation with minimal
+dependencies can provide high throughput for both SMP metadata responses and SML DNS lookups in a local test setup.
 
 
 % No need to change this
