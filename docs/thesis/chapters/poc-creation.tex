@@ -98,7 +98,7 @@ CA sertifikaatide saamine on tasuline ning jääb selle lõputöö raamidest vä
 Selle asemel kasutas autor ise allkirjastatud sertifikaate.
 Selliseid sertifikaate Harmony automaatselt ei usalda, aga neid on lihtne luua ja kasutada. 
 Alternatiivina oleks võimalik luua ka juursertifikaat, mis allkirjastaks kõiki teisi sertifikaate.
-Siis tuleks usaldada ainult juursertifikaati. Küllaga ei anna see meetod olulisi eeliseid 
+Siis tuleks usaldada ainult juursertifikaati. Küll aga ei anna see meetod olulisi eeliseid 
 ise allkirjastatud sertifikaatide ees.
 
 Ise allkirjastatud sertifikaatide ja privaatvõtmete loomiseks 
@@ -151,7 +151,7 @@ WS plugina WSDL kirjeldus sisaldab 1479 rida XMLi, mis muudab selle väga mahuka
 Kuna WS päringud toimuvad üle HTTP protokolli ning on oma olemuselt POST päringud mille sisu on XML,
 siis on võimalik neid päringuid teha ka tavapäraste tööriistatega. 
 See tähendab, et pole vaja kasutada väliseid teeke, mis tihtipeale on aeglased ning sisaldavad turvariske. 
-Küllaga tekitab see ühe probleemi - arendaja peab ise sõnumi koostama WSDL kirjelduse järgi, 
+Küll aga tekitab see ühe probleemi - arendaja peab ise sõnumi koostama WSDL kirjelduse järgi, 
 mille muidu oleks valmis teinud väline WS teek.
 
 Arvestades probleemi, otsustas autor leida WS plugina näidissõnumi, 
@@ -399,7 +399,7 @@ Tulemuse testimiseks kirjutas autor ühikteste DNS mooduli ja räsimise äriloog
 SML serveri funktsionaalseks testimiseks tegi autor sama WS plugin 
 päringu nagu teise etapi lõpus. Seekord oli veasõnum teine - 
 Harmony juurdepääsupunkt ei leia SMP-st metaandmeid. 
-Küllaga on näha et NAPTR päring tehakse edukalt, 
+Küll aga on näha, et NAPTR päring tehakse edukalt, 
 ning juurdepääsupunkt üritab teha päringut SMP serverile (joonis~\ref{fig:poc-stage-3-result}).
 
 \begin{figure}[H]
@@ -443,13 +443,13 @@ See tuleneb kahest erinevast standardist, mis mõlemad on eDeliverys lubatud
 \cite[ptk 3.3]{ec_edelivery_smp_21}
 \cite[ptk 5.4]{oasis_smp_v2}
 \cite[ptk 2.7]{oasis_partyid_v1}.
-Küllaga on kahe kooloni kasutamine eelistatud, kuna ilma selleta ei saa kindlalt eraldada id skeemi ning väärtust.
+Küll aga on kahe kooloni kasutamine eelistatud, kuna ilma selleta ei saa kindlalt eraldada id skeemi ning väärtust.
 Kui iga sõne vahel oleks ainult üks koolon siis ei oleks üheselt mõistetav milline osa tunnusest on skeem ning milline
 on väärtus \cite[Kommentaar 3]{ec_edelivery_smp2_disposition_2024}. Seda arvestades lisas autor WS plugin sõnumis 
 \texttt{originalSender} ja \texttt{finalRecipient} väljade ette ühe kooloni. 
  
 Peale kõiki muudatusi tehakse Harmony juurdepääsupunkti poolt päringuid SMP serverisse
-joonisel \ref{smp-metatada-request-url} kirjeldatud kujul. 
+joonisel \ref{smp-metadata-request-url} kirjeldatud kujul. 
 
 \begin{figure}[H]
   \centering
@@ -457,7 +457,7 @@ joonisel \ref{smp-metatada-request-url} kirjeldatud kujul.
 GET /urn:oasis:names:tc:ebcore:partyid-type:unregistered::receiver/services/::eftiGateAction
 \end{lstlisting}
   \caption{Harmony juurdepääsupunkti poolt tehtav päring SMP-sse metaandmete saamiseks}
-  \label{smp-metatada-request-url}
+  \label{smp-metadata-request-url}
 \end{figure}
 
 
@@ -513,7 +513,7 @@ Vastavalt AS4 spetsifikatsioonile, saab luua kujutuse SMP väärtustest juurdep�
 \end{table}
 
 Arvestades leitud erisusi, täitis autor ära kõik kohustuslikud väljad teenuse registreerimiseks 
-(Joonis~\ref{fig:phoss-smp-service-registration}). Küllaga ei olnud võimalik teenust registreerida, 
+(Joonis~\ref{fig:phoss-smp-service-registration}). Küll aga ei olnud võimalik teenust registreerida, 
 kuna süsteem andis veateate - dokumendi tüübi id skeem peab olema defineeritud. 
 Dokumendi tüübi id skeemi eFTI kontekstis ei eksisteeri (vt \ref{service-metadata-description}).
 Näidislahenduse loomiseks ei ole seega võimalik kasutada Phoss SMP serverit.
@@ -533,7 +533,7 @@ et seda pole konteineriseeritud (vt jaotist \ref{smp-components-analysis}). Kats
 Otsustas autor Harmony SMP ise konteineriseerida.
 
 Autor uuris Harmony SMP koodibaasi ning leidis, et projekt oli juba konteineriseeritud. 
-Küllaga ei olnud võimalik ehitada dockeri pilti sealsete skriptide abil.
+Küll aga ei olnud võimalik ehitada dockeri pilti sealsete skriptide abil.
 Põhjus seisnes selles, et Harmony SMP muudatused DomiSMP vastu olid ära lõhkunud SMP serveri
 konteinerite piltide ehitamise funktsionaalsuse. Autor parandas leitud vead ning
 sai pildid uuesti ehitama. Loodud pildid laadis autor ka Docker hub keskkonda. 
@@ -560,7 +560,7 @@ võimalik luua minimaalne SMP implementatsioon näidisprojekti raames.
 \subsection{SMP serveri implementatsioon}
 Selleks, et lahendada eelmises peatükis olev veateade metaandmete päringu kohta, tuleb luua 
 REST API lõpp-punkt mis tagastab juurdepääsupunktile teenuse metaandmeid. Päringu kuju on 
-kirjeldatud joonisel \ref{smp-metatada-request-url}.
+kirjeldatud joonisel \ref{smp-metadata-request-url}.
 
 Selleks et hoida projekt lihtsana otsustas autor integreerida SMP REST teenuse SML-iga kokku.
 See tähendab et Klite haldab nii SMP kui ka SML osa.
