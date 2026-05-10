@@ -29,17 +29,17 @@ See tähendab, et eDelivery teenused ning teenusepakkujaid see uurimustöö ei a
 \section{eDelivery juurdepääsupunkt (AP)}
 Kõik täna saadaval olevad eDelivery juurdepääsupunktid on kirjeldatud
 Euroopa komisjoni vastaval veebilehel \cite{ec_edelivery_as4_v1x_conformant_products}. 
-Seal on nimekiri olemasolevatest lahendustes ning nende tulemustest eDelivery vastavustestimisel.
+Seal on nimekiri olemasolevatest lahendustest ning nende tulemustest eDelivery vastavustestimisel.
 Oluline näitaja on ka testi läbiviimise kuupäev. Kuna eDelivery standard on pidevas muutuses on
 oluline, et lahendused järgiksid kõige viimast versiooni. 
 
 \subsection{Domibus}
 Nimekirjas esimene lahendus, mis on tasuta, 
-ning mille lähtekood on avalik järgides EUPLv1.2 litentsi \cite{ec_edelivery_domibus_repo}. 
+ning mille lähtekood on avalik järgides EUPLv1.2 litsentsi \cite{ec_edelivery_domibus_repo}. 
 Domibusi koodivaramu sisaldab kõiki eDelivery osasid - juurdepääsupunkt ja SMP server.  
 
 Domibus on Euroopa komisjoni poolt hallatud, AS4 eDelivery juurdepääsupunkti näidislahendus. 
-Tänaseks on sellest välja kujunenud niiõelda etalonlahendus - seda kasutatakse uute lahenduste põhjana.
+Tänaseks on sellest välja kujunenud nii-öelda etalonlahendus - seda kasutatakse uute lahenduste põhjana.
 
 Analüüsides Domibusi koodibaasi on tegu üpris suure projektiga. Selleks, et projekti suurust paremini
 hinnata leidis autor koodibaasi ridade arvu, kasutades käsklust~\ref{lst:loc-command}.
@@ -81,21 +81,21 @@ Harmony projekt on väga hästi dokumenteeritud ning sisaldab kirjeldusi iga pro
 Samuti on olemas dokumentatsioon dünaamilise otsingu seadistamiseks, mis on selles lõputöös väga oluline.
 
 \subsection{Phase4}
-Phase4 \cite{phax_phase4_as4_library} on vabavaraline projekt, mis võimaldab implementeerida erineviad AS4 põhinevaid kasutusjuhte.
+Phase4 \cite{phax_phase4_as4_library} on vabavaraline projekt, mis võimaldab implementeerida erinevaid AS4 põhinevaid kasutusjuhte.
 Projekt on peamiselt ehitatud ühe arendaja poolt - Philip Helger, 
-kes on Peppoli ning eDelivery maastikul töötanud juba mitukümend aastat \cite{helger_linkedin}.
+kes on Peppoli ning eDelivery maastikul töötanud juba mitukümmend aastat \cite{helger_linkedin}.
 
 Phase4 on võimalik kasutada kui teeki, mis suudab võtta vastu ja saata AS4 sõnumeid osapoolte vahel.
 AS4 üks profiil - eDelivery on ka Phase4 poolt implementeeritud. 
 Selle projekti koodi ridade arvu on raske analüüsida, kuna see sisaldab peale eDelivery veel teisi funktsionaalsuseid.
 See tähendab reaalsete ridade arv võib olla petlik.
-Sellegi pooles on ridade arv 495735 käsklusega~\ref{lst:loc-command}.
+Sellegipoolest on ridade arv 495735 käsklusega~\ref{lst:loc-command}.
 
 Arvestades, et praegune eFTI süsteem ning paljud teised turul kasutatavad lahendused põhinevad Domibusil,
 on Phase4 kasutamine testimise ja ühilduvuse seisukohast keerulisem. Seetõttu kukub Phase4 kasutamine selle lõputöö raamidest välja.
 
 \section{eDelivery teenuse metaandmete avaldaja (SMP)}\label{smp-components-analysis}
-Nimekiri täna saadaval olevatest SMP serverites on Euroopa komisjoni lehel \cite{ec_edelivery_smp_conformant_solutions}.
+Nimekiri täna saadaval olevatest SMP serveritest on Euroopa komisjoni lehel \cite{ec_edelivery_smp_conformant_solutions}.
 Iga kirje kohta on saadaval testimise raport, 
 mis kirjeldab testimise kuupäeva ning ühiktestide tulemusi - kas on läbitud või ei ole.
 
@@ -113,7 +113,7 @@ ning lihtsasti kättesaadaval Docker Hubis \cite{phelger_phoss_smp_xml_docker}.
 Samuti on lahendust võimalik kasutada misiganes eDelivery juurdepääsupunkti jaoks.
 
 Projektis on kokku 315850 rida koodi, mis on saadud käsklusega~\ref{lst:loc-command}.
-Arvestades, et see SMP implementeerib peale eDelivery OASIS BDXR-i spesifikatsiooni 
+Arvestades, et see SMP implementeerib peale eDelivery OASIS BDXR-i spetsifikatsiooni 
 veel Peppol SMPd, on suurem ridade arv õigustatud.
 
 \subsection{Harmony SMP}
@@ -132,7 +132,7 @@ mis muudab tarkvara kasutamise raskemaks. \cite{niis_harmony_common_repo}
 
 \section{eDelivery teenuse metaandmete leidja (SML)}
 \label{sml-components-analysis}
-eDelivery SMLi pakutakse täna teenusena Euroopa Komisjoni poolt kõikidele huvitatud osapooltele. 
+eDelivery SML-i pakutakse täna teenusena Euroopa Komisjoni poolt kõikidele huvitatud osapooltele. 
 Küllaga on hetkel teenusega ühinemine võimatu, 
 kuna ajutiselt on piiratud uute süsteemide integreerimine SML-i \cite{ec_edelivery_sml_service}.
 
@@ -157,7 +157,7 @@ Avades viite veebilehitsejas selgus et link oli katki ning dokumentatsiooni enam
 
 DomiSML projektis leidus ka \textit{bdmsl-springboot} nimeline alamprojekt,
 millel oli olemas käivitamisjuhised. Analüüsides juhist lähemalt selgus, et 
-enne käivitamist tuli läbida kahesammuline konfigureeerimise protsess.
+enne käivitamist tuli läbida kahesammuline konfigureerimise protsess.
 Konfiguratsiooni üks osa oli \textit{MySQL} andmebaasi seadistamine. 
 Kusjuures dokumentatsioon ei täpsustanud millist MySQL versiooni tarkvara ootab.
 

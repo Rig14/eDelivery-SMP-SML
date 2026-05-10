@@ -1,5 +1,5 @@
 Käesoleva lõputöö eesmärgiks on luua töötav näidislahendus, 
-mis demonstreerib eDelivery dünaamilise otsimise mehanismi kasutust.
+mis demonstreerib eDelivery dünaamilise otsimise mehhanismi kasutust.
 Lõppeesmärgini jõudmiseks tegi autor neljaetapilise plaani:
 
 \begin{enumerate}
@@ -30,7 +30,7 @@ kasutades ainult ühte definitsioonifaili: \textit{compose.yml}
 
 Harmony eDelivery juurdepääsupunkt on hästi konteineriseeritud ning dokumenteeritud tarkvara
 mis on saadaval Docker Hub-is. Seal on olemas ka dokumentatsioon kuidas kasutada Harmony konteinereid
-compose failis. Sealsete juhitse kohaselt nõuab üks Harmony instants ka MySQL andmebaasi. \cite{niis_harmony_ap_docker}
+compose failis. Sealsete juhiste kohaselt nõuab üks Harmony instants ka MySQL andmebaasi. \cite{niis_harmony_ap_docker}
 See tähendab, et kahe Harmony instantsi jooksutamine nõuab kokku nelja konteinerit.
 
 Näidislahenduse \textit{compose.yml} fail sisaldab kahte juurdepääsupunkti
@@ -43,8 +43,8 @@ ning ka kahte MySQL andmebaasi analoogsete nimedega.
 Juurdepääsupunkte on võimalik seadistada kahest kohast - keskkonnamuutujad ja veebipõhine kasutajaliides.
 
 Näidislahenduses on \textit{compose.yml} lisatud paar keskkonnamuutujat, mida Docker Hubis 
-oleval näidisel ei olnud. Need lisandused võimaldavad juurdepääsupunkti õige toimimise.
-keskkonnamuutujatest kõige olulisemad on LB\_TLS\_TERMINATION ja SECURITY\_*\_PASSWORD.
+olevas näites ei olnud. Need lisandused võimaldavad juurdepääsupunkti õige toimimise.
+Keskkonnamuutujatest kõige olulisemad on LB\_TLS\_TERMINATION ja SECURITY\_*\_PASSWORD.
 
 \subsubsection{Keskkonnamuutujad}
 
@@ -84,26 +84,26 @@ mida kasutatakse sõnumite allkirjastamiseks ja krüpteerimiseks.
 
 Harmony juurdepääsupunkt genereerib vajalikud võtmed ja sertifikaadid automaatselt esimesel käivitusel.
 
-Selleks et saavutada võimaliklt hea arenduskogemus tuleb vastavad sertifikaadid ja võtmefailid 
+Selleks et saavutada võimalikult hea arenduskogemus tuleb vastavad sertifikaadid ja võtmefailid 
 ise genereerida väljaspool Harmony süsteemi. 
 See tuleneb vajadusest jagada faile kahe juurdepääsupunkti vahel. 
 Kui failid on kohe saadaval sellisel kujul nagu neid vaja on, 
 siis saab neid lihtsasti konteinerisse paigutada.
 
-Harmony juurdepääsupunkt kontollib sertifikaatide allkirjastamist ning keelab
+Harmony juurdepääsupunkt kontrollib sertifikaatide allkirjastamist ning keelab
 sertifikaatide kasutamise mis ei ole loodud pädevate sertifitseerimiskeskuste (CA) poolt või mida
 ei ole seadistatud Harmony \texttt{truststore}-i.
 
 CA sertifikaatide saamine on tasuline ning jääb selle lõputöö raamidest välja. 
 Selle asemel kasutas autor ise allkirjastatud sertifikaate.
-Selliseid sertifikaate Harmony automaatselt ei usalda, aga neid on lintne luua ja kasutada. 
+Selliseid sertifikaate Harmony automaatselt ei usalda, aga neid on lihtne luua ja kasutada. 
 Alternatiivina oleks võimalik luua ka juursertifikaat, mis allkirjastaks kõiki teisi sertifikaate.
 Siis tuleks usaldada ainult juursertifikaati. Küllaga ei anna see meetod olulisi eeliseid 
 ise allkirjastatud sertifikaatide ees.
 
-Ise allkirjastud sertifikaatide ja privaatvõtmete loomiseks 
+Ise allkirjastatud sertifikaatide ja privaatvõtmete loomiseks 
 kasutas autor openssl teeki käsklusega~\ref{lst:openssl-command}. Projekt sisaldab ka \textit{bash}
-skripti, mis loob vajalikud sertifkaadid ning paigutab need projektis õigetesse kaustadesse. 
+skripti, mis loob vajalikud sertifikaadid ning paigutab need projektis õigetesse kaustadesse. 
 
 
 \subsection{PMode seadistus}
@@ -172,7 +172,7 @@ Kasutades näidissõnumit kirjutas autor ühe failise programmi Kotlinis, mille 
 juurdepääsupunktile. 
 
 Selleks, et edukalt lõpetada arendusplaani esimene etapp, saatis autor näidissõnumil põhineva
-päringu juurdepääsupunktile, mis omakorda edastase selle teisele juurdepääsupunktile.
+päringu juurdepääsupunktile, mis omakorda edastas selle teisele juurdepääsupunktile.
 Saatmiseks oli vaja sõnumis muuta saatja ning saaja andmeid, vastavalt eelnevale seadistusele.
 Joonis~\ref{fig:poc-stage-1-result} on kahe Harmony juurdepääsupunkti admin liides,
 kus on näha vahetatud sõnumite metaandmed.
@@ -191,13 +191,13 @@ kus on näha vahetatud sõnumite metaandmed.
 eDelivery dünaamilise konfiguratsiooni puhul toimub sõnumite vahetus juurdepääsupunktide vahel sarnaselt
 staatilisele ühendusele. Erinevus seisneb selles, et saatev juurdepääsupunkt ei tea ette,
 kuhu, kellele ja mis moodi tuleb sõnum saata. Selle info leidmiseks tehakse kaks päringut - 
-DNS päring SMLi ja HTTP päring SMPsse.
+DNS päring SML-i ja HTTP päring SMPsse.
 
 Selleks, et võimaldada dünaamilist otsingut tuleb juurdepääsupunktid ümber seadistada ning ka sõnumid ära muuta.
 
-\subsection{domibus.propertis seadistused}
+\subsection{domibus.properties seadistused}
 
-Dünaamilise otsingu võimaldamiseks tuleb lülidada juurdepääsupunkt ümber kasutadama SML tsooni ning
+Dünaamilise otsingu võimaldamiseks tuleb lülitada juurdepääsupunkt ümber kasutama SML tsooni ning
 dünaamilist otsingut. \cite[Peatükk 3.2.11 Domibus configuration for OASIS]{ec_domibus_docs_52}
 
 Vastavalt Domibusi kasutusmanuaalile saab juurdepääsupunkti
@@ -220,7 +220,7 @@ Saatjana ei ole dünaamilises otsinguprotsessis sõnumi saaja ette teada,
 mistõttu ei ole vaja määrata parameetrit \texttt{PMode.Responder}.
 
 Vastuvõtja dünaamilise otsingu konfiguratsioon on sarnane saatja konfiguratsiooniga,
-lihtalt rollid on vahetatud: sõnumite saatja pole eelnevalt teada.
+lihtsalt rollid on vahetatud: sõnumite saatja pole eelnevalt teada.
 Mistõttu ei ole vaja parameetrit \texttt{PMode.Initiator} määrata
 \cite[Peatükk 3.2.11 PMode configuration for OASIS]{ec_domibus_docs_52}.
 
@@ -249,7 +249,7 @@ Kõik muud väljad jäävad sõnumis samaks mis olid staatilise otsingu puhul.
 
 Arendusplaani teise etapi lõpuks, saatis autor samasuguse muudetud päringu juurdepääsupunktile
 mis oli konfigureeritud kasutama dünaamilist otsingut. Selle tulemusel tuvastas saatja juurdepääsupunkt
-õigesti et tal puudub vajalik info sõnumi edastamiseks ning alsutas dünaamilise otsingu protsessi. 
+õigesti et tal puudub vajalik info sõnumi edastamiseks ning alustas dünaamilise otsingu protsessi. 
 Selle käigus tehti \texttt{CNAME} päring SML serverile, mida teise etapi lõpuks veel ei eksisteerinud.
 Juurdepääsupunkt andis oodatud veateate päringu ebaõnnestumisest (joonis~\ref{fig:poc-stage-2-result}) 
 
@@ -371,7 +371,7 @@ kui ka selle pikaajalist hooldamist \cite{klite_readme}.
 
 
 \subsection{Arhitektuur}
-Arhitektuurilisel koosneb SML server kahest osast - DNS ja Register.
+Arhitektuuriliselt koosneb SML server kahest osast - DNS ja Register.
 
 
 \textbf{DNS} on alguspunkt, kuhu kõik SML päringud alguses jõuavad.
@@ -478,7 +478,7 @@ on Phoss SMP väga lihtsasti kasutatav SMP serveri tarkvara.
 Selle tõttu otsustas autor seda ka lähemalt uurida.
 
 Phoss SMP toetab kolme sorti tagasüsteemi - MongoDB, XML ja SQL, mis on kõik konteineriseeritud \cite{phax_phoss_smp}.
-Näidislahenuse arendamise jaoks valis autor XML põhise lahenduse, kuna see ei nõua, peale SMP enda, 
+Näidislahenduse arendamise jaoks valis autor XML põhise lahenduse, kuna see ei nõua, peale SMP enda, 
 veel ühte lisakonteinerit andmebaasi jaoks. XML taustsüsteemis on kõik salvestatud XML failidesse \cite{phelger_phoss_smp_xml_docker}.
 
 Autor käivitas Phoss SMP serveri ning logis sisse veebipõhisesse adminliidesesse. Sealt avanes vaade erinevatele
@@ -495,7 +495,7 @@ Teenuse registreerimisel oli vaja sisestada oluliselt rohkem väärtuseid kui os
 Kaks kõige esimest välja teenuse registreerimisel olid \textbf{dokumendi id tüüp} ning \textbf{protsessi id}.
 Välja nimed tekitasid segadust, kuna sellenimelisi välju ei ole defineeritud WS plugin sõnumis.
 Uurimuse käigus selgus, et SMP ning juurdepääsupunkti sõnavara erineb üksteisest, kuigi põhimõtted on samad.
-Vastavalt AS4 spesifikatsioonile, saab luua kujutuse SMP väärtustest juurdepääsupunktide väärtustesse 
+Vastavalt AS4 spetsifikatsioonile, saab luua kujutuse SMP väärtustest juurdepääsupunktide väärtustesse 
 \cite[ptk 5]{peppol_as4_spec} (Tabel~\ref{tab:smp-to-ap-mapping})
 
 \begin{table}[h]
@@ -535,7 +535,7 @@ Otsustas autor Harmony SMP ise konteineriseerida.
 Autor uuris Harmony SMP koodibaasi ning leidis, et projekt oli juba konteineriseeritud. 
 Küllaga ei olnud võimalik ehitada dockeri pilti sealsete skriptide abil.
 Põhjus seisnes selles, et Harmony SMP muudatused DomiSMP vastu olid ära lõhkunud SMP serveri
-konteinerite piltide ehitamise funktsionaaluse. Autor parandas leitud vead ning
+konteinerite piltide ehitamise funktsionaalsuse. Autor parandas leitud vead ning
 sai pildid uuesti ehitama. Loodud pildid laadis autor ka Docker hub keskkonda. 
 \cite{harmony_smp_docker} \cite{harmony_smp_mysql_docker}.
 
@@ -559,7 +559,7 @@ võimalik luua minimaalne SMP implementatsioon näidisprojekti raames.
 
 \subsection{SMP serveri implementatsioon}
 Selleks, et lahendada eelmises peatükis olev veateade metaandmete päringu kohta, tuleb luua 
-REST API lõpp-punkt mis tagastab juurdepääsupunktile teenuse metaandmeid. Käringu kuju on 
+REST API lõpp-punkt mis tagastab juurdepääsupunktile teenuse metaandmeid. Päringu kuju on 
 kirjeldatud joonisel \ref{smp-metatada-request-url}.
 
 Selleks et hoida projekt lihtsana otsustas autor integreerida SMP REST teenuse SML-iga kokku.
@@ -572,9 +572,9 @@ SMP alamsüsteem koosneb kolmest osast - Metaandmete register, Metaandmete gener
 
 \textbf{Metaandmete registri} ülesanne on hoida teenuse metaandmeid ning osalejate paare. 
 Ühele osalejale vastab üks sissekanne metaandmeid XML kujul. Kuna teenus on alati sama
-(\texttt{eftiGateAction}), siis pole vaja hoida võtmetena osaleja-tennuse ennikuna.
+(\texttt{eftiGateAction}), siis pole vaja hoida võtmetena osaleja-teenuse kombinatsioonina.
 
-\textbf{Metaandmete genereerija} ülesanne on genereerida metandmete XML. 
+\textbf{Metaandmete genereerija} ülesanne on genereerida metaandmete XML. 
 Ainukesed muutuvad osad metaandmetes on sõnumi saaja, sõnumi saaja juurdepääsupunkti URL ja
 saaja digitaalne sertifikaat. Nende abil on võimalik luua teenuse metaandmed, mida võtab vastu
 juurdepääsupunkt.
@@ -582,7 +582,7 @@ juurdepääsupunkt.
 \textbf{SMP ruuter} võtab vastu HTTP päringuid teenuse metaandmetele ning tagastab 
 küsitud andmed XML kujul, juhul kui need on olemas. 
 
-Teenuse metaandete XML põhjana kasutas autor Harmony SMP serveri poolt loodud andmeid.
+Teenuse metaandmete XML põhjana kasutas autor Harmony SMP serveri poolt loodud andmeid.
 Võrreldes Phoss SMP-ga ei kasutanud Harmony SMP XML väljade jaoks NS prefiksit.
 NS prefiksi mitte kasutamine, kui see võimalik on, muudab XMLi lihtsamini loetavaks,
 mille tõttu autor otsustas selle kasuks.
@@ -625,7 +625,7 @@ struktuuri, atribuutide järjestuse ja märgikodeeringu poolest
   \label{same-xml-different-form}
 \end{figure}
 
-XML-i Kanooniline kuju on funktsionaalselt samasusgustel XML-idel ka samasugune.
+XML-i Kanooniline kuju on funktsionaalselt samasugustel XML-idel ka samasugune.
 See võimaldab räsida XML-e samamoodi, olenemata millisel kujul nad algselt olid.
 Räsimisel on oluline et sisendandmed oleks alati samad, kuna isegi väike muudatus 
 sisendis toob kaasa teise räsi.
@@ -641,7 +641,7 @@ teeke, mis muudab koodi lihtsamaks ning kiiremaks.
 
 
 \subsection{XMLDSIG Digest}
-Selleks et veenduda, et teenuse metaandmeid pole kuidagi muudetud, luuaks \texttt{SHA256} 
+Selleks et veenduda, et teenuse metaandmeid pole kuidagi muudetud, luuakse \texttt{SHA256} 
 räsi nendest andmetest. Räsimise algoritm on kirjeldatud XML-is viitega 
 \texttt{\seqsplit{http://www.w3.org/2001/04/xmlenc\#sha256}}
 
@@ -675,7 +675,7 @@ sõnumi saaja andmed SMP serverist (joonis~\ref{fig:poc-stage-4-results})
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{figures/poc-stage-4-result.png}
-  \caption{Neljanda etapi lõpptulemus - sõnumi saatja saadab sõnumi, kasutade dünaamilist otsingut,
+  \caption{Neljanda etapi lõpptulemus - sõnumi saatja saadab sõnumi, kasutades dünaamilist otsingut,
   sõnumi saajale. Vasakul saaja, paremal saatja}
   \label{fig:poc-stage-4-results}
 \end{figure}

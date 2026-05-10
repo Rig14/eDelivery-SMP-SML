@@ -1,14 +1,14 @@
-Euroopa liit on endale seadnud eesmärgiks aastaks 2050 saavutada kliimaneutraalsus.
-Selle eesmärgi täitmiseks on Euroopa Liidus loodud erinevaid rahastusvehendeid.
+Euroopa Liit on endale seadnud eesmärgiks aastaks 2050 saavutada kliimaneutraalsus.
+Selle eesmärgi täitmiseks on Euroopa Liidus loodud erinevaid rahastusvahendeid.
 Üheks selliseks vahendiks on Euroopa ühendamise rahastu (CEF), mis investeerib kolme 
 peamisesse suunda: energeetika, transport ja digivõrgud. \cite{cef}
 
-CEF transport algatas 2023 aastal eFTI4EU projekti,
+CEF transport algatas 2023. aastal eFTI4EU projekti,
 mille eesmärgiks on standardiseeritult digitaliseerida veoinfo vahetus pädevate 
 asutuste ning vedajate vahel lähtudes Euroopa Parlamendi määrusest 2020/1056 \cite{efti4eu_project}. 
 
 eFTI4EU projekti üks suuremaid tulemusi on eFTI näidislahenduse loomine.
-näidislahendus sisaldab minimaalset koodibaasi, mis on vastavuses eFTI4EU määrusega ning
+Näidislahendus sisaldab minimaalset koodibaasi, mis on vastavuses eFTI4EU määrusega ning
 mida arendavad projektis osalevad liikmesriigid.
 Loodud tulemust saavad kasutada liikmesriigid oma riikliku lahenduse alusena. \cite{efti4eu_reference_impl}
 
@@ -20,7 +20,7 @@ ja pädevate asutuste juurdepääsupunkt. \cite{efti4eu_reference_impl}
 eFTI värav on süsteemi keskne osa, millega suhtlevad nii eFTI platvormid kui ka pädevad asutused.
 Väravaid haldavad kõik liikmesriigid ise, ning on kohustatud pakkuma seda avaliku 
 teenusena transpordiettevõtetele ja pädevatele asutustele. Värava peamine roll on andmete ning
-päringute edastamine osapoolte vahel.Väravad peavad olema võimelised omavahel päringuid vastu võtma.
+päringute edastamine osapoolte vahel. Väravad peavad olema võimelised omavahel päringuid vastu võtma.
 Selleks, et standardiseerida suhtlus väravate vahel on kasutusele võetud eDelivery andmevahetuslahendus.
 
 Platvorm täidab eFTIs andmete looja ja haldaja rolli. Platvormi kaudu on võimalik luua eFTI
@@ -29,7 +29,7 @@ kes soovivad muuta oma veoandmed kättesaadavaks pädevatele asutustele läbi eF
 Platvorm saab registreerida veose metaandmeid väravasse, seeläbi muutes need kättesaadavaks kõigile väravatele eFTI võrgustikus. 
 Värav saab pärida ainult alamhulka eFTI andmetest, mis sisaldab vaid neid andmeid, mida pädev asutus
 seaduslikult peaks kätte saama. Seeläbi minimeeritakse liigsete andmete edastamist.
-eFTI andmete alamhulgad on defineerutud Euroopa Liidu määrusega 2024/2024 \cite{eu_reg_2024_2024}
+eFTI andmete alamhulgad on defineeritud Euroopa Liidu määrusega 2024/2024 \cite{eu_reg_2024_2024}
 
 Pädevate asutuste juurdepääsupunktid ehk Authority Access Points (AAP) võimaldavad huvitatud osapooltel pärida eFTI andmeid.
 Vastavalt liikmesriigi vajadustele võib AAP liidestus väravaga olla mistahes sugune.
@@ -79,32 +79,32 @@ SML põhineb DNS-il, mis tõlgendab organisatsiooni identifikaatori konkreetseks
 
 Näide SMP ja SML kasutamisest eFTI kontekstis:
 \begin{enumerate}
-  \item Eesti veoettevõtte registreerib voese digitaalselt oma eFTI platvormi.
+  \item Eesti veoettevõte registreerib veose digitaalselt oma eFTI platvormi.
   \item Platvorm peab veose metaandmed edastama Eesti eFTI väravale kuid ei tea värava metaandmeid. Tehakse DNS päring SML-i nimega EE-GATE.
   \item SML tagastab eFTI värava SMP serveri aadressi.
   \item Platvormi eDelivery juurdepääsupunkt teeb päringu SMP-le, et saada värava metaandmed.
-  \item Saadud metaandmetest koostataakse päring, mis saadetakse eFTI värava juurdepääsupunkti.
+  \item Saadud metaandmetest koostatakse päring, mis saadetakse eFTI värava juurdepääsupunkti.
   \item Värav salvestab veose andmed.
 \end{enumerate}
 
 \section{Probleem}
 
-eFTI4EU konsortiumi poolt loodud näidisarhitektuuris on mõningaid puudujääke. 
+eFTI4EU konsortsiumi poolt loodud näidisarhitektuuris on mõningaid puudujääke. 
 Nende puuduste hulgast on näiteks eDelivery SMP/SML kasutamine platvormi ning värava vahel.
 Tänane lahendus võimaldab eDelivery põhist suhtlust värava ja platvormi vahel kasutades staatilist konfiguratsiooni,
-mis ei vasta euroopa liidu regulatsioonile 2024/1942 artikkel 9 (3) \cite{eu_reg_2024_1942}.
-Hetkene lahendus töötab sarnaselt sellele kuidas väravad omavahel suhtlevad - staatiliselt.
+mis ei vasta Euroopa Liidu regulatsioonile 2024/1942 artikkel 9 (3) \cite{eu_reg_2024_1942}.
+Praegune lahendus töötab sarnaselt sellele kuidas väravad omavahel suhtlevad - staatiliselt.
 
 eFTI Regulatsioon hakkab kehtima täies ulatuses 9. juulil 2027. 
 Selleks ajaks peab iga liikmesriik võimaldama pädevatel asutustel ligipääsu eFTI väravatele ning
-tegema võimalikus registreerida veoseid eFTI süsteemi. \cite{eu_efti_regulation} 
+tegema võimalikuks registreerida veoseid eFTI süsteemi. \cite{eu_efti_regulation} 
 Valmisoleku saavutamiseks on oluline, et platvormid oleksid võimelised saatma
 veoandmeid kasutades eDelivery SMP/SML teenuseid.
 
 \section{Eesmärk}
 
 Käesoleva lõputöö eesmärgiks on lahendada eelnevas peatükis mainitud probleem.
-Autor on võtnud eesmärgiks uurida, kuidas töötab eDelivery dünaamilise leidmise mehhanis. 
+Autor on võtnud eesmärgiks uurida, kuidas töötab eDelivery dünaamilise leidmise mehhanism. 
 Oluline on luua PoC lahendus, mis võimaldaks eDelivery dünaamilist otsimist. 
 Tarkvaralise lahenduse puhul on väga tähtis saavutada võimalikult hea jõudlus.
 

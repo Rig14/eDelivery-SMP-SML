@@ -30,7 +30,7 @@ mille on välja töötanud Nominum/Akamai (2006–2018) ja DNS-OARC (alates 2019
 ning mis teeb latentsuse ja läbilaskevõime meetrikate kogumise lihtsaks \cite{dnsperf_tool}.
 
 Mõlema tööriista puhul peab määrama mitu päringut tehakse kokku ning kui palju
-päringuid tehakse samaaaegselt. Autor tegi jõudlustestimiseks argumentide ja tulemuste malli
+päringuid tehakse samaaegselt. Autor tegi jõudlustestimiseks argumentide ja tulemuste malli
 (tabel~\ref{tab:performance-table-template}). Päringute arv ja samaaegsus on järjest kasvav.
 Nii on võimalik võrrelda tarkvara jõudlust erinevatel koormusastmetel.
 
@@ -103,13 +103,13 @@ Tulemused on kirjeldatud tabelis~\ref{tab:poc-sml-performance-results}.
 
 Tulemustest saab järeldada et näidislahenduse SMP moodul kui ka SML moodul suudavad toime tulla väga
 suure koormusega. SMP serveri jõudlustabel sisaldab anomaaliat tuhande
-päringu ja saja samaaegse päringu puhul. Autor ei suutnud välja selgitada millest tuleneb madalam
-jõuldlus just sellel koormusastmel.
+päringu ja saja samaaegse päringu puhul. Autor ei suutnud välja selgitada millest tulenes madalam
+jõudlus just sellel koormusastmel.
 
 
 
 \section{Phoss SMP}
-Kuna Phoss SMP võimaldab vaid SMP funktsionaalust siis koguti andmeid ainult selle osa kohta.
+Kuna Phoss SMP võimaldab vaid SMP funktsionaalsust siis koguti andmeid ainult selle osa kohta.
 Autor muutis käsklust \ref{lst:ab-command-smp} ning määras metaandmete URL-iks
 \texttt{\seqsplit{http://localhost:8080/urn:oasis:names:tc:ebcore:partyid-type:unregistered::receiver/services/bus::eftiGateAction}}.
 Muudatus tuleneb sellest, et Phoss SMP ei võimalda registreerida teenust millel ei ole skeemi id-d.
@@ -168,7 +168,7 @@ Jõudlustestide tulemusi kirjeldab tabel~\ref{tab:harmony-smp-performance-result
 \end{table}
 
 Võrreldes kõigi teiste SMP lahendustega on Harmony SMP koormustaluvuse mõttes kõige kehvem.
-Päringute arv sekundis on piiritletud kuid suurema koormuse puhul tõuseb vastuste latentsus.
+Päringute arv sekundis on piiratud kuid suurema koormuse puhul tõuseb vastuste latentsus.
 
 
 
