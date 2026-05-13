@@ -107,11 +107,13 @@ Tulemused on kirjeldatud tabelis~\ref{tab:poc-sml-performance-results}.
     \end{tabular}
 \end{table}
 
-Tulemustest saab järeldada, et näidislahenduse SMP moodul kui ka SML moodul suudavad toime tulla väga
-suure koormusega. SMP serveri jõudlustabel sisaldab anomaaliat tuhande
-päringu ja saja samaaegse päringu puhul. Autor ei suutnud välja selgitada, millest tulenes madalam
-jõudlus just sellel koormusastmel.
-
+Tulemustest saab järeldada, et nii näidislahenduse SMP moodul kui ka SML
+moodul suudavad toime tulla väga suure koormusega. SMP serveri jõudlustabel sisaldab anomaaliat tuhande
+päringu ja saja samaaegse päringu puhul. Autoril õnnestus saada päringud 
+kiiremaks selle koormusastme juures kasutades -k lippu \texttt{ab} tööriistal.
+See lipp võimaldab HTTP \texttt{KeepAlive} funktsionaalsust, mis hoiab TCP 
+ühendusi avatuna peale päringu lõppu \cite{apache_ab_tool}. 
+Tulemuste ühtluse huvides otsustas autor jätkata \texttt{ab} tööriista kasutamist vaikeseadetega. 
 
 
 \section{Phoss SMP}
