@@ -177,7 +177,13 @@ Jõudlustestide tulemusi kirjeldab tabel~\ref{tab:harmony-smp-performance-result
 
 Võrreldes kõigi teiste SMP lahendustega on Harmony SMP koormustaluvuse mõttes kõige kehvem.
 Päringute arv sekundis on piiratud, kuid suurema koormuse puhul tõuseb vastuste latentsus.
+Madal koormustaluvus tuleneb Harmony SMP koodibaasi keerukusest
+(vt jaotist \ref{harmony-smp-analysis}). 
 
+Harmony SMP kasutab XML-i töötlemiseks Jakarta XML Bind API-t, mis võimaldab Java 
+klasside muutmise XML-iks \cite{jakarta_xml_bind_api, niis_harmony_smp_repo}. 
+Bind API liigutab XML-i töötlemise Java objektide tasemele. 
+Selle tulemusel tekib uus abstraktsioonikiht, mis muudab süsteemi aeglasemaks.
 
 
 \section{Tulemuste võrdlus}
@@ -185,8 +191,11 @@ Päringute arv sekundis on piiratud, kuid suurema koormuse puhul tõuseb vastust
 SMP serverite jõudlustestide tulemusi saab võrrelda kasutades tabelit~\ref{tab:smp-performance-comparison}.
 Punasega on tähistatud kõige halvem tulemus. Rohelisega kõige parem tulemus.
 
-Kasutades minimaalseid tööriistu ning luues tarkvara, mis täidab kindlat ülesannet
-on võimalik luua väga kiire lahendus, mida kinnitab PoC SMP rakenduse jõudlustulemused. 
+Kasutades minimaalseid tööriistu on võimalik luua väga kiire lahendus, 
+mida kinnitab PoC SMP rakenduse jõudlustulemused.
+Siinkohal peab rõhutama, et PoC lahenduse head jõudlustulemused tulenevad suures osas
+väga kindlast skoobist, milleks on eFTI. Harmony SMP ja Phoss SMP lahendavad 
+probleemi üldisemal tasemel, millega kaasneb lisakeerukus ning süsteemi mahukus.
 
 \definecolor{best}{RGB}{234, 243, 222}
 \definecolor{worst}{RGB}{252, 235, 235}
