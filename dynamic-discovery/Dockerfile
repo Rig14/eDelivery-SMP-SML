@@ -18,7 +18,7 @@ COPY --from=build-server /app/build/libs ./
 USER user
 
 ENV TZ=Europe/London
-ENV JAVA_TOOL_OPTIONS="-Xss256K -Xmx330M -XX:+ExitOnOutOfMemoryError"
+ENV JAVA_TOOL_OPTIONS="-Xss256K -Xmx1024M -XX:+UseCompactObjectHeaders -XX:+ExitOnOutOfMemoryError"
 ENV PORT=80
 ENV SML_PORT=53
 
