@@ -30,7 +30,7 @@ kasutades ainult ühte definitsioonifaili: \textit{compose.yml}
 
 Harmony eDelivery juurdepääsupunkt on hästi konteineriseeritud ning dokumenteeritud tarkvara
 mis on saadaval Docker Hub-is. Seal on olemas ka dokumentatsioon kuidas kasutada Harmony konteinereid
-compose failis. Sealsete juhiste kohaselt nõuab üks Harmony instants ka MySQL andmebaasi. \cite{niis_harmony_ap_docker}
+compose failis. Sealsete juhiste kohaselt nõuab üks Harmony instants ka MySQL andmebaasi \cite{niis_harmony_ap_docker}. 
 See tähendab, et kahe Harmony instantsi jooksutamine nõuab kokku nelja konteinerit.
 
 Näidislahenduse \textit{compose.yml} fail sisaldab kahte juurdepääsupunkti
@@ -131,7 +131,7 @@ võimaldab lihtsasti lisada ka teisi pluginaid.
 
 Võrreldes teiste pluginatega, mida turul täna leidub, autor ühtegi lihtsamini kasutatavat ei leidnud.
 Kõige silmapaistvam oli Ademico Software nimelise ettevõtte poolt toodetud REST plugin, 
-mis oli kahjuks tasuline ning kinnise lähtekoodiga toode. \cite{ademico_domibus_rest_api}
+mis oli kahjuks tasuline ning kinnise lähtekoodiga toode \cite{ademico_domibus_rest_api}. 
 
 Juurdepääsupunkti veebiliideses peab WS Pluginale määrama kasutaja ning parooli, 
 mille abil on hiljem võimalik teha päringuid. 
@@ -144,7 +144,7 @@ Selle projekti raames on nende väljade määramine automatiseeritud.
 Veebiteenuste klassikalisi standardeid (nagu SOAP ja WSDL) kohtab täna uutes projektides 
 üpris vähe, kuna nende kasutuselevõtt on väga ressursikulukas. Seda eelkõige liigse keerukuse,
 mahuka XML-struktuuri ja rangete standardite tõttu, mis muudavad süsteemide arendamise ja
-haldamise kohmakaks. \cite{tammet_veebiteenused_2007}
+haldamise kohmakaks \cite{tammet_veebiteenused_2007}. 
 
 WS plugina WSDL kirjeldus sisaldab 1479 rida XMLi, mis muudab selle väga mahukaks ning keeruliseks.
 
@@ -296,7 +296,7 @@ Algatanud uue eDelivery päringu kasutades WS pluginat, väljastas CoreDNS logis
 [INFO] 172.20.0.5:51024 - 48291 "NAPTR IN FSPLJSRASNOET76WWBU3VGOATHNBC7HNZ7EUJXU5LKJFNIZVJJSA.testsml. udp 84 false 4096" NXDOMAIN qr,rd,ra 110 0.0014s
 [INFO] 172.20.0.5:49220 - 08273 "CNAME IN B-8bb529042b90c77892efd34f7395f504.testsml. udp 42 false 4096" NXDOMAIN qr,rd,ra 98 0.0009s
   \end{lstlisting}
-  \caption{Harmony juurdepääsupunkti poolt tekitatud CoreDNS logid}
+  \caption{Harmony juurdepääsupunkti poolt tekitatud CoreDNS logid.}
   \label{coredns-logs}
 \end{figure}
 
@@ -320,7 +320,7 @@ Algoritm CNAME päringu koostamiseks on pseudokoodis kirjeldatud joonisel \ref{c
 \begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
 "B-"+hexstring(md5(lowercase(ID-VALUE)))+"."+ID-SCHEME+"."+SMLZONE-NAME
 \end{lstlisting}
-  \caption{Algoritm CNAME päringu koostamiseks}
+  \caption{Algoritm CNAME päringu koostamiseks.}
   \label{cname-algoritm}
 \end{figure}
 
@@ -343,7 +343,7 @@ algoritmi, mis on pseudokoodis kirjeldatud joonisel \ref{naptr-algorithm} \cite[
 \begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
 strip-trailing(base32(sha256(lowercase(ID-VALUE))),"=")+"."+IDSCHEME+"."+SML-ZONE-NAME
 \end{lstlisting}
-  \caption{Algoritm NAPTR päringu koostamiseks}
+  \caption{Algoritm NAPTR päringu koostamiseks.}
   \label{naptr-algorithm}
 \end{figure}
 
@@ -456,7 +456,7 @@ joonisel \ref{smp-metadata-request-url} kirjeldatud kujul.
 \begin{lstlisting}[frame=single, basicstyle=\small, breaklines=true]
 GET /urn:oasis:names:tc:ebcore:partyid-type:unregistered::receiver/services/::eftiGateAction
 \end{lstlisting}
-  \caption{Harmony juurdepääsupunkti poolt tehtav päring SMP-sse metaandmete saamiseks}
+  \caption{Harmony juurdepääsupunkti poolt tehtav päring SMP-sse metaandmete saamiseks.}
   \label{smp-metadata-request-url}
 \end{figure}
 
@@ -500,7 +500,7 @@ Vastavalt AS4 spetsifikatsioonile, saab luua kujutuse SMP väärtustest juurdep�
 
 \begin{table}[h]
     \centering
-    \caption{Kujutis (mapping) SMP väärtustest juurdepääsupunkti väärtustesse}
+    \caption{Kujutis (mapping) SMP väärtustest juurdepääsupunkti väärtustesse.}
     \label{tab:smp-to-ap-mapping}
     \begin{tabular}{|l|r|}
         \hline
@@ -521,7 +521,7 @@ Näidislahenduse loomiseks ei ole seega võimalik kasutada Phoss SMP serverit.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{figures/phoss-smp-service-registration.png}
-  \caption{Phoss SMP teenuse metaandmete registreerimine}
+  \caption{Phoss SMP teenuse metaandmete registreerimine.}
   \label{fig:phoss-smp-service-registration}
 \end{figure}
 
@@ -536,8 +536,8 @@ Autor uuris Harmony SMP koodibaasi ning leidis, et projekt oli juba konteinerise
 Küll aga ei olnud võimalik ehitada dockeri pilti sealsete skriptide abil.
 Põhjus seisnes selles, et Harmony SMP muudatused DomiSMP vastu olid ära lõhkunud SMP serveri
 konteinerite piltide ehitamise funktsionaalsuse. Autor parandas leitud vead ning
-sai pildid uuesti ehitama. Loodud pildid laadis autor ka Docker hub keskkonda. 
-\cite{harmony_smp_docker} \cite{harmony_smp_mysql_docker}.
+sai pildid uuesti ehitama. Loodud pildid laadis autor ka Docker hub keskkonda
+\cite{harmony_smp_docker}\cite{harmony_smp_mysql_docker}.
 
 Kasutades dokeriseeritud Harmony SMP serverit, logis autor sisse veebipõhisesse admin liidesesse.
 Võrreldes Phoss SMP-ga oli Harmony kasutajaliides raskemini arusaadav ning navigeeritav.
@@ -551,7 +551,7 @@ võimalik luua minimaalne SMP implementatsioon näidisprojekti raames.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{figures/harmony-smp-service-registration.png}
-  \caption{Harmony SMP teenuse metaandmete registreerimine}
+  \caption{Harmony SMP teenuse metaandmete registreerimine.}
   \label{fig:harmony-smp-service-registration}
 \end{figure}
 
@@ -621,7 +621,7 @@ struktuuri, atribuutide järjestuse ja märgikodeeringu poolest
     </user>
   \end{lstlisting}
 
-  \caption{Funktsionaalselt samaväärsed XML-id aga erinev kuju}
+  \caption{Funktsionaalselt samaväärsed XML-id aga erinev kuju.}
   \label{same-xml-different-form}
 \end{figure}
 
@@ -676,6 +676,6 @@ sõnumi saaja andmed SMP serverist (joonis~\ref{fig:poc-stage-4-results})
   \centering
   \includegraphics[width=0.9\textwidth]{figures/poc-stage-4-result.png}
   \caption{Neljanda etapi lõpptulemus - sõnumi saatja saadab sõnumi, kasutades dünaamilist otsingut,
-  sõnumi saajale. Vasakul saaja, paremal saatja}
+  sõnumi saajale. Vasakul saaja, paremal saatja.}
   \label{fig:poc-stage-4-results}
 \end{figure}

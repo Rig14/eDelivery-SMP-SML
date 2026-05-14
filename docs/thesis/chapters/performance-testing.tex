@@ -23,7 +23,7 @@ Väljundina võrreldakse töödeldud päringute kogust sekundis ning päringute 
 Seda tüüpi tulemuste kogumiseks on kõige paremaks tööriistaks Apache Benchmark. Apache Benchmark (ab)
 on lihtne, kuid võimas käsureatööriist, mida kasutatakse veebiserverite (mitte ainult Apache) 
 koormustestimiseks ja jõudluse mõõtmiseks. See annab kiire ülevaate sellest, kui hästi suudab 
-server tulla toime suure hulga päringutega. \cite{apache_ab_tool}
+server tulla toime suure hulga päringutega \cite{apache_ab_tool}. 
 
 Apache Benchmark moodi lahendus DNS-i maastikul on \texttt{dnsperf}. \texttt{dnsperf} on tasuta tööriist,
 mille on välja töötanud Nominum/Akamai (2006–2018) ja DNS-OARC (alates 2019. aastast)
@@ -41,7 +41,7 @@ Seetõttu tuleb tulemusi käsitleda praktilise võrdlusena selle töö raames, m
 Harmony SMP ning Phoss SMP testimisel kasutati nende vaikimisi seadistusi.
 
 \begin{table}[H]
-    \caption{ab jõudlustestimise mall}
+    \caption{Jõudlustestimise tulemuste mall.}
     \label{tab:performance-table-template}
     \begin{tabular}{|c|c|c|c|}
         \hline
@@ -69,7 +69,7 @@ Näidislahenduse SMP serveri jõudlus hinnati kasutades käsklust \ref{lst:ab-co
 Tulemused on kirjeldatud tabelis~\ref{tab:poc-smp-performance-results}.
 
 \begin{table}[H]
-    \caption{Näidislahenduse SMP metaandmete API jõudlus}
+    \caption{Näidislahenduse SMP metaandmete API jõudlus.}
     \label{tab:poc-smp-performance-results}
     \begin{tabular}{|c|c|c|c|}
         \hline
@@ -127,7 +127,7 @@ kõik teised väärtused jäid näidislahendusega samaks.
 Jõudlustestide tulemusi kirjeldab tabel~\ref{tab:phoss-smp-performance-results}.
 
 \begin{table}[H]
-    \caption{Phoss SMP jõudlustestide tulemused}
+    \caption{Phoss SMP jõudlustestide tulemused.}
     \label{tab:phoss-smp-performance-results}
     \begin{tabular}{|c|c|c|c|}
         \hline
@@ -158,7 +158,7 @@ käsklust \ref{lst:ab-command-smp}, muutes SMP URL-iks
 Jõudlustestide tulemusi kirjeldab tabel~\ref{tab:harmony-smp-performance-results}.
 
 \begin{table}[H]
-    \caption{Harmony SMP jõudlustestide tulemused}
+    \caption{Harmony SMP jõudlustestide tulemused.}
     \label{tab:harmony-smp-performance-results}
     \begin{tabular}{|c|c|c|c|}
         \hline
@@ -181,7 +181,7 @@ Madal koormustaluvus tuleneb Harmony SMP koodibaasi keerukusest
 (vt jaotist \ref{harmony-smp-analysis}). 
 
 Harmony SMP kasutab XML-i töötlemiseks Jakarta XML Bind API-t, mis võimaldab Java 
-klasside muutmise XML-iks \cite{jakarta_xml_bind_api, niis_harmony_smp_repo}. 
+klasside muutmise XML-iks \cite{jakarta_xml_bind_api} \cite{niis_harmony_smp_repo}.
 Bind API liigutab XML-i töötlemise Java objektide tasemele. 
 Selle tulemusel tekib uus abstraktsioonikiht, mis muudab süsteemi aeglasemaks.
 
@@ -200,7 +200,7 @@ probleemi üldisemal tasemel, millega kaasneb lisakeerukus ja halvem jõudlus.
 \definecolor{best}{RGB}{234, 243, 222}
 \definecolor{worst}{RGB}{252, 235, 235}
 \begin{table}[H]
-    \caption{SMP jõudlustestide võrdlus}
+    \caption{SMP jõudlustestide võrdlus.}
     \label{tab:smp-performance-comparison}
     \begin{tabular}{|c|c|c|c|c|}
         \hline

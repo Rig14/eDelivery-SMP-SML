@@ -1,21 +1,22 @@
 Euroopa Liit on endale seadnud eesmärgiks aastaks 2050 saavutada kliimaneutraalsus.
 Selle eesmärgi täitmiseks on Euroopa Liidus loodud erinevaid rahastusvahendeid.
 Üheks selliseks vahendiks on Euroopa ühendamise rahastu (CEF), mis investeerib kolme 
-peamisesse suunda: energeetika, transport ja digivõrgud. \cite{cef}
+peamisesse suunda: energeetika, transport ja digivõrgud \cite{cef}. 
 
 CEF transport algatas 2023. aastal eFTI4EU projekti,
 mille eesmärgiks on standardiseeritult digitaliseerida veoinfo vahetus pädevate 
-asutuste ning vedajate vahel lähtudes Euroopa Parlamendi määrusest 2020/1056 \cite{efti4eu_project,eu_reg_2020_1056}. 
+asutuste ning vedajate vahel lähtudes Euroopa Parlamendi määrusest 2020/1056
+\cite{efti4eu_project}\cite{eu_reg_2020_1056}.
 
 eFTI4EU projekti üks suuremaid tulemusi on eFTI näidislahenduse loomine.
 Näidislahendus sisaldab minimaalset koodibaasi, mis on vastavuses eFTI4EU määrusega ning
 mida arendavad projektis osalevad liikmesriigid.
-Loodud tulemust saavad kasutada liikmesriigid oma riikliku lahenduse alusena. \cite{efti4eu_reference_impl}
+Loodud tulemust saavad kasutada liikmesriigid oma riikliku lahenduse alusena \cite{efti4eu_reference_impl}. 
 
 \section{eFTI taust}
 
 eFTI4EU näidislahendus sisaldab kolme põhilist eFTI arhitektuuri komponenti - eFTI värav, eFTI näidisplatvorm 
-ja pädevate asutuste juurdepääsupunkt. \cite{efti4eu_reference_impl}
+ja pädevate asutuste juurdepääsupunkt \cite{efti4eu_reference_impl}. 
 
 eFTI värav on süsteemi keskne osa, millega suhtlevad nii eFTI platvormid kui ka pädevad asutused.
 Väravaid haldavad kõik liikmesriigid ise, ning on kohustatud pakkuma seda avaliku 
@@ -29,11 +30,11 @@ kes soovivad muuta oma veoandmed kättesaadavaks pädevatele asutustele läbi eF
 Platvorm saab registreerida veose metaandmeid väravasse, seeläbi muutes need kättesaadavaks kõigile väravatele eFTI võrgustikus. 
 Värav saab pärida ainult alamhulka eFTI andmetest, mis sisaldab vaid neid andmeid, mida pädev asutus
 seaduslikult peaks kätte saama. Seeläbi minimeeritakse liigsete andmete edastamist.
-eFTI andmete alamhulgad on defineeritud Euroopa Liidu määrusega 2024/2024 \cite{eu_reg_2024_2024}
+eFTI andmete alamhulgad on defineeritud Euroopa Liidu määrusega 2024/2024 \cite{eu_reg_2024_2024}.
 
 Pädevate asutuste juurdepääsupunktid ehk Authority Access Points (AAP) võimaldavad huvitatud osapooltel pärida eFTI andmeid.
 Vastavalt liikmesriigi vajadustele võib AAP liidestus väravaga olla mistahes sugune.
-Eesti kontekstis on võimalik kasutada X-Tee sõnumeid, et pärida andmeid eFTI keskkonnast. \cite{dlk_2022_efti_analysis}
+Eesti kontekstis on võimalik kasutada X-Tee sõnumeid, et pärida andmeid eFTI keskkonnast \cite{dlk_2022_efti_analysis}. 
 Kuna AAP-il pole otsest kokkupuudet eDelivery-ga, siis selle lõputöö raamidest jääb AAP välja.
 
 \section{eDelivery taust}
@@ -41,21 +42,21 @@ Kuna AAP-il pole otsest kokkupuudet eDelivery-ga, siis selle lõputöö raamides
 eDelivery on avatud spetsifikatsioonidel põhinev infrastruktuur ja protokoll, 
 mis kasutab AS4 (Applicability Statement 4) standardit sõnumite vahetamiseks. 
 See on nagu digitaalne postisüsteem, mis tagab, et sõnumid liiguvad ühest punktist
-teise kontrollitud ja krüpteeritud viisil. \cite{ria_edelivery_selgitus}
+teise kontrollitud ja krüpteeritud viisil \cite{ria_edelivery_selgitus}. 
 
 Sarnane infrastruktuur sõnumivahetuseks on kasutusel ka Eestis X-Tee näol, 
 mis võimaldab turvalist ja tõestusväärtust tagavat internetipõhist andmevahetust
-riigiasutuste vahel ja erasektoriga. \cite{x_tee_wikipedia}
+riigiasutuste vahel ja erasektoriga \cite{x_tee_wikipedia}. 
 
 Arhitektuursel tasandil on eDelivery ja X-Tee sarnased kuna mõlemad põhinevad nelja nurga mudelil (joonis~\ref{fig:4-corner-model}).
 Selle mudeli põhiidee on, et infosüsteemid ei vaheta andmeid omavahel otse.
 Selle asemel on süsteemid ühendatud juurdepääsupunktide kaudu, 
-mis rakendavad samu tehnilisi spetsifikatsioone ning suudavad seetõttu omavahel suhelda. \cite{niis_xroad_edelivery_blog}
+mis rakendavad samu tehnilisi spetsifikatsioone ning suudavad seetõttu omavahel suhelda \cite{niis_xroad_edelivery_blog}. 
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{figures/4-corner-model.png}
-  \caption{Nelja nurga mudel eDelivery ning X-Tee kontekstis}
+  \caption{Nelja nurga mudel eDelivery ning X-Tee kontekstis.}
   \label{fig:4-corner-model}
 \end{figure}
 
@@ -65,17 +66,17 @@ Saaja metaandmeid on võimalik leida kahel moel: dünaamiliselt ja staatiliselt.
 Staatilise metaandmete leidmise korral on vajalik info seadistatud saatja andmebaasis ning kättesaadav kohe.
 Dünaamilise leidmise korral peab andmeid küsima kolmanda osapoole süsteemist. 
 eDelivery-s kutsutakse neid süsteeme teenuse metaandmete avaldaja (SMP) 
-ning teenuse metaandmete leidja (SML). \cite{ria_edelivery_selgitus}
+ning teenuse metaandmete leidja (SML) \cite{ria_edelivery_selgitus}. 
 
 \section{SMP ja SML taust}
 
 SMP on nagu telefoniraamat, mis sisaldab teavet osalejate kohta: 
 nende aadressid, milliseid andmeid nad pakuvad ja sertifikaadid.
-Iga osaleja eDelivery võrgus haldab oma SMP-d, mis tagab, et süsteem jääb detsentraliseerituks. \cite{ria_edelivery_selgitus}
+Iga osaleja eDelivery võrgus haldab oma SMP-d, mis tagab, et süsteem jääb detsentraliseerituks \cite{ria_edelivery_selgitus}. 
 
 SML on ainus tsentraliseeritud eDelivery komponent, mis toimib otsingumootorina.
 See aitab juurdepääsupunktidel leida õige SMP, kust nad saavad teavet sõnumi saaja kohta.
-SML põhineb DNS-il, mis tõlgendab organisatsiooni identifikaatori konkreetseks SMP aadressiks. \cite{ria_edelivery_selgitus}
+SML põhineb DNS-il, mis tõlgendab organisatsiooni identifikaatori konkreetseks SMP aadressiks \cite{ria_edelivery_selgitus}. 
 
 Näide SMP ja SML kasutamisest eFTI kontekstis:
 \begin{enumerate}
@@ -97,7 +98,7 @@ Praegune lahendus töötab sarnaselt sellele kuidas väravad omavahel suhtlevad 
 
 eFTI Regulatsioon hakkab kehtima täies ulatuses 9. juulil 2027. 
 Selleks ajaks peab iga liikmesriik võimaldama pädevatel asutustel ligipääsu eFTI väravatele ning
-tegema võimalikuks registreerida veoseid eFTI süsteemi. \cite{eu_efti_regulation} 
+tegema võimalikuks registreerida veoseid eFTI süsteemi \cite{eu_efti_regulation}.  
 Valmisoleku saavutamiseks on oluline, et platvormid oleksid võimelised saatma
 veoandmeid, kasutades eDelivery SMP ja SML teenuseid.
 
