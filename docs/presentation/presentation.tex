@@ -1,0 +1,82 @@
+\documentclass[aspectratio=169]{beamer}
+
+\usetheme{metropolis}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\title{Presentation Title}
+\subtitle{Optional Subtitle}
+\author{Author Name}
+\institute{Institute}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}{Introduction}
+  \begin{itemize}
+    \item First point
+    \item Second point
+    \item Third point
+  \end{itemize}
+\end{frame}
+
+\section{Main Content}
+
+\begin{frame}{Columns Example}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      Left column content
+    \column{0.48\textwidth}
+      Right column content
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Blocks}
+  \begin{block}{Block}
+    Normal block
+  \end{block}
+  \begin{alertblock}{Alert}
+    Alert block
+  \end{alertblock}
+  \begin{exampleblock}{Example}
+    Example block
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]{Code Listing}
+  \begin{lstlisting}[language=Python]
+def hello():
+    print("Hello, world!")
+  \end{lstlisting}
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}{Conclusion}
+  \begin{itemize}
+    \item Summary point 1
+    \item Summary point 2
+  \end{itemize}
+  \vfill
+  \begin{center}
+    \Large Thank you!
+  \end{center}
+\end{frame}
+
+\end{document}
