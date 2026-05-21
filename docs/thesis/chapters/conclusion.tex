@@ -1,18 +1,27 @@
-Käesoleva lõputöö eesmärk oli uurida eDelivery dünaamilise otsingu mehhanismi kasutamist
-eFTI kontekstis ning luua töötav näidislahendus. Töö käigus analüüsiti olemasolevaid
-AP, SMP ja SML valmiskomponente, loodi töötav näidislahendus ning viidi läbi funktsionaalne ja
-jõudluspõhine hindamine.
+Käesoleva lõputöö eesmärk oli uurida eDelivery dünaamilise otsingu mehhanismi 
+ning luua selle põhjal töötav näidislahendus.
 
-Töö peamine tulemus on näidislahendus, kus sõnumi saatja juurdepääsupunkt
-suudab dünaamilise otsingu abil leida saaja metaandmed SML ja SMP kaudu ning edastada sõnumi edukalt
-teisele juurdepääsupunktile. Sellega täideti töö peamine tehniline eesmärk ning demonstreeriti
-eFTI regulatsioonis kirjeldatud platvormi ja värava vahelise dünaamilise
-eDelivery suhtluse teostatavust \cite{eu_reg_2024_1942}. Loodud näidislahendus kasutab 
-MIT litsentsi ning on avalikult kättesaadav GitHubi keskkonnas \cite{github_edelivery_smp_sml}. 
+Loodud lahendus pidi võimaldama eFTI platvormi ja värava vahelist sõnumivahetust,
+kasutades eDelivery SML- ja SMP-komponente saaja metaandmete dünaamiliseks leidmiseks.
 
-Jõudlustestid näitasid, et loodud minimaalne SMP/SML implementatsioon suudab
-töödelda suurt hulka päringuid väikese latentsusega.
+Eesmärgi saavutamiseks analüüsiti esmalt olemasolevaid avatud lähtekoodiga 
+AP- , SMP- ja SML-komponente ning hinnati nende sobivust.
+Selle baasil arendati neljas etapis näidislahendus, liikudes lihtsaimast töötavast versioonist
+täielikult funktsioneeriva dünaamilise sõnumivahetuseni.
+Lõpetuseks teostati nii loodud näidislahendusele kui ka valmiskomponentidele lokaalses
+testkeskkonnas jõudluspõhine hindamine ja tulemuste võrdlus.
 
-Töö kõrvaltulemusena valmis ka praktiline dokumentatsioon, mis kirjeldab eDelivery dünaamilise otsingu
-rakendamiseks vajalikke samme ja konfiguratsioone. See aitab vähendada eDelivery kasutuselevõtu
-keerukust olukorras, kus praktilistest näidetest on puudus.
+Töö peamise tulemusena valmis toimiv sõnumivahetuse lahendus,
+kus saatja juurdepääsupunkt suudab dünaamilise otsingu abil leida saaja metaandmed
+ja edastada sõnumi teisele juurdepääsupunktile. Sellega täideti töö peamine tehniline eesmärk
+ja tõestati eFTI regulatsioonis (2024/1942) kirjeldatud platvormi ja värava vahelise
+dünaamilise suhtluse teostatavust \cite{eu_reg_2024_1942}.
+
+Jõudlustestid kinnitasid, et loodud minimaalne SMP/SML implementatsioon suudab
+väikese latentsusega töödelda suurt hulka päringuid. 
+
+Näidislahendus on avaldatud GitHubi keskkonnas MIT litsentsi alusel \cite{github_edelivery_smp_sml}.
+
+Töö oluliseks lisaväärtuseks on praktilise dokumentatsiooni loomine,
+mis aitab leevendada eDelivery rakendusnäidete puudust ja vähendab tehnoloogia kasutuselevõtu
+keerukust tulevikus.
