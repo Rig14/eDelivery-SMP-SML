@@ -11,6 +11,55 @@ Lõppeesmärgini jõudmiseks tegi autor neljaetapilise plaani:
 
 
 
+\section{Arhitektuuriline kontseptsioon ja disainimuster}
+Enne näidislahenduse loomist analüüsis autor eDelivery dünaamilise
+otsingu arhitektuurilist kontseptsiooni ja disainimustreid.
+
+SMP ja SML komponentidel põhinevat süsteemi kirjeldatakse arhitektuuriliselt
+\textbf{teenuse tuvastamise mustriks}. 
+
+Monoliitses rakenduses suhtlevad teenused programmeerimiskeele tasemel meetodite või
+protseduuride väljakutsete kaudu. Traditsioonilises hajutatud süsteemi arhitektuuris töötavad
+teenused kindlates, hästi teadaolevates asukohtades, mis võimaldab neil üksteist pärida 
+kasutades selleks näiteks REST API-t. Kaasaegne mikroteenustel põhinev rakendus töötab aga 
+virtualiseeritud või konteinerdatud keskkonnas, kus teenuse instantside arv ja nende asukohad 
+muutuvad dünaamiliselt. See toob esile probleemi - kuidas mingi teenus teab kus mingi teine 
+teenus asub \cite{microservices_server_side_discovery}?
+
+Pidevalt muutuvas detsentraliseeritud süsteemis on osapoolte metaandmete lokaalne haldamine 
+ebaefektiivne. Lahenduseks on kaheastmeline lahtisidestatud arhitektuur, kus SML toimib 
+DNS-põhise globaalse otsingumootorina, suunates päringu õigele SMP-le. 
+SMP omakorda väljastab lokaalse telefoniraamatuna asutuse detailse tehnilise info ja 
+sertifikaadid \cite{ria_edelivery_selgitus}.
+
+\subsection{Võrdlus X-Teega}
+Nagu sai lühidalt mainitud käesoleva lõputöö sissejuhatuses, on eDelivery infrastruktuur
+arhitektuursel tasandil sarnane Eestis kasutatava X-teega, kuna mõlemad
+andmevahetusplatvormid põhinevad nelja nurga mudelil. 
+
+Vaatamata kontseptuaalsele sarnasusele on nende kahe tehnoloogia lähenemine
+teenuse tuvastamisel fundamentaalselt erinev.
+
+X-Tee arhitektuuris on SML ja SMP komponendid kujunenud üheks süsteemiks, milleks on
+X-Tee keskserver. Keskserveri ülesanne on hoida infot süsteemis olevate osalejate ning
+turvaserverite kohta \cite{xroad_architecture}. Peale osalejate info määrab X-Tee keskserver
+ka pädevate sertifitseerimiskeskuste listi, mida eDelivery süsteemis määras juurdepääsupunkt ise.
+
+See lähenemine muudab X-Tee kasutamise võrreldes eDelivery-ga lihtsamaks, kuna väga palju tööd teeb
+ära X-Tee keskserver. Küll aga on selline lähenemine halb rahvusvahelisel tasemel, kus riigid soovivad
+oma andmeid omada ning ei oleks nõus kasutama keskset serverit.
+
+eDelivery ja X-Tee erinevused on kirjeldatud joonisel~\ref{fig:x-road-vs-edelivery-architecture}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/x-road-vs-edelivery-architecture.png}
+  \caption{eDelivery ja X-Tee võrdlus.}
+  \label{fig:x-road-vs-edelivery-architecture}
+\end{figure}
+
+
+
 \section{Staatiline eDelivery konfiguratsioon}
 eDelivery staatilise konfiguratsiooni puhul vahetavad juurdepääsupunktid infot otse, 
 ilma kolmanda osapooleta. See on tehniliselt vähem keerukas lahendus, kui dünaamiline otsing,
